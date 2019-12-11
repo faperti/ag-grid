@@ -8,10 +8,8 @@ import { LottocollaudoComponent } from './lottocollaudo/lottocollaudo.component'
 import { LottoclientiComponent } from './lottoclienti/lottoclienti.component';
 
 const routes: Routes = [
-    {
-        path: 'lotto',
-        component: LottoComponent,
-        children: [
+    { path: 'lotto/:lotto', component: LottoComponent ,
+    children: [
             {
                 path: 'clienti',
                 component: LottoclientiComponent

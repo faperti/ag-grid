@@ -17,8 +17,8 @@ export class LottoComponent implements OnInit {
   ngOnInit() {
 
     this.myLotto = this.route.snapshot.paramMap.get('lotto');
-    console.log('LOTTOCOMPONENT ' + this.myLotto );
+    console.log('LOTTOCOMPONENT NGONINIT' );
+    // console.log('LOTTOCOMPONENT ' + this.myLotto );
 
   }
-
 }

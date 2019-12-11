@@ -31,10 +31,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarlottoComponent } from './navbarlotto/navbarlotto.component';
 import { SearchRiassegnazioniComponent } from './search-riassegnazioni/search-riassegnazioni.component';
 import { ElaboratoAssegnazioneRendererComponent } from './elaborato-assegnazione-renderer/elaborato-assegnazione-renderer.component';
+// tslint:disable-next-line:max-line-length
+import { AccodaGenerazioneCertificatoRendererComponent } from './renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
 
 const appRoutes: Routes = [
   { path: 'grid', component: GridComponentComponent },
-  { path: 'lotto/:lotto', component: LottoComponent },
+  // { path: 'lotto/:lotto', component: LottoComponent },
   { path: 'parent1', component: Parent1Component },
   { path: 'riassegnazioni', component: GridRiassegnazioniComponent },
   { path: 'parent2', component: Parent2Component },
@@ -59,12 +61,14 @@ const appRoutes: Routes = [
     LottoModule,
     AgGridModule.withComponents([])
   ],
-  entryComponents: [ RouterLinkRendererComponent, AnchorEventClickRendererComponent, ElaboratoAssegnazioneRendererComponent ],
+  entryComponents: [ RouterLinkRendererComponent, AnchorEventClickRendererComponent,
+    ElaboratoAssegnazioneRendererComponent, AccodaGenerazioneCertificatoRendererComponent ],
   declarations: [AppComponent, SearchComponentComponent, GridComponentComponent, GridRiassegnazioniComponent,
     GridNuoveAssegnazioniComponent,
     Parent1Component, Parent2Component, Parent3Component,
     PageNotFoundComponent, RouterLinkRendererComponent, AnchorEventClickRendererComponent,
-     NavbarComponent, SearchRiassegnazioniComponent, ElaboratoAssegnazioneRendererComponent],
+     NavbarComponent, SearchRiassegnazioniComponent, ElaboratoAssegnazioneRendererComponent,
+     AccodaGenerazioneCertificatoRendererComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

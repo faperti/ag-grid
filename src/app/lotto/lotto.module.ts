@@ -6,6 +6,9 @@ import { LottoanalisiComponent } from './lottoanalisi/lottoanalisi.component';
 import { LottocollaudoComponent } from './lottocollaudo/lottocollaudo.component';
 import { LottoDetailComponent } from './lottodetail/lotto.detail.component';
 
+// ag-grid
+import { AgGridModule } from 'ag-grid-angular';
+
 import { LottoRoutingModule } from './lotto-routing.module';
 import { LottoclientiComponent } from './lottoclienti/lottoclienti.component';
 
@@ -14,7 +17,8 @@ import { LottoclientiComponent } from './lottoclienti/lottoclienti.component';
     LottocollaudoComponent, LottoDetailComponent, LottoclientiComponent],
   imports: [
     CommonModule,
-    LottoRoutingModule
+    LottoRoutingModule,
+    AgGridModule.withComponents([])
   ]
 })
 export class LottoModule { }
