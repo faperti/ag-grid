@@ -1,0 +1,17 @@
+<!-- <app-ricerca [rowData]="myRowData" (search)="searchGrid($event)" (noLoading)="noLoading($event)"></app-ricerca> -->
+<app-ricerca *ngIf="!loading; else loadingtemplate" [rowData]="myRowData" 
+[statoData]="statoData"
+[formeData]="formeData"
+[legheData]="legheData"
+[presseData]="presseData"
+[statiCicloData]="statiCicloData"
+[statiFisiciData]="statiFisiciData"
+[showGrid]="showGrid"
+[emptyData]="emptyData"
+(noLoading)="noLoading($event)" (search)="searchGrid($event)"></app-ricerca>
+<ng-template #loadingtemplate>
+    <div class="d-flex w-100 h-100 justify-content-center align-items-center">
+    <app-spinner></app-spinner>
+    </div>
+</ng-template>
+<!-- <app-spinner *ngIf="loading"></app-spinner> -->

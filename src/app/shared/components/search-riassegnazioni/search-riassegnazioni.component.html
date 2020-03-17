@@ -1,0 +1,22 @@
+<form [formGroup]="searchCriteriaForm">
+  <div class="row">
+      <div class="col">
+        <app-datepicker formControlName="dp1"></app-datepicker>
+      </div>
+      <div class="col">
+        <app-datepicker formControlName="dp2"></app-datepicker>
+      </div>
+      <div class="col">
+        <input type="text" formControlName="searchCommessa" class="form-control" placeholder="Commessa">
+      </div>
+      <div class="col">
+        <div class="form-check form-check-inline">
+          <input type="checkbox" formControlName="searchElaborato" class="form-check-input" id="searchElaborato">
+          <label class="form-check-label" for="searchElaborato">Elaborato</label>
+        </div>
+      </div>  
+  </div>
+</form>
+
+<!-- <button (click)="clickMe()">Applica Filtro</button> -->
+<button class="btn btn-primary" (click)="clickMe()">Applica Filtro</button>

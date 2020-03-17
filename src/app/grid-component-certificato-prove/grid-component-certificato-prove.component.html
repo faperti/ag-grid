@@ -1,0 +1,38 @@
+<p>grid certificato prove component works!</p>
+<!-- Lotto: {{inpLotto}}
+<div class="test-header">
+    Page Size:
+    <select (change)="onPageSizeChanged()" id="page-size">
+      <option value="2" selected="">2</option>
+      <option value="4">4</option>
+      <option value="6">6</option>
+      <option value="10" selected>10</option>
+    </select>
+
+    <label>{{message}}</label>
+
+    <button *ngIf="inpStampa" (click)="printCerts()">Stampa Certificati</button>
+    
+  </div> -->
+  
+  <button (click)="invokeParentMethod()">Accoda certificato</button>
+
+  <ag-grid-angular
+  #agGrid
+  style="width: 100%; height: 85%;"
+  id="myGrid"
+  class="ag-theme-balham"
+  [columnDefs]="columnDefs"        
+  [defaultColDef]="defaultColDef"
+  [animateRows]="true"
+  rowSelection="multiple"
+  [enableRangeSelection]="true"
+  [context]="context"
+  [pagination]="true"
+  [paginationPageSize]="30"
+  [rowData]="rowData"
+  [suppressRowClickSelection]="true"
+  [frameworkComponents]="frameworkComponents"
+  (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>

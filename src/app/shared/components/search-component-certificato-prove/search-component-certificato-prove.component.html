@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col">
+    Commessa: <input class="form-control" type="text" [(ngModel)]="currentCommessa"/> 
+    </div>
+    <div class="col">
+    Lotto:
+    <select [(ngModel)]="currentLotto" class="form-control">
+        <option *ngFor="let item of lotti" [ngValue]="item">
+            {{item.lotto}}
+        </option>
+    </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <button class="btn btn-primary" (click)="clickMe()">Cerca lotti</button>
+        <button class="btn btn-primary" (click)="clickCommessaLotto()">Carica prove commessa/lotto</button>
+    </div>
+</div>

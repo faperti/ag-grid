@@ -1,0 +1,16 @@
+<app-search-component 
+[statoData]="statoData"
+[formeData]="formeData"
+[legheData]="legheData"
+[presseData]="presseData"
+[statiCicloData]="statiCicloData"
+[statiFisiciData]="statiFisiciData"
+(stopLoading)="stopLoading()" (clickSearch)="updateMyGrid($event)"></app-search-component>
+<div *ngIf="showGrid" style="width: 100%; height:100%;">
+    <app-grid-component *ngIf="rowData || emptyData; else loadingtemplate" [inpStampa]="true" [inpCriteria]="criteriaToGrid" [gridRowData]="rowData" (generateCerts)="generateCerts($event)"></app-grid-component>
+    <ng-template #loadingtemplate>
+        <div class="d-flex w-100 h-100 justify-content-center align-items-center">
+        <app-spinner></app-spinner>
+        </div>
+    </ng-template>
+</div>

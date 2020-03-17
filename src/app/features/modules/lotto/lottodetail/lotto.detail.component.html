@@ -1,0 +1,28 @@
+<p>lotto detail works!</p>
+<div *ngIf="cLotto.Lotto != ''">
+    <div class="row">
+        <div class="col">
+            <label>LOTTO:</label> {{cLotto.Lotto}} 
+        </div>
+        <div class="col">
+            <label>CODICE:</label> {{cLotto.Codice}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>PRESSA:</label> {{cLotto.Pressa}} 
+        </div>
+        <div class="col">
+            <label>LUNGHEZZA:</label> {{cLotto.Lunghezza}} 
+        </div>
+        <div class="col">
+            <label>MATRICOLA:</label> {{cLotto.Matricola}}
+        </div>
+</div>
+
+<label>LEGA:</label> {{cLotto.Lega}} <label>DIAMETRO:</label> {{cLotto.Diametro}} <label>DESLEGA:</label> {{cLotto.DesLega}} <label>DIMENSIONI:</label> {{cLotto.Dimensioni}}<br>
+<label>DESFORMA:</label> {{cLotto.DesForma}} <label>DESSTATOCICLO:</label> {{cLotto.DesStatoCiclo}} <label>DESSTATOFISICO:</label> {{cLotto.DesStatoFisico}}<br>
+
+
+<button type="button" class="btn btn-primary" (click)="clickMe(5)">Click Me!</button>
+</div>
