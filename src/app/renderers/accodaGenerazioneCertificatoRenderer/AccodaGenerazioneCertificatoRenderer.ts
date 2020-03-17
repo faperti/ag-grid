@@ -2,11 +2,16 @@ import { Component, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { AccodaGenerazioneModel } from '../model/accoda-generazione-model';
+import { GenerazioneCertificatoCliente } from '../../model/enums/GenerazioneCertificatoCliente';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   template: '<div>' +
-  '<img border="0" (click)="accoda()" width="32" height="32" src="/assets/images/accoda.gif"/>' +
-  '<img border="0" width="32" height="32" src="/assets/images/accoda.gif"/></div>'
+  '<img border="0" (click)="accodaGenerazioneStandard()" title="Standard" width="32" height="32" src="/assets/images/accoda.gif"/>' +
+  // tslint:disable-next-line:max-line-length
+  '<img border="0" (click)="accodaCertificato()" title="Accoda a certificato esistente" width="32" height="32" src="/assets/images/accoda.gif"/>' +
+  // tslint:disable-next-line:max-line-length
+  '<img border="0" (click)="accodaCertificatoConProve()" title="Certificato con prove" width="32" height="32" src="/assets/images/accoda.gif"/></div>'
 })
 
   export class AccodaGenerazioneCertificatoRendererComponent implements ICellRendererAngularComp  {
@@ -29,14 +34,13 @@ import { AccodaGenerazioneModel } from '../model/accoda-generazione-model';
       return false;
     }
 
-    public invokeParentMethod() {
-
-
+    public invokeParentMethod(tipoGenerazione: GenerazioneCertificatoCliente) {
 
       this.acm = new AccodaGenerazioneModel();
       this.acm.Lotto = this.myParams.data.lotto;
       this.acm.Commessa = this.myParams.data.commessa;
-      this.acm.TipoAccodamento = 1;
+      // il tipo di accodamento indica l'eventuale operazione che deve essere compiuta dal generatore dei certificati
+      this.acm.TipoAccodamento = tipoGenerazione;
 
       console.log(this.acm);
 
@@ -45,21 +49,14 @@ import { AccodaGenerazioneModel } from '../model/accoda-generazione-model';
       this.myParams.context.componentParent.methodFromParent(this.acm);
   }
 
-
-    accoda($event) {
+    accodaGenerazioneStandard($event) {
       console.log(this.myParams);
-      this.invokeParentMethod();
+      this.invokeParentMethod(GenerazioneCertificatoCliente.GenerazioneStandard);
+    }
 
-      // if (this.myParams.onClick instanceof Function) {
-      //   // put anything into params u want pass into parents component
-      //   const params = {
-      //     event: $event,
-      //     rowData: this.myParams.node.data
-      //     // ...something
-      //   };
-      //   this.myParams.onClick(params);
-
-      // }
+    accodaCertificato($event) {
+      console.log(this.myParams);
+      this.invokeParentMethod(GenerazioneCertificatoCliente.AccodaCertificato);
     }
 
     passTheSalt(idVariazione: number) {

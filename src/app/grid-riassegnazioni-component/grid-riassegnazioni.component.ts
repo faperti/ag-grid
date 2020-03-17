@@ -12,6 +12,7 @@ import { RouterLinkRendererComponent } from '../router-link-renderer/router-link
 })
 export class GridRiassegnazioniComponent implements OnInit, OnChanges {
 
+  @Input() gridData: any[];
   @Input() inpCriteria: SearchCriteriaRiassegnazioni;
   @Output() generateCerts = new EventEmitter<string[]>();
 
@@ -163,8 +164,7 @@ export class GridRiassegnazioniComponent implements OnInit, OnChanges {
 
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnChanges() {
-      alert('grid riassegnazioni component: ONCHANGES');
-
+      // alert('grid riassegnazioni component: ONCHANGES');
       this.updateGrid();
     }
 
@@ -183,25 +183,27 @@ export class GridRiassegnazioniComponent implements OnInit, OnChanges {
     }
 
     updateGrid() {
-            alert('UPDATE GRID riassegnazioni component');
-            // tslint:disable-next-line:max-line-length
-            this.urlString = 'http://localhost:4518/api/RiAssegnazioniSMEA?';
-            this.urlString = this.urlString + 'data_da=' + this.inpCriteria.DataStart;
-            this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
-            this.urlString = this.urlString + '&commessa=' + this.inpCriteria.Commessa;
-            this.urlString = this.urlString + '&elaborato=' + this.inpCriteria.Elaborato;
+      this.rowData = this.gridData;
 
-            alert(this.urlString);
+            // alert('UPDATE GRID riassegnazioni component');
+            // // tslint:disable-next-line:max-line-length
+            // this.urlString = 'http://localhost:4518/api/RiAssegnazioniSMEA?';
+            // this.urlString = this.urlString + 'data_da=' + this.inpCriteria.DataStart;
+            // this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
+            // this.urlString = this.urlString + '&commessa=' + this.inpCriteria.Commessa;
+            // this.urlString = this.urlString + '&elaborato=' + this.inpCriteria.Elaborato;
 
-            this.http
-                .get(this.urlString)
-                .subscribe(data => {
-                  this.rowDataLoaded = data;
-                  if ( this.rowDataLoaded.length > 0 ) {
-                      this.rowData = this.rowDataLoaded;
-                      console.log(this.rowData);
-                    }
-                });
+            // alert(this.urlString);
+
+            // this.http
+            //     .get(this.urlString)
+            //     .subscribe(data => {
+            //       this.rowDataLoaded = data;
+            //       if ( this.rowDataLoaded.length > 0 ) {
+            //           this.rowData = this.rowDataLoaded;
+            //           console.log(this.rowData);
+            //         }
+            //     });
     }
 
 

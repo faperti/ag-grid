@@ -31,5 +31,6 @@ export class ElaboratoAssegnazioneRendererComponent implements AgRendererCompone
     this.params.data[this.params.colDef.field] = event.currentTarget.checked;
     // alert(this.params.colDef.field);
     // alert(event.currentTarget.checked);
+    // console.log(this.params.data);
   }
 }

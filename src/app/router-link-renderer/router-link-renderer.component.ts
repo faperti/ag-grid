@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 
 @Component({
   template: '<a [routerLink]="[myParams.inRouterLink,myParams.value]">{{myParams.value}}</a>',
-  })
+  // template: '<a [routerLink]="[myParams.inRouterLink]">{{myParams.value}}</a>'
+})
   export class RouterLinkRendererComponent implements AgRendererComponent {
     myParams: any;
 

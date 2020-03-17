@@ -1,15 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SearchComponentComponent } from './search-component/search-component.component';
+import { SearchComponentComponent } from './shared/components/search-shared/search-shared.component';
 import 'ag-grid-enterprise';
-import { DataService } from './data.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [ DataService ]
+  styleUrls: ['./app.component.scss']
 })
 
 

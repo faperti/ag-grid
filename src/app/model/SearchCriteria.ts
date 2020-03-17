@@ -10,7 +10,7 @@ export class SearchCriteria {
 
     public IdStatoCiclo: number;
 
-    public IdCliente: string;
+    public IdCliente: number;
 
     public Lotto: string;
 

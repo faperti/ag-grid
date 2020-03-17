@@ -14,6 +14,8 @@ import { ElaboratoAssegnazioneRendererComponent } from '../elaborato-assegnazion
 export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
   @Input() inpCriteria: SearchCriteriaRiassegnazioni;
+  @Input() gridData: any[];
+  @Input() emptyData: boolean;
   @Output() generateCerts = new EventEmitter<string[]>();
 
   private gridApi;
@@ -23,7 +25,7 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
   private defaultColDef;
   private rowData: any;
   private rowDataLoaded: any;
-  private message = '';
+  private norecordfound = 'No record found';
   private urlString = '';
   private variazioniToGenerate: any[];
   private variazioniResults: string[];
@@ -32,6 +34,7 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
 
     constructor(private http: HttpClient) {
+
       this.columnDefs = [
         {
           headerName: '#',
@@ -108,7 +111,7 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnChanges() {
-      alert('grid riassegnazioni component: ONCHANGES');
+      console.log('grid riassegnazioni component: ONCHANGES');
 
       this.updateGrid();
     }
@@ -128,27 +131,36 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
     }
 
     updateGrid() {
-          if (this.gridApi !== undefined) {
-            this.gridApi.showLoadingOverlay();
-          }
 
-          // alert('UPDATE GRID riassegnazioni component');
-          // tslint:disable-next-line:max-line-length
-          this.urlString = 'http://localhost:4518/api/RiAssegnazioniSMEA?';
-          this.urlString = this.urlString + 'data_da=' + this.inpCriteria.DataStart;
-          this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
+      console.log( 'updateGrid grid data : ' + this.gridData );
 
-          alert(this.urlString);
+      // this.rowData = this.gridData;
+      // if ( this.gridData !== undefined && this.gridData.length > 0 ) {
+      //   console.log('hideoverlay');
+      //   this.gridApi.hideOverlay();
+      // }
 
-          this.http
-                .get(this.urlString)
-                .subscribe(data => {
-                  this.rowDataLoaded = data;
-                  if ( this.rowDataLoaded.length > 0 ) {
-                      this.rowData = this.rowDataLoaded;
-                      console.log(this.rowData);
-                    }
-                });
+      // if (this.gridApi !== undefined) {
+          //   this.gridApi.showLoadingOverlay();
+          // }
+
+          // // alert('UPDATE GRID riassegnazioni component');
+          // // tslint:disable-next-line:max-line-length
+          // this.urlString = 'http://localhost:4518/api/RiAssegnazioniSMEA?';
+          // this.urlString = this.urlString + 'data_da=' + this.inpCriteria.DataStart;
+          // this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
+
+          // alert(this.urlString);
+
+          // this.http
+          //       .get(this.urlString)
+          //       .subscribe(data => {
+          //         this.rowDataLoaded = data;
+          //         if ( this.rowDataLoaded.length > 0 ) {
+          //             this.rowData = this.rowDataLoaded;
+          //             console.log(this.rowData);
+          //           }
+          //       });
     }
 
     ngOnInit() {
@@ -157,7 +169,7 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
       this.inpCriteria.DataEnd = '';
 
       this.variazioniReady = false;
-      this.showVariazioni = false;
+      this.showVariazioni = true;
     }
 
     certificatoFormatter(params) {
@@ -196,10 +208,19 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
     // }
 
     onGridReady(params) {
+      console.log('onGridReady');
       this.gridApi = params.api;
       this.gridColumnApi = params.columnApi;
 
-      this.gridApi.hideOverlay();
+      console.log('grid ready empty data : ' + this.emptyData);
+
+      if ( this.emptyData || this.emptyData === undefined ) {
+        this.gridApi.hideOverlay();
+        this.gridApi.showNoRowsOverlay();
+      }
+
+      // this.gridApi.hideOverlay();
+      // this.gridApi.showNoRowsOverlay();
     }
 
     onPageSizeChanged(newPageSize) {
@@ -239,7 +260,6 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
           this.variazioniReady = false;
         }
         alert(this.variazioniResults);
-        // alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
       });
     }
 
