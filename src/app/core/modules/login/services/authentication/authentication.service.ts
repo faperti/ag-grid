@@ -7,6 +7,7 @@ import { BearerParams } from 'src/app/model/BearerParams';
 export class AuthenticationService {
 
   private TokenAPI = 'http://localhost:4518/token';
+  private GetMenuAPI = 'http://localhost:4518/api/menu';
 
   constructor( private http: HttpClient ) { }
 
@@ -18,4 +19,14 @@ export class AuthenticationService {
 
   }
 
+  getMenu(token): Observable<any> {
+
+    console.log('GET MENU');
+    console.log('TOJEN ' + token);
+
+    // tslint:disable-next-line:object-literal-key-quotes
+    const headersAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+    return this.http.post<any>(this.GetMenuAPI, { headers : headersAPI } );
+
+  }
 }

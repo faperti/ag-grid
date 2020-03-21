@@ -5,6 +5,8 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { LoginData } from '../../models/login-data';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Component({
   selector: 'app-login-container',
@@ -14,7 +16,7 @@ import { LoginData } from '../../models/login-data';
 export class LoginContainerComponent implements OnInit {
   private authParams: BearerParams;
   private TokenAPI: string;
-  private accessToken: string;
+
   private loading: boolean;
   private errorLoading: string;
 
@@ -23,7 +25,6 @@ export class LoginContainerComponent implements OnInit {
   // }
 
   constructor( public ds: DataService, private authService: AuthenticationService, private router: Router, private http: HttpClient ) {
-    this.accessToken = '';
   }
 
 
@@ -43,9 +44,10 @@ export class LoginContainerComponent implements OnInit {
     this.authService.login(username, password)
     .subscribe(
       data => {
-        this.accessToken = data.access_token;
-        this.ds.setMenu(data.Menu);
-        console.log('MENU : ' + data.Menu );
+        this.ds.setAccessToken(data.access_token);
+
+        // this.ds.setMenu(data.Menu);
+        // console.log('MENU : ' + data.Menu );
         this.loading = false;
         this.router.navigate(['/qualita']);
     }, error => {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SearchCriteria } from 'src/app/model/searchCriteria';
 import { HttpClient } from '@angular/common/http';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-ricerca-container',
@@ -27,7 +28,7 @@ export class RicercaContainerComponent implements OnInit {
   private showGrid: boolean;
   private uploadCounter = 0;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private ds: DataService) {
     this.urlString = '';
   }
 

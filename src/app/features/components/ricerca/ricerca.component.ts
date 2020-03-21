@@ -35,10 +35,10 @@ export class Parent1Component implements OnInit {
   private updates: number;
   private updatesToSend: any[];
 
-  constructor(public ds: DataService, private http: HttpClient, private router: Router ) {
+  constructor( public ds: DataService, private http: HttpClient, private router: Router ) {
 
     console.log('PARENT1 ACCESS TOKEN');
-    // console.log(this.ds.getAccessToken());
+    console.log(this.ds.getAccessToken());
 
   }
 

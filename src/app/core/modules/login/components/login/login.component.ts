@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { LoginData } from '../../models/login-data';
 
+
 // prova SCM
 
 @Component({

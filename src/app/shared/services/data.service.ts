@@ -6,7 +6,7 @@ import { GenerateCertsResult } from '../../model/GenerateCertsResult';
 @Injectable()
 export class DataService {
 
-  public accessToken = '';
+  private accessToken = '';
   public lotto = '';
   public dataDa = '';
   public dataA = '';
@@ -30,6 +30,15 @@ export class DataService {
   constructor() {
     // this.accessToken = '';
   }
+
+  setAccessToken(value: string) {
+    this.accessToken = value;
+  }
+
+  getAccessToken(): string {
+    return this.accessToken;
+  }
+
 
   setKeyValue(value: string) {
     this.key.next(this.currentLogin + ' ' + value);
@@ -56,11 +65,6 @@ export class DataService {
 
   getMenuValue(): Observable<Menu[]> {
     return this.Menu;
-  }
-
-
-  getAccessToken() {
-    // return this.Menu;
   }
 
   Check(menu: string): boolean {
