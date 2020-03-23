@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
 
   valueFromDS: string;
   Menu: Menu[];
+  loading: boolean;
 
   constructor(public DS: DataService, public AS: AuthenticationService) {
     // this.DS.Menu.subscribe(
@@ -25,14 +26,19 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('NAVBAR COMPONENT INIT');
+    // console.log('NAVBAR COMPONENT INIT');
+    // console.log('NAVBAR TOKEN : ' + this.DS.getAccessToken() );
 
-    console.log('NAVBAR TOKEN : ' + this.DS.getAccessToken() );
+    this.loading = false;
 
     this.AS.getMenu(this.DS.getAccessToken())
-    .subscribe( value => {
-      console.log(value);
-    });
+      .subscribe( value => {
+        this.Menu = value;
+        this.DS.ElencoMenu = value;
+
+        this.loading = true;
+        // console.log(value);
+      });
   }
 
 }

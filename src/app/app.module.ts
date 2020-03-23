@@ -21,7 +21,7 @@ import { ElaboratoAssegnazioneRendererComponent } from './elaborato-assegnazione
 import { AccodaGenerazioneCertificatoRendererComponent } from './renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
 import { HeaderGridComponent } from './header-grid-component/header-grid-component.component';
 
-import { AuthDataService } from './AuthData.service';
+import { AuthDataService } from './shared/services/AuthData.service';
 import { DataService } from './shared/services/data.service';
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';

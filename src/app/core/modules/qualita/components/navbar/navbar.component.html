@@ -1,27 +1,4 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<li class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav nav-pills">
-
-      <ul class="nav-item dropdown" *ngFor="let menu of Menu">
-
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{menu.DescrizioneMenu}}
-        </a>
-
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
-          <li *ngFor="let voce of menu.VociMenu" class="dropdown-item" [routerLink]="voce.Routing">{{voce.DescrizioneVoceMenu}}</li>          
-        </ul>
-
-      </ul>      
-    </ul>
-    <span class="navbar-text">
-      {{valueFromDS}}
-    </span>
-
-</nav> -->
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav *ngIf="loading" class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -39,4 +16,7 @@
     </ul>
   </div>
 </nav>
+
+<!-- {{ Menu | json }} -->
+
 
