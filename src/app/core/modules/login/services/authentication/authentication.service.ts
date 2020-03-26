@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BearerParams } from 'src/app/model/BearerParams';
-import { Menu } from 'src/app/model/RigaMenuModel';
+import { NavbarModel } from 'src/app/model/navbar/NavbarModel';
+
 
 @Injectable()
 export class AuthenticationService {
@@ -19,14 +20,14 @@ export class AuthenticationService {
     return this.http.post<BearerParams>(this.TokenAPI, data, { headers : headersForTokenAPI } );
   }
 
-  getMenu(token): Observable<Menu[]> {
+  getMenu(token): Observable<NavbarModel> {
 
     // console.log('GET MENU');
     // console.log('TOKEN ' + token);
 
     // tslint:disable-next-line:object-literal-key-quotes
     const headersAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', Authorization: 'Bearer "' + token + '"'});
-    return this.http.post<Menu[]>(this.GetMenuAPI, null, { headers : { 'Content-Type': 'application/json',
+    return this.http.post<NavbarModel>(this.GetMenuAPI, null, { headers : { 'Content-Type': 'application/json',
     Authorization: 'Bearer ' + token } } );
 
   }

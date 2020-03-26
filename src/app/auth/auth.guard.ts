@@ -9,28 +9,38 @@ import { AuthDataService } from '../shared/services/AuthData.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(public auth: AuthDataService, private router: Router) {
+  constructor(public ADS: AuthDataService, private router: Router) {
 
   }
 
 
   canActivate(
-  next: ActivatedRouteSnapshot,
+  route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot): boolean  {
 
   const url: string = state.url;
 
-  return this.checkLogin(url);
+  let result = false;
+
+  result =  this.ADS.IsLogged() && this.checkLogin(url);
+  if ( !result ) {
+    // Navigate to the login page with extras
+    this.router.navigate(['/login']);
+    return false;
+  }
+
+  return result;
+
 
   }
 
   checkLogin(url: string) {
     console.log('CHECK LOGIN');
     console.log(url);
-    if (this.auth.Check(url)) { return true; }
-
-    // Navigate to the login page with extras
-    this.router.navigate(['/login']);
-    return false;
+    if (this.ADS.Check(url)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

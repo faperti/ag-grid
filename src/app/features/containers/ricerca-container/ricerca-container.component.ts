@@ -81,6 +81,7 @@ export class RicercaContainerComponent implements OnInit {
 
     this.http.get(this.urlString)
                 .subscribe(data => {
+                  console.log(data);
                   this.loading = false;
                   this.rowDataLoaded = data;
                   if ( this.rowDataLoaded.length > 0 ) {

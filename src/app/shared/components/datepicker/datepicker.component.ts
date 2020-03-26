@@ -146,6 +146,7 @@ export class CustomControlComponent implements ControlValueAccessor {
   }
 
   writeValue(defaultValue: NgbDateStruct): void {
+    console.log('WRITE VALUE');
     this.value = defaultValue.day + '-' + defaultValue.month + '-' + defaultValue.year;
    }
 

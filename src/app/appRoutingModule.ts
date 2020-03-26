@@ -18,7 +18,7 @@ import { CertificatoProveContainerComponent } from './features/containers/certif
 
 const appRoutes: Routes = [
   { path: 'login', loadChildren: () => LoginModule },
-  { path: 'qualita', component: QualitaContainerComponent,
+  { path: 'qualita', component: QualitaContainerComponent, canActivate: [AuthGuard],
   children: [
     { path: 'parent1', component: RicercaContainerComponent, canActivate: [AuthGuard] },
     { path: 'parent2', component: RiassegnazioniContainerComponent, canActivate: [AuthGuard] },

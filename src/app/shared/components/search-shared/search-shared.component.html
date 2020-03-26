@@ -1,110 +1,128 @@
 
 <!-- <app-datepicker (getDate)="setData1($event)" [formControl]="profileForm.controls.dp1"></app-datepicker> -->
-
-
 <form [formGroup]="searchCriteriaForm">
-<div class="row">
-    <div class="col">
-LAVORAZIONE:        
-<select formControlName="statoData" class="form-control">
-    <option *ngFor="let item of statoData" [ngValue]="item">
-        {{item}}
-    </option>
-</select>
-</div>
-<div class="col">
-FORMA:
-<select formControlName="formeData" class="form-control">
-    <option *ngFor="let item of formeData" [ngValue]="item">
-        {{item.des_forma}}
-    </option>
-</select>
-</div>
-<div class="col">
-LEGA:
-<select formControlName="legheData" class="form-control">
-    <option *ngFor="let item of legheData" [ngValue]="item">
-        {{item.des_lega}}
-    </option>
-</select>
-</div>
-<div class="col">
-PRESSA:
-<select formControlName="presseData" class="form-control">
-    <option *ngFor="let item of presseData" [ngValue]="item">
-        {{item.pressa}}
-    </option>
-</select>
-</div>
-<div class="col">
-SF:
-<select formControlName="statiFisiciData" class="form-control">
-    <option *ngFor="let item of statiFisiciData" [ngValue]="item">
-        {{item.des_statofisico}}
-    </option>
-</select>
-</div>
-<div class="col">
-SC:
-<select formControlName="statiCicloData" class="form-control">
-    <option *ngFor="let item of statiCicloData" [ngValue]="item">
-        {{item.des_statociclo}}
-    </option>
-</select>
-</div>
-<div class="col">
-CLIENTE
-<select formControlName="clientiData" class="form-control">
-    <option *ngFor="let item of clientiData" [ngValue]="item">
-        {{item.des_cliente_ext}}
-    </option>
-</select>
-{{item.id_cliente}}
-</div>
-</div>
-<div class="row">
-    <div style="border: 1px; border-style: solid; " class="col">
-        <div class="form-check form-check-inline">
-            <input type="checkbox" formControlName="searchLottiAperti" class="form-check-input" id="lottiaperti">
-            <label class="form-check-label" for="lottiaperti">Lotti aperti</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input type="checkbox" formControlName="searchLottiChiusi" class="form-check-input" id="lottichiusi">
-            <label class="form-check-label" for="lottiaperti">Lotti chiusi</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input type="checkbox" formControlName="searchCommessa" class="form-check-input" id="commessa">
-            <label class="form-check-label" for="commessa">Commessa</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input type="checkbox" formControlName="searchMatricola" class="form-check-input" id="matricola">
-            <label class="form-check-label" for="matricola">Matricola</label>
-        </div>
+    <div class="row">
+        <div class="col">
+    LAVORAZIONE:        
+    <select formControlName="statoData" class="form-control">
+        <option *ngFor="let item of statoData" [ngValue]="item">
+            {{item}}
+        </option>
+    </select>
     </div>
     <div class="col">
-        <input type="text" formControlName="ricercaClienti" (blur)="updateClienti()" class="form-control" placeholder="Cliente">
+    FORMA:
+    <select formControlName="formeData" class="form-control">
+        <option *ngFor="let item of formeData" [ngValue]="item">
+            {{item.des_forma}}
+        </option>
+    </select>
     </div>
+    <div class="col">
+    LEGA:
+    <select formControlName="legheData" class="form-control">
+        <option *ngFor="let item of legheData" [ngValue]="item">
+            {{item.des_lega}}
+        </option>
+    </select>
+    </div>
+    <div class="col">
+    PRESSA:
+    <select formControlName="presseData" class="form-control">
+        <option *ngFor="let item of presseData" [ngValue]="item">
+            {{item.pressa}}
+        </option>
+    </select>
+    </div>
+    <div class="col">
+    SF:
+    <select formControlName="statiFisiciData" class="form-control">
+        <option *ngFor="let item of statiFisiciData" [ngValue]="item">
+            {{item.des_statofisico}}
+        </option>
+    </select>
+    </div>
+    <div class="col">
+    SC:
+    <select formControlName="statiCicloData" class="form-control">
+        <option *ngFor="let item of statiCicloData" [ngValue]="item">
+            {{item.des_statociclo}}
+        </option>
+    </select>
+    </div>
+    <div class="col">
+    CLIENTE
+    <select formControlName="clientiData" class="form-control">
+        <option *ngFor="let item of clientiData" [ngValue]="item">
+            {{item.des_cliente_ext}}
+        </option>
+    </select>
+    <!-- {{item.id_cliente}} -->
+    </div>
+    </div>
+    <div class="row">
+        <div style="border: 0px; border-style: solid; " class="col">
+            <div class="form-check form-check-inline">
+                <input type="checkbox" formControlName="searchLottiAperti" class="form-check-input" id="lottiaperti">
+                <label class="form-check-label" for="lottiaperti">Lotti aperti</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" formControlName="searchLottiChiusi" class="form-check-input" id="lottichiusi">
+                <label class="form-check-label" for="lottiaperti">Lotti chiusi</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" formControlName="searchCommessa" class="form-check-input" id="commessa">
+                <label class="form-check-label" for="commessa">Commessa</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" formControlName="searchMatricola" class="form-check-input" id="matricola">
+                <label class="form-check-label" for="matricola">Matricola</label>
+            </div>
+        </div>
+        <div class="col">
+            <input type="text" formControlName="ricercaClienti" (blur)="updateClienti()" class="form-control" placeholder="Cliente">
+        </div>
+        <div class="col">
+            <app-datepicker formControlName="dp1"></app-datepicker>
+        </div>
+        <div class="col">
+            <app-datepicker formControlName="dp2"></app-datepicker>
+        </div>  
+        <div class="col">
+            <input type="text" formControlName="searchLotto" class="form-control" placeholder="Lotto">
+          </div>
+        <div class="col">
+          <input type="text" formControlName="searchColata" class="form-control" placeholder="Colata"/>
+        </div>
+        <div class="col">
+          <input type="text" formControlName="searchDimensione" class="form-control" placeholder="Dimensione"/>
+        </div>
+    </div>
+    
+    
+    
+    <button class="btn btn-primary" (click)="clickMe()">Applica Filtro</button>
+    {{ currentDataDa | json }}
+    {{ currentDataA | json }}
+    {{ errorMessage }}
+    </form>
+
+
+
+
+
+<!-- <form [formGroup]="searchCriteriaForm">
+<div class="row">      
     <div class="col">
         <app-datepicker formControlName="dp1"></app-datepicker>
     </div>
     <div class="col">
         <app-datepicker formControlName="dp2"></app-datepicker>
     </div>  
-    <div class="col">
-        <input type="text" formControlName="searchLotto" class="form-control" placeholder="Lotto">
-      </div>
-    <div class="col">
-      <input type="text" formControlName="searchColata" class="form-control" placeholder="Colata"/>
-    </div>
-    <div class="col">
-      <input type="text" formControlName="searchDimensione" class="form-control" placeholder="Dimensione"/>
-    </div>
 </div>
-
-
 
 <button class="btn btn-primary" (click)="clickMe()">Applica Filtro</button>
 {{ currentDataDa | json }}
 {{ currentDataA | json }}
 {{ errorMessage }}
-</form>
+</form> -->

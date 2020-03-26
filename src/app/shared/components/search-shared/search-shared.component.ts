@@ -28,8 +28,8 @@ export class SearchComponentComponent implements OnInit, OnChanges {
   private clientiData: any;
   private clientiDataLoaded: Cliente[];
 
-  private Data1: any;
-  private Data2: any;
+  // private Data1: any;
+  // private Data2: any;
   private currentItem: any;
   private currentLotto = '';
   private currentDataDa: any;
@@ -56,10 +56,23 @@ export class SearchComponentComponent implements OnInit, OnChanges {
   private strCliente: any = '';
   private criteria: SearchCriteria;
 
-  private test = new Date();
+  private test1 = new Date();
 
-  searchCriteriaForm = new FormGroup({
-    statoData: new FormControl(''),
+  private ngb = {
+    year: this.test1.getUTCFullYear(),
+    month: this.test1.getUTCMonth() + 1,
+    day: this.test1.getUTCDate()
+  };
+
+  // private searchCriteriaForm = new FormGroup({
+  //   dp1: new FormControl( this.ngb ),
+  //   dp2: new FormControl( this.ngb )
+  // });
+
+
+
+ private searchCriteriaForm = new FormGroup({
+    statoData: new FormControl( this.currentTipoData ),
     formeData: new FormControl(''),
     legheData: new FormControl(''),
     presseData: new FormControl(''),
@@ -70,8 +83,8 @@ export class SearchComponentComponent implements OnInit, OnChanges {
     searchLotto: new FormControl(''),
     searchColata: new FormControl(''),
     searchDimensione: new FormControl(''),
-    dp1: new FormControl( this.test ),
-    dp2: new FormControl( this.test ),
+    dp1: new FormControl( this.ngb ),
+    dp2: new FormControl( this.ngb ),
     searchLottiAperti: new FormControl(false),
     searchLottiChiusi: new FormControl(false),
     searchCommessa: new FormControl(false),
@@ -91,6 +104,7 @@ constructor(
   }
 
   clickMe() {
+    console.log('CLICK ME');
     this.errorMessage = '';
     this.criteria = new SearchCriteria();
 
@@ -269,7 +283,7 @@ constructor(
     // tslint:disable-next-line:max-line-length
     this.currentStatoCiclo = { id_statociclo: 47, cod_statociclo: '' , des_statociclo: '', des_forma_cliente: null, visibile: false, id_statofisico: null };
 
-    this.searchCriteriaForm.controls.statoData.setValue('ESTRUSIONE');
+    // this.searchCriteriaForm.controls.statoData.setValue('ESTRUSIONE');
 
     // this.updateClienti();
 
@@ -279,10 +293,13 @@ constructor(
     this.ricercaCommessa = false;
     this.ricercaMatricola = false;
 
-    this.searchCriteriaForm.valueChanges.subscribe(newValue => console.log(newValue));
+    this.searchCriteriaForm.valueChanges.subscribe(newValue => {
+      return console.log(newValue);
+    });
+
     this.searchCriteriaForm.statusChanges.subscribe(newStatus => console.log(newStatus));
-    console.log(this.searchCriteriaForm.value);
-    console.log(this.searchCriteriaForm.valid);
+    // console.log(this.searchCriteriaForm.value);
+    // console.log(this.searchCriteriaForm.valid);
     this.searchCriteriaForm.controls.ricercaClienti.valueChanges.subscribe( x => this.updateClienti(x) );
 
   }
@@ -321,7 +338,7 @@ constructor(
         this.data.StatoCiclo = '';
       }
 
-    if (this.currentCliente.id_cliente !== '') {
+    if (this.currentCliente !== undefined && this.currentCliente.id_cliente !== '') {
         this.data.Cliente = this.currentCliente.id_cliente;
       } else {
         this.data.Cliente = '0';

@@ -1,4 +1,4 @@
-import { RigaMenuModel, Menu } from './RigaMenuModel';
+import { RigaMenuModel, Menu } from './navbar/RigaMenuModel';
 
 export class BearerParams {
     // tslint:disable-next-line:variable-name

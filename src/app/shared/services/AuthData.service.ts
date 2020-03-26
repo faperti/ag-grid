@@ -9,6 +9,20 @@ export class AuthDataService {
     // this.accessToken = '';
   }
 
+  IsLogged(): boolean {
+    let result = false;
+
+    if ( this.ds.getAccessToken() ) {
+      result = true;
+      console.log('GET ACCESS TOKEN TRUE');
+    } else {
+      console.log('GET ACCESS TOKEN FALSE');
+    }
+
+    return result;
+  }
+
+
   Check(menu: string): boolean {
 
     console.log('CHECK MENU');

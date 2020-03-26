@@ -144,36 +144,6 @@ export class GridComponentComponent implements OnInit, OnChanges {
 
       this.rowData = this.gridRowData;
 
-            // alert('GRID update Grid');
-
-            // // tslint:disable-next-line:max-line-length
-            // this.urlString = 'http://localhost:4518/api/CicliLanciati?lotto=' + this.inpCriteria.Lotto;
-            // this.urlString = this.urlString + '&data_da=' + this.inpCriteria.DataStart;
-            // this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
-            // this.urlString = this.urlString + '&tipo_data=' + this.inpCriteria.TipoData;
-            // this.urlString = this.urlString + '&id_lega=' + this.inpCriteria.IdLega;
-            // this.urlString = this.urlString + '&id_forma=' + this.inpCriteria.IdForma;
-            // this.urlString = this.urlString + '&id_statociclo=' + this.inpCriteria.IdStatoCiclo;
-            // this.urlString = this.urlString + '&id_statofisico=' + this.inpCriteria.IdStatoFisico;
-            // this.urlString = this.urlString + '&id_cliente=' + this.inpCriteria.IdCliente;
-            // this.urlString = this.urlString + '&pressa=' + this.inpCriteria.Pressa;
-            // this.urlString = this.urlString + '&bLottiAperti=' + this.inpCriteria.LottiAperti;
-            // this.urlString = this.urlString + '&bLottiChiusi=' + this.inpCriteria.LottiChiusi;
-            // this.urlString = this.urlString + '&bRicercaCommessa=' + this.inpCriteria.Commessa;
-            // this.urlString = this.urlString + '&bRicercaMatricola=' + this.inpCriteria.Matricola;
-            // this.urlString = this.urlString + '&dimensione=' + this.inpCriteria.Dimensione;
-            // this.urlString = this.urlString + '&colata=' + this.inpCriteria.Colata;
-
-            // // alert(this.urlString);
-
-            // this.http
-            //     .get(this.urlString)
-            //     .subscribe(data => {
-            //       this.rowDataLoaded = data;
-            //       if ( this.rowDataLoaded.length > 0 ) {
-            //           this.rowData = this.rowDataLoaded;
-            //         }
-            //     });
     }
 
 
@@ -197,9 +167,9 @@ export class GridComponentComponent implements OnInit, OnChanges {
     certificatoRenderer(params) {
 
       // tslint:disable-next-line:prefer-const
-      let cert = '<img border="0" width="32" height="32"' +
+      let cert = '<A href="' + params.data.pathCertificato + '"><img border="0" width="32" height="32"' +
       ' src="/assets/images/' +
-      params.data.imgCertificato + '"></img>';
+      params.data.imgCertificato + '"></img></A>';
 
       return cert;
     }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
-import { RigaMenuModel, Menu } from '../../model/RigaMenuModel';
+import { RigaMenuModel, Menu } from '../../model/navbar/RigaMenuModel';
 import { GenerateCertsResult } from '../../model/GenerateCertsResult';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
