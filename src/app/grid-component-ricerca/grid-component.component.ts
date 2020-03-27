@@ -81,11 +81,15 @@ export class GridComponentComponent implements OnInit, OnChanges {
           width: 100
         },
         {
-          headerName: 'Certificato',
-          cellRenderer: this.certificatoRenderer,
-          // valueGetter: this.certificatoGetter,
-          // valueFormatter: this.certificatoFormatter,
-          // field: 'certificato',
+          headerName: 'Certificato', field: 'lotto',
+          cellRendererFramework: RouterLinkRendererComponent,
+          cellRendererParams: {
+            inRouterLink: '/qualita/parent1'
+          },
+          // cellRenderer: this.certificatoRenderer,
+          // // valueGetter: this.certificatoGetter,
+          // // valueFormatter: this.certificatoFormatter,
+          // // field: 'certificato',
           width: 100
         },
         {
@@ -165,12 +169,12 @@ export class GridComponentComponent implements OnInit, OnChanges {
     }
 
     certificatoRenderer(params) {
+      // // tslint:disable-next-line:prefer-const
+      // let cert = '<A href="' + params.data.pathCertificato + '"><img border="0" width="32" height="32"' +
+      // ' src="/assets/images/' +
+      // params.data.imgCertificato + '"></img></A>';
 
-      // tslint:disable-next-line:prefer-const
-      let cert = '<A href="' + params.data.pathCertificato + '"><img border="0" width="32" height="32"' +
-      ' src="/assets/images/' +
-      params.data.imgCertificato + '"></img></A>';
-
+      const cert = '<A target="_blank" href="' + params.data.pathCertificato + '"><i class="fa fa-paperclip" aria-hidden="true"></i></img></A>';
       return cert;
     }
 

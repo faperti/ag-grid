@@ -15,12 +15,14 @@ import { AuthGuard } from './auth/auth.guard';
 import { ImportaRiassegnazioniContainerComponent } from './features/containers/importa-riassegnazioni-container/importa-riassegnazioni-container.component';
 // tslint:disable-next-line:max-line-length
 import { CertificatoProveContainerComponent } from './features/containers/certificato-prove-container/certificato-prove-container.component';
+import { AttachmentComponent } from './shared/components/attachment/attachment.component';
 
 const appRoutes: Routes = [
   { path: 'login', loadChildren: () => LoginModule },
   { path: 'qualita', component: QualitaContainerComponent, canActivate: [AuthGuard],
   children: [
-    { path: 'parent1', component: RicercaContainerComponent, canActivate: [AuthGuard] },
+    { path: 'parent1', component: RicercaContainerComponent, canActivate: [AuthGuard] } ,
+    { path: 'parent1/:id', component: AttachmentComponent },
     { path: 'parent2', component: RiassegnazioniContainerComponent, canActivate: [AuthGuard] },
     { path: 'parent3', component: ImportaRiassegnazioniContainerComponent, canActivate: [AuthGuard] },
     { path: 'certificatoprove', component: CertificatoProveContainerComponent },

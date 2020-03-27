@@ -30,7 +30,8 @@ const routes: Routes = [
             {
                 path: 'detail',
                 component: LottoDetailComponent
-            }
+            },
+            { path: '',   redirectTo: 'clienti', pathMatch: 'full' },
         ]
     }
 ];
