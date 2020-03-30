@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SearchComponentComponent } from './shared/components/search-shared/search-shared.component';
 import 'ag-grid-enterprise';
@@ -14,6 +14,10 @@ import 'ag-grid-enterprise';
 
 
 // tslint:disable-next-line:component-class-suffix
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+
+  ngAfterViewInit() {
+      document.getElementById('preloader').classList.add('hide');
+  }
 
 }

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   private username: string;
   private password: string;
   private accessToken: string;
-  private loading: boolean;
+  private isLoading: boolean;
 
   constructor(  ) {
     this.accessToken = '';
@@ -35,13 +35,14 @@ export class LoginComponent implements OnInit {
     creds.userName = this.username;
     creds.password = this.password;
 
+    this.isLoading = true;
     // this.loading = true;
 
     this.login.emit(creds);
   }
 
   clickOff() {
-    this.loading = false;
+    this.isLoading = false;
   }
 
 

@@ -7,7 +7,7 @@ import { TitleCasePipe } from '@angular/common';
 
 @Component({
   template: '<div>' +
-  '<i class="fa fa-plus" aria-hidden="true" title="Accoda"></i>' +
+  '<i class="fa fa-plus" aria-hidden="true" title="Accoda"></i>&nbsp;' +
   '<img border="0" (click)="accodaGenerazioneStandard()" title="Standard" width="32" height="32" src="/assets/images/accoda.gif"/>' +
   // tslint:disable-next-line:max-line-length
   '<img border="0" (click)="accodaCertificato()" title="Accoda a certificato esistente" width="32" height="32" src="/assets/images/accoda.gif"/>' +

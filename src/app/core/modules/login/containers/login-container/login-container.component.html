@@ -1,2 +1,4 @@
-<app-login (login)="doLogin($event)" [errorLoading]="errorLoading"></app-login>
-<app-spinner *ngIf="loading"></app-spinner>
+<div class="d-flex flex-column h-100 w-100 justify-content-center align-items-center background">    
+        <app-login (login)="doLogin($event)" [errorLoading]="errorLoading"></app-login>    
+        <app-spinner></app-spinner>
+</div>
