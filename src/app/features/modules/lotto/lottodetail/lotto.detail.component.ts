@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // import { Lotto } from '/model/lotto';
 import { Lotto } from '../../../../model/lotto';
+import { LottoDataService } from '../lotto-data.service';
 
 @Component({
   selector: 'app-lotto-detail',
@@ -17,21 +18,27 @@ export class LottoDetailComponent implements OnInit {
   private urlString: string;
   private cLotto: Lotto;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dataservice: LottoDataService) { }
 
   ngOnInit() {
-      // this.lotto = '1812050025';
-      // tslint:disable-next-line:max-line-length
-      this.urlString = 'http://localhost:4518/api/Lotto?lotto=' + this.lotto;
 
-      // alert(this.urlString);
-
-      this.http
-      .get(this.urlString)
+      this.dataservice.GetLottoDetail(this.lotto)
       .subscribe(data => {
         console.log(data);
         this.cLotto = data as Lotto;
     });
+
+      // tslint:disable-next-line:max-line-length
+      // this.urlString = 'http://localhost:4518/api/Lotto?lotto=' + this.lotto;
+
+      // alert(this.urlString);
+
+    //   this.http
+    //   .get(this.urlString)
+    //   .subscribe(data => {
+    //     console.log(data);
+    //     this.cLotto = data as Lotto;
+    // });
   }
 
   clickMe(value: number) {

@@ -11,6 +11,10 @@ button.calendar, button.calendar:active {
     max-width: 420px;
     padding: 15px;
     margin: 0 auto;
+    background: rgba(0, 0 , 0 , 0.8);
+    
+    color: #fff;
+    box-sizing: border-box;
 }
 
 .form-label-group {
@@ -18,4 +22,9 @@ button.calendar, button.calendar:active {
     margin-bottom: 1rem;
 }
 
+.form-title {
+    text-align: center; 
+    font-weight: bold; 
+    font-size: x-large
+}
 

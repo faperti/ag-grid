@@ -7,13 +7,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AccodaGenerazioneCertificatoRendererComponent } from 'src/app/renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
 import { AccodaGenerazioneProvaModel } from 'src/app/renderers/model/accoda-generazione-prova-model';
 import { getCurrencySymbol } from '@angular/common';
+import { BaseLottoView } from '../models/abstracts/base-lotto-view';
+import { LottoDataService } from '../lotto-data.service';
 
 @Component({
   selector: 'app-lottoanalisi',
   templateUrl: './lottoanalisi.component.html',
   styleUrls: ['./lottoanalisi.component.scss']
 })
-export class LottoanalisiComponent implements OnInit {
+// export class LottoanalisiComponent implements OnInit {
+export class LottoanalisiComponent extends BaseLottoView implements OnInit {
 
   @Input() lotto: string;
   // @Output() generateCerts = new EventEmitter<string[]>();
@@ -41,7 +44,13 @@ export class LottoanalisiComponent implements OnInit {
   private overlayNoRowsTemplate: string;
   private showLoading: boolean;
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(http: HttpClient,
+              activatedRoute: ActivatedRoute,
+              router: Router,
+              dataservice: LottoDataService) {
+
+
+    super(http, activatedRoute, dataservice);
     this.proveSelezionate = [];
 
     this.normativaSelezionata = 'EURAL';
@@ -90,19 +99,19 @@ export class LottoanalisiComponent implements OnInit {
 
   updateGrid() {
     this.showLoading = true;
-    // tslint:disable-next-line:max-line-length
-    this.urlString = 'http://localhost:4518/api/ProveAnalisiReport?lotto=' + this.lotto + '&normativa=EURAL&bAlter=false';
+    // // tslint:disable-next-line:max-line-length
+    // this.urlString = 'http://localhost:4518/api/ProveAnalisiReport?lotto=' + this.lotto + '&normativa=EURAL&bAlter=false';
 
-    this.http.get<any>(this.urlString)
+
+    // this.http.get<any>(this.urlString)
+    this.ds.GetAnalisi(this.lotto)
           .subscribe(data => {
             this.rowData = data.TabellaPrescritta;
             this.Prescritte = data.Prescritte;
             this.prove = data.Prove;
-            console.log(this.prove);
+            // console.log(this.prove);
 
-            // this.normativaSelezionata = data.NormativaSelezionata;
-
-
+            this.normativaSelezionata = data.NormativaSelezionata;
 
             this.columnDefs.push (
               {
@@ -156,8 +165,8 @@ export class LottoanalisiComponent implements OnInit {
           });
 
             // console.log(this.columnDefs);
-    this.gridApi.setColumnDefs(this.columnDefs);
-    this.showLoading = false;
+            this.gridApi.setColumnDefs(this.columnDefs);
+            this.showLoading = false;
 
           });
 }
@@ -168,13 +177,14 @@ proveAnalisiNormativa() {
 }
 
 ngOnInit() {
+  super.ngOnInit();
   this.normativaSelezionata = '';
 
-  this.activatedRoute.parent.params.subscribe(params => {
-    if ( params.lotto != null  ) {
-      this.lotto = params.lotto;
-    }
-  });
+  // this.activatedRoute.parent.params.subscribe(params => {
+  //   if ( params.lotto != null  ) {
+  //     this.lotto = params.lotto;
+  //   }
+  // });
 
   this.updateGrid();
 }

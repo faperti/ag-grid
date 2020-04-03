@@ -12,6 +12,7 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { LottoRoutingModule } from './lotto-routing.module';
 import { LottoclientiComponent } from './lottoclienti/lottoclienti.component';
+import { LottoDataService } from './lotto-data.service';
 
 @NgModule({
   declarations: [LottoComponent, LottonavbarComponent, LottoanalisiComponent,
@@ -21,6 +22,7 @@ import { LottoclientiComponent } from './lottoclienti/lottoclienti.component';
     CommonModule,
     LottoRoutingModule,
     AgGridModule.withComponents([])
-  ]
+  ],
+  providers: [ LottoDataService ]
 })
 export class LottoModule { }

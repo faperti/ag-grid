@@ -8,13 +8,17 @@ import { LottocollaudoComponent } from './lottocollaudo/lottocollaudo.component'
 import { LottoclientiComponent } from './lottoclienti/lottoclienti.component';
 
 const routes: Routes = [
-    // { path: 'lotto/:lotto', component: LottoComponent ,
-    { path: ':lotto', component: LottoComponent ,
+    { path: '', component: LottoComponent ,
     // { path: ':lotto/clienti', component: LottoclientiComponent },
     // { path: ':lotto/analisi', component: LottoanalisiComponent },
     // { path: ':lotto/collaudo', component: LottocollaudoComponent },
     // { path: ':lotto/detail', component: LottoDetailComponent }
     children: [
+            {
+              path: '',
+              redirectTo: 'clienti',
+              pathMatch: 'full'
+            },
             {
                 path: 'clienti',
                 component: LottoclientiComponent
@@ -30,8 +34,7 @@ const routes: Routes = [
             {
                 path: 'detail',
                 component: LottoDetailComponent
-            },
-            { path: '',   redirectTo: 'clienti', pathMatch: 'full' },
+            }
         ]
     }
 ];

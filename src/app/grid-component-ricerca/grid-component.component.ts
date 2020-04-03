@@ -81,17 +81,23 @@ export class GridComponentComponent implements OnInit, OnChanges {
           width: 100
         },
         {
-          headerName: 'Certificato', field: 'lotto',
-          cellRendererFramework: RouterLinkRendererComponent,
-          cellRendererParams: {
-            inRouterLink: '/qualita/parent1'
-          },
-          // cellRenderer: this.certificatoRenderer,
-          // // valueGetter: this.certificatoGetter,
-          // // valueFormatter: this.certificatoFormatter,
-          // // field: 'certificato',
-          width: 100
+          headerName: 'Certificato',
+          field: 'pathCertificato',
+          width: 300,
+          cellRenderer: this.certificatoRenderer
         },
+        // {
+        //   headerName: 'Certificato', field: 'lotto',
+        //   cellRendererFramework: RouterLinkRendererComponent,
+        //   cellRendererParams: {
+        //     inRouterLink: '/qualita/parent1'
+        //   },
+        //   // cellRenderer: this.certificatoRenderer,
+        //   // // valueGetter: this.certificatoGetter,
+        //   // // valueFormatter: this.certificatoFormatter,
+        //   // // field: 'certificato',
+        //   width: 100
+        // },
         {
           headerName: 'Codice',
           field: 'codice',
@@ -174,7 +180,8 @@ export class GridComponentComponent implements OnInit, OnChanges {
       // ' src="/assets/images/' +
       // params.data.imgCertificato + '"></img></A>';
 
-      const cert = '<A target="_blank" href="' + params.data.pathCertificato + '"><i class="fa fa-paperclip" aria-hidden="true"></i></img></A>';
+      // tslint:disable-next-line:max-line-length
+      const cert = '<A target="_blank" href="' + 'assets/certificati/' + params.data.lotto + '.pdf"><i class="fa fa-paperclip" aria-hidden="true"></i></img>' + params.data.lotto + '</A>';
       return cert;
     }
 

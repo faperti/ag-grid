@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~ag-grid-community/dist/styles/ag-grid.css";
-@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
-
 $fa-font-path : "../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome";
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 
 .loader-outer {
     position:fixed;

@@ -10,23 +10,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AccodaGenerazioneCertificatoRendererComponent } from '../../../../renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
 import { AccodaGenerazioneModel } from '../../../../renderers/model/accoda-generazione-model';
 
+
 // ag-grid
 import 'ag-grid-enterprise';
+import { LottoDataService } from '../lotto-data.service';
+import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 
 @Component({
   selector: 'app-lottoclienti-component',
   templateUrl: './lottoclienti.component.html',
   styleUrls: ['./lottoclienti.component.scss']
 })
-export class LottoclientiComponent implements OnInit, OnChanges {
-
-  @Input() lotto: string;
+export class LottoclientiComponent extends BaseLottoView implements OnInit, OnChanges {
   @Output() generateCerts = new EventEmitter<string[]>();
 
   private gridApi;
   private gridColumnApi;
 
-  private columnDefs;
+  columnDefs;
+  rowStyle = {
+    margin: '10px'
+  };
   private defaultColDef;
   private rowData: any;
   private rowDataLoaded: any;
@@ -37,8 +41,12 @@ export class LottoclientiComponent implements OnInit, OnChanges {
   private context;
   private elementiCoda: AccodaGenerazioneModel[];
 
-    constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router ) {
+    constructor(http: HttpClient,
+                activatedRoute: ActivatedRoute,
+                router: Router,
+                dataservice: LottoDataService ) {
 
+      super(http, activatedRoute, dataservice);
       this.frameworkComponents = {
         accodaRenderer: AccodaGenerazioneCertificatoRendererComponent
       };
@@ -123,7 +131,7 @@ export class LottoclientiComponent implements OnInit, OnChanges {
 
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnChanges() {
-      alert('grid riassegnazioni component: ONCHANGES');
+      // alert('grid riassegnazioni component: ONCHANGES');
 
       this.updateGrid();
     }
@@ -143,28 +151,25 @@ export class LottoclientiComponent implements OnInit, OnChanges {
     }
 
     updateGrid() {
-            alert('UPDATE GRID LOTTO CLIENTI component');
-            alert(this.lotto);
+    console.log('UPDATE GRID LOTTO CLIENTI component');
 
-            // tslint:disable-next-line:max-line-length
-            this.urlString = 'http://localhost:4518/api/CicliLanciatiClienti?lotto=' + this.lotto;
-
-            this.http
-                  .get(this.urlString)
-                  .subscribe(data => {
-                    this.rowData = data;
-                  });
+    // tslint:disable-next-line:max-line-length
+    this.ds.GetClienti(this.lotto)
+      .subscribe(data => {
+        this.rowData = data;
+      });
     }
 
 
 
     ngOnInit() {
+      super.ngOnInit();
+        // console.log('NG INIT LOTTO CLIENTI COMPONENT');
 
-      console.log('NG INIT LOTTO CLIENTI COMPONENT');
-
-      this.activatedRoute.parent.params.subscribe(params => {
-        this.lotto = params.lotto;
-    });
+      //this.lotto = this.activatedRoute.snapshot.queryParamMap.get('lotto');
+    //   this.activatedRoute.parent.params.subscribe(params => {
+    //     this.lotto = params.lotto;
+    // });
 
 
       this.updateGrid();
@@ -240,17 +245,17 @@ export class LottoclientiComponent implements OnInit, OnChanges {
       return cert;
     }
 
-    methodFromParent( coda: AccodaGenerazioneModel) {
-      alert('methodFromParent ' + coda.Lotto + ' ' + coda.Commessa + ' ' + coda.TipoAccodamento);
+    // methodFromParent( coda: AccodaGenerazioneModel) {
+    //   alert('methodFromParent ' + coda.Lotto + ' ' + coda.Commessa + ' ' + coda.TipoAccodamento);
 
-      this.elementiCoda = [ coda ];
+    //   this.elementiCoda = [ coda ];
 
-      const headers = new HttpHeaders().set('Content-type', 'application/json');
+    //   const headers = new HttpHeaders().set('Content-type', 'application/json');
 
-      this.http.post<string[]>('http://localhost:4518/api/Stampe', this.elementiCoda, {headers} )
-      .subscribe(res => {
-        alert(res);
-        console.log(res);
+    //   this.http.post<string[]>('http://localhost:4518/api/Stampe', this.elementiCoda, {headers} )
+    //   .subscribe(res => {
+    //     alert(res);
+    //     console.log(res);
         // if ( this.variazioniResults.length > 0 ) {
         //   this.variazioniReady = true;
         // } else {
@@ -258,8 +263,8 @@ export class LottoclientiComponent implements OnInit, OnChanges {
         // }
         // alert(this.variazioniResults);
         // alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
-      });
-    }
+    //  });
+    // }
 
 
   }

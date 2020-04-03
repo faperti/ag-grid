@@ -1,4 +1,7 @@
 <form name="loginform" class="form-signin">
+    <div class="form-label-group form-title">
+        EURAL GNUTTI SPA
+        </div>    
     <div class="form-label-group">
 <input type="text" [(ngModel)]="username" placeholder="login" class="form-control" name="login">
 </div>
@@ -11,8 +14,9 @@
     <span *ngIf="!isLoading; else loadingtemplate" >Accedi</span>
     <ng-template #loadingtemplate>
         <!-- <div class="d-flex w-100"> -->
-            <app-spinner></app-spinner>&nbsp;<i>Login...</i>
-        <!-- </div> -->
+            <!-- <app-spinner></app-spinner>&nbsp;<i>Login...</i> -->
+            <app-spinner inputSpinnerClass="'fa-2x'"></app-spinner>&nbsp;<i>Login...</i>
+            <!-- </div> -->
     </ng-template>
 </button>
 </div>

@@ -12,15 +12,16 @@ import { LoginData } from '../../models/login-data';
 export class LoginComponent implements OnInit {
 
   @Input() errorLoading: string;
+  @Input() isLoading: boolean;
   @Output() login = new EventEmitter<LoginData>();
 
   private username: string;
   private password: string;
   private accessToken: string;
-  private isLoading: boolean;
 
   constructor(  ) {
     this.accessToken = '';
+    this.isLoading = false;
   }
 
   ngOnInit() {
