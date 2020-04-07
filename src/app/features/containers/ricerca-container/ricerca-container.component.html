@@ -11,7 +11,7 @@
 (noLoading)="noLoading($event)" (search)="searchGrid($event)"></app-ricerca>
 <ng-template #loadingtemplate>
     <div class="d-flex w-100 h-100 justify-content-center align-items-center">
-    <app-spinner></app-spinner>
+    <app-spinner [inputSpinnerClass]="'fa-4x'"></app-spinner>
     </div>
 </ng-template>
 <!-- <app-spinner *ngIf="loading"></app-spinner> -->

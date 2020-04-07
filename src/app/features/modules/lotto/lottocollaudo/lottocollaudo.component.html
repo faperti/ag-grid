@@ -1,5 +1,3 @@
-<p>lottocollaudo works!</p>
-
 Prescritte:
 <select [(ngModel)]="normativaSelezionata">
     <option *ngFor="let item of Prescritte" [ngValue]="item">
@@ -8,6 +6,7 @@ Prescritte:
 </select>
 
 <button (click)="proveCollaudoNormativa()">Cambia normativa</button><span *ngIf="showLoading">Caricamento in corso....</span>
+
 
 <ag-grid-angular
 #agGrid
@@ -25,6 +24,8 @@ rowSelection="multiple"
 [rowData]="rowData"
 [suppressRowClickSelection]="true"
 [frameworkComponents]="frameworkComponents"
+[overlayLoadingTemplate]="overlayLoadingTemplate"
+[overlayNoRowsTemplate]="overlayNoRowsTemplate"
 (gridReady)="onGridReady($event)"
 >
 </ag-grid-angular>

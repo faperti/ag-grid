@@ -6,14 +6,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent {
-  @Input() inputSpinnerClas: string;
+  @Input() inputSpinnerClass: string;
 
   // spinnerClass = '';
 
-  // constructor() {
-  //   this.spinnerClass = this.inputSpinnerClass;
-  //   console.log('SPINNER ' + this.spinnerClass);
-  // }
+  constructor() {
+    console.log('SPINNER ' + this.inputSpinnerClass);
+  }
+
   // ngOnInit(): void {
   //   this.spinnerClass = this.inputSpinnerClass;
   // }

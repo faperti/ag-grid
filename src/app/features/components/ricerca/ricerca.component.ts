@@ -37,8 +37,8 @@ export class Parent1Component implements OnInit {
 
   constructor( public ds: DataService, private http: HttpClient, private router: Router ) {
 
-    console.log('PARENT1 ACCESS TOKEN');
-    console.log(this.ds.getAccessToken());
+    // console.log('PARENT1 ACCESS TOKEN');
+    // console.log(this.ds.getAccessToken());
 
   }
 

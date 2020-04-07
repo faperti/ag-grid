@@ -39,8 +39,10 @@ export class LottoDataService {
     return this.http.get(urlString);
   }
 
-  GetCollaudo(lotto: string, normativa: string) {
+  // tslint:disable-next-line:no-any
+  GetCollaudo(lotto: string, normativa: string): any {
     const urlString = this.baseUrlString +  'ProveCollaudoReport?lotto=' + lotto + '&normativa=' + normativa;
+    // console.log(urlString);
     return this.http.get(urlString);
   }
 

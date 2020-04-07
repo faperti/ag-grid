@@ -1,21 +1,23 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { AccodaGenerazioneModel } from 'src/app/renderers/model/accoda-generazione-model';
 import { HeaderGridComponent } from 'src/app/header-grid-component/header-grid-component.component';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 // tslint:disable-next-line:max-line-length
 import { AccodaGenerazioneCertificatoRendererComponent } from 'src/app/renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
 import { AccodaGenerazioneProvaModel } from 'src/app/renderers/model/accoda-generazione-prova-model';
 import { getCurrencySymbol } from '@angular/common';
+import { LottoDataService } from '../lotto-data.service';
+import { BaseLottoView } from '../models/abstracts/base-lotto-view';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-lottocollaudo',
   templateUrl: './lottocollaudo.component.html',
   styleUrls: ['./lottocollaudo.component.scss']
 })
-export class LottocollaudoComponent implements OnInit {
+export class LottocollaudoComponent extends BaseLottoView implements OnInit {
 
-  @Input() lotto: string;
+  @Input() lotto = '';
   // @Output() generateCerts = new EventEmitter<string[]>();
 
   private gridApi;
@@ -42,30 +44,35 @@ export class LottocollaudoComponent implements OnInit {
   private showLoading: boolean;
 
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) {
-    this.proveSelezionate = [];
+  constructor(http: HttpClient,
+              activatedRoute: ActivatedRoute,
+              router: Router,
+              dataservice: LottoDataService) {
 
-    this.normativaSelezionata = 'EURAL';
-    this.overlayLoadingTemplate =
-      '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
-    this.overlayNoRowsTemplate =
-      '<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">This is a custom no rows overlay</span>';
+                super( http, activatedRoute, dataservice);
+                this.proveSelezionate = [];
 
-    this.showLoading = true;
+                this.normativaSelezionata = 'EURAL';
 
-    this.initializeColumnsDefs();
+                this.overlayLoadingTemplate =
+                '<span class="ag-overlay-loading-center" style="font-size: 18px">Ricerca in corso. Attendere...</span>';
+                this.overlayNoRowsTemplate =
+                '<span style="font-size: 18px; padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">Nessun risultato soddisfa la ricerca</span>';
 
-    this.frameworkComponents = {
+                this.showLoading = false;
+
+                this.initializeColumnsDefs();
+
+                this.frameworkComponents = {
       accodaRenderer: AccodaGenerazioneCertificatoRendererComponent,
       agColumnHeader: HeaderGridComponent
     };
 
-    this.context = { componentParent: this };
-    this.defaultColDef = {
+                this.context = { componentParent: this };
+                this.defaultColDef = {
       sortable: true,
       filter: true
     };
-
   }
 
   initializeColumnsDefs() {
@@ -85,23 +92,21 @@ export class LottocollaudoComponent implements OnInit {
         width: 110
       }
     ];
-
   }
 
 
   updateGrid() {
-    this.showLoading = true;
-    // tslint:disable-next-line:max-line-length
-    this.urlString = 'http://localhost:4518/api/ProveCollaudoReport?lotto=' + this.lotto + '&normativa=' + this.normativaSelezionata;
-    // alert(this.urlString);
+    // console.log('UPDATE GRID IN');
+    this.gridApi.showLoadingOverlay();
 
-    this.http
-          .get<any>(this.urlString)
+    this.ds.GetCollaudo(this.lotto, this.normativaSelezionata)
           .subscribe(data => {
             this.rowData = data.TabellaCollaudo;
             this.Prescritte = data.Prescritte;
             this.prove = data.Prove;
             this.normativaSelezionata = data.NormativaSelezionata;
+
+            this.initializeColumnsDefs();
 
             this.columnDefs.push (
               {
@@ -145,33 +150,50 @@ export class LottocollaudoComponent implements OnInit {
               width: 90
           });
 
+            console.log(this.columnDefs);
+
             // console.log(this.columnDefs);
             this.gridApi.setColumnDefs(this.columnDefs);
             this.showLoading = false;
 
-          });
-}
+            this.gridApi.hideOverlay();
+            // console.log(this.showLoading);
+
+         });
+
+    // setTimeout(() => {
+    //   this.gridApi.hideOverlay();
+    //   console.log('SHOWLOADING : ' + this.showLoading);
+    //   console.log('UPDATE GRID OUT');
+    // }, 5000 );
+
+
+
+        }
 
 proveCollaudoNormativa() {
-  this.initializeColumnsDefs();
+  this.gridApi.hideOverlay();
+
+
   this.updateGrid();
 }
 
 ngOnInit() {
+  super.ngOnInit();
   this.normativaSelezionata = '';
 
-  this.activatedRoute.parent.params.subscribe(params => {
-    if ( params.lotto != null  ) {
-      this.lotto = params.lotto;
-    }
-  });
-
-  this.updateGrid();
+  // this.activatedRoute.parent.params.subscribe(params => {
+  //   if ( params.lotto != null  ) {
+  //     this.lotto = params.lotto;
+  //   }
+  // });
 }
 
 onGridReady(params) {
+  // console.log('gridReady');
   this.gridApi = params.api;
   this.gridColumnApi = params.columnApi;
+  this.updateGrid();
 }
 
 methodFromParent( coda: AccodaGenerazioneProvaModel) {

@@ -15,6 +15,7 @@ export class GridComponentComponent implements OnInit, OnChanges {
 
   @Input() inpCriteria: SearchCriteria;
   @Input() inpStampa: boolean;
+  // tslint:disable-next-line:no-any
   @Input() gridRowData: any[];
   @Output() generateCerts = new EventEmitter<string[]>();
 
@@ -24,17 +25,21 @@ export class GridComponentComponent implements OnInit, OnChanges {
   private gridPageSize = 10;
   private columnDefs;
   private defaultColDef;
+  // tslint:disable-next-line:no-any
   private rowData: any;
+  // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
   private message = '';
   private urlString = '';
   private lottiToGenerate: string[];
 
+  private widthData = 130;
+
     constructor(private http: HttpClient) {
       this.columnDefs = [
         {
           headerName: 'Lotto', field: 'lotto',
-          width: 120,
+          width: 130,
           cellRendererFramework: RouterLinkRendererComponent,
           cellRendererParams: {
             inRouterLink: '/qualita/lotto'
@@ -58,12 +63,12 @@ export class GridComponentComponent implements OnInit, OnChanges {
         {
           headerName: 'SC',
           field: 'des_statociclo',
-          width: 100
+          width: 60
         },
         {
           headerName: 'SF',
           field: 'des_statofisico',
-          width: 100
+          width: 60
         },
         {
           headerName: 'Richiesta',
@@ -73,17 +78,17 @@ export class GridComponentComponent implements OnInit, OnChanges {
         {
           headerName: 'Data Lancio',
           field: 'datalancio',
-          width: 100
+          width: this.widthData
         },
         {
           headerName: 'Data Chiusura',
           field: 'data_chiusura',
-          width: 100
+          width: this.widthData
         },
         {
           headerName: 'Certificato',
           field: 'pathCertificato',
-          width: 300,
+          width: 150,
           cellRenderer: this.certificatoRenderer
         },
         // {
@@ -106,25 +111,25 @@ export class GridComponentComponent implements OnInit, OnChanges {
         {
           headerName: 'Estrusione',
           field: 'data_estrusione_str',
-          width: 100
+          width: this.widthData
         },
         {
           headerName: 'Trazione',
           field: 'data_trazione_str',
-          width: 100
+          width: this.widthData
         },
         {
           headerName: 'Tempra',
           field: 'data_tempra_str',
-          width: 100
+          width: this.widthData
         },
         {
           headerName: 'Analisi',
           field: 'data_analisi_str',
-          width: 100
+          width: this.widthData
         },
         {
-          headerName: 'Selezione',
+          headerName: 'Sel.',
           width: 100,
           headerCheckboxSelection: true,
           checkboxSelection: true
@@ -181,7 +186,7 @@ export class GridComponentComponent implements OnInit, OnChanges {
       // params.data.imgCertificato + '"></img></A>';
 
       // tslint:disable-next-line:max-line-length
-      const cert = '<A target="_blank" href="' + 'assets/certificati/' + params.data.lotto + '.pdf"><i class="fa fa-paperclip" aria-hidden="true"></i></img>' + params.data.lotto + '</A>';
+      const cert = '<A target="_blank" href="' + 'assets/certificati/' + params.data.lotto + '.pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>' + params.data.lotto + '</A>';
       return cert;
     }
 
@@ -195,7 +200,7 @@ export class GridComponentComponent implements OnInit, OnChanges {
 
       console.log('PRINT CERTS : ' + this.lottiToGenerate);
 
-      this.generateCerts.emit(this.lottiToGenerate);
+      // this.generateCerts.emit(this.lottiToGenerate);
     }
 
 

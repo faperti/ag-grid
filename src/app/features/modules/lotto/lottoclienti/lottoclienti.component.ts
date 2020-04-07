@@ -29,14 +29,17 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
 
   columnDefs;
   rowStyle = {
-    margin: '10px'
+    // 'font-size': '14px'
   };
   private defaultColDef;
+  // tslint:disable-next-line:no-any
   private rowData: any;
+  // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
   private message = '';
   private urlString = '';
   private lottiToGenerate: string[];
+  // tslint:disable-next-line:no-any
   private frameworkComponents: any;
   private context;
   private elementiCoda: AccodaGenerazioneModel[];
@@ -164,14 +167,6 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
 
     ngOnInit() {
       super.ngOnInit();
-        // console.log('NG INIT LOTTO CLIENTI COMPONENT');
-
-      //this.lotto = this.activatedRoute.snapshot.queryParamMap.get('lotto');
-    //   this.activatedRoute.parent.params.subscribe(params => {
-    //     this.lotto = params.lotto;
-    // });
-
-
       this.updateGrid();
     }
 
@@ -187,6 +182,7 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
       // return '(' + params.certificato + ') - ';
     }
 
+    // tslint:disable-next-line:no-any
     accodaCert(valori: any) {
       alert('accoda cert da griglia');
       console.log(valori);

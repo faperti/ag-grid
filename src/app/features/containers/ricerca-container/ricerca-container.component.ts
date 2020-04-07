@@ -76,12 +76,12 @@ export class RicercaContainerComponent implements OnInit {
     this.urlString = this.urlString + '&dimensione=' + this.inpCriteria.Dimensione;
     this.urlString = this.urlString + '&colata=' + this.inpCriteria.Colata;
 
-    console.log(this.urlString);
+    // console.log(this.urlString);
     this.showGrid = true;
 
     this.http.get(this.urlString)
                 .subscribe(data => {
-                  console.log(data);
+                  // console.log(data);
                   this.loading = false;
                   this.rowDataLoaded = data;
                   if ( this.rowDataLoaded.length > 0 ) {

@@ -28,7 +28,7 @@ import { TitleCasePipe } from '@angular/common';
 
     agInit(params: any): void {
       this.myParams = params;
-      console.log(params);
+      // console.log(params);
     }
 
     refresh(params: any): boolean {
@@ -43,7 +43,7 @@ import { TitleCasePipe } from '@angular/common';
       // il tipo di accodamento indica l'eventuale operazione che deve essere compiuta dal generatore dei certificati
       this.acm.TipoAccodamento = tipoGenerazione;
 
-      console.log(this.acm);
+      // console.log(this.acm);
 
       alert('invoke parent method : invokeParentMethod()');
       // tslint:disable-next-line:max-line-length
@@ -56,7 +56,7 @@ import { TitleCasePipe } from '@angular/common';
     }
 
     accodaCertificato($event) {
-      console.log(this.myParams);
+      // console.log(this.myParams);
       this.invokeParentMethod(GenerazioneCertificatoCliente.AccodaCertificato);
     }
 
