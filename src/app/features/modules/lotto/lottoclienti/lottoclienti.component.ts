@@ -55,12 +55,12 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
       };
 
       this.columnDefs = [
-        {
-          headerName: 'Selezione',
-          width: 100,
-          headerCheckboxSelection: true,
-          checkboxSelection: true
-        },
+        // {
+        //   headerName: 'Selezione',
+        //   width: 100,
+        //   headerCheckboxSelection: true,
+        //   checkboxSelection: true
+        // },
         {
           headerName: 'Conferma',
           field: 'commessa',

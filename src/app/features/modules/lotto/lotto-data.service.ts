@@ -46,7 +46,12 @@ export class LottoDataService {
     return this.http.get(urlString);
   }
 
-
+  // tslint:disable-next-line:no-any
+  GetNumerositaProve(lotto: string): any {
+    const urlString = this.baseUrlString +  'NumerositaProve?lotto=' + lotto ;
+    // console.log(urlString);
+    return this.http.get(urlString);
+  }
 
 
 

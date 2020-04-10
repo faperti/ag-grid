@@ -33,7 +33,7 @@ export class GridComponentComponent implements OnInit, OnChanges {
   private urlString = '';
   private lottiToGenerate: string[];
 
-  private widthData = 130;
+  private widthData = 120;
 
     constructor(private http: HttpClient) {
       this.columnDefs = [
@@ -106,7 +106,7 @@ export class GridComponentComponent implements OnInit, OnChanges {
         {
           headerName: 'Codice',
           field: 'codice',
-          width: 100
+          width: 120
         },
         {
           headerName: 'Estrusione',

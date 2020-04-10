@@ -7,16 +7,19 @@ import { TitleCasePipe } from '@angular/common';
 
 @Component({
   template: '<div>' +
-  '<i class="fa fa-plus" aria-hidden="true" title="Accoda"></i>&nbsp;' +
-  '<img border="0" (click)="accodaGenerazioneStandard()" title="Standard" width="32" height="32" src="/assets/images/accoda.gif"/>' +
+  '<i class="fa fa-plus fa-2x" aria-hidden="true" title="Accoda a certificato esistente" (click)="accodaGenerazioneStandard()"></i>&nbsp;' +
+  '<i class="fa fa-print fa-2x" aria-hidden="true" title="Accoda" (click)="accodaCertificato()"></i>&nbsp;' +
+  '<i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" title="Accoda" (click)="accodaCertificato()"></i>&nbsp;'
+  // '<img border="0" (click)="accodaGenerazioneStandard()" title="Standard" width="32" height="32" src="/assets/images/accoda.gif"/>'
   // tslint:disable-next-line:max-line-length
-  '<img border="0" (click)="accodaCertificato()" title="Accoda a certificato esistente" width="32" height="32" src="/assets/images/accoda.gif"/>' +
-  // tslint:disable-next-line:max-line-length
-  '<img border="0" (click)="accodaCertificatoConProve()" title="Certificato con prove" width="32" height="32" src="/assets/images/accoda.gif"/></div>'
+  // '<img border="0" (click)="accodaCertificato()" title="Accoda a certificato esistente" width="32" height="32" src="/assets/images/accoda.gif"/>'
+  // // tslint:disable-next-line:max-line-length
+  // '<img border="0" (click)="accodaCertificatoConProve()" title="Certificato con prove" width="32" height="32" src="/assets/images/accoda.gif"/></div>'
 })
 
   export class AccodaGenerazioneCertificatoRendererComponent implements ICellRendererAngularComp  {
 
+    // tslint:disable-next-line:no-any
     myParams: any;
     urlString: string;
     variazioneResponse: string;
@@ -26,11 +29,13 @@ import { TitleCasePipe } from '@angular/common';
 
     }
 
+    // tslint:disable-next-line:no-any
     agInit(params: any): void {
       this.myParams = params;
       // console.log(params);
     }
 
+    // tslint:disable-next-line:no-any
     refresh(params: any): boolean {
       return false;
     }
@@ -52,12 +57,12 @@ import { TitleCasePipe } from '@angular/common';
 
     accodaGenerazioneStandard($event) {
       console.log(this.myParams);
-      this.invokeParentMethod(GenerazioneCertificatoCliente.GenerazioneStandard);
+      // this.invokeParentMethod(GenerazioneCertificatoCliente.GenerazioneStandard);
     }
 
     accodaCertificato($event) {
-      // console.log(this.myParams);
-      this.invokeParentMethod(GenerazioneCertificatoCliente.AccodaCertificato);
+      console.log(this.myParams);
+      // this.invokeParentMethod(GenerazioneCertificatoCliente.AccodaCertificato);
     }
 
     passTheSalt(idVariazione: number) {
