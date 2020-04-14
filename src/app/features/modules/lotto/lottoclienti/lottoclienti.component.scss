@@ -13,3 +13,9 @@
 ::ng-deep .ag-theme-balham {
     font-size: 14px
 }
+
+::ng-deep .ag-row .ag-cell {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center;
+  }

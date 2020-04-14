@@ -121,7 +121,7 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
           // cellRendererParams: {
           //   onClick: this.accodaCert.bind(this)
           // },
-          width: 90
+          width: 110
         }
       ];
       this.context = { componentParent: this };

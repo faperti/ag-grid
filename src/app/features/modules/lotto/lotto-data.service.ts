@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataService } from 'src/app/shared/services/data.service';
+import { AuthenticationService } from 'src/app/core/modules/login/services/authentication/authentication.service';
 
 @Injectable()
 export class LottoDataService {
 
   private baseUrlString = 'http://localhost:4518/api/';
 
-  constructor( private http: HttpClient ) {
+  constructor( private http: HttpClient, private DS: DataService ) {
     // this.accessToken = '';
   }
 
@@ -53,6 +55,22 @@ export class LottoDataService {
     return this.http.get(urlString);
   }
 
+  // tslint:disable-next-line:no-any
+    getCollaudoWithToken(lotto: string, normativa: string): any {
 
+      console.log('getCollaudoWithToken');
+      console.log(this.DS.getAccessToken());
+
+      // tslint:disable-next-line:object-literal-shorthand
+      const body = { lotto: lotto, normativa: normativa };
+      console.log(body);
+
+      // const urlString = this.baseUrlString +  'ProveCollaudoReport?lotto=' + lotto + '&normativa=' + normativa;
+      const urlString = this.baseUrlString +  'ProveCollaudoReport';
+
+      // tslint:disable-next-line:max-line-length
+      return this.http.post(urlString, body , { headers : { 'Content-Type': 'application/json', Authorization: 'Bearer ' + this.DS.getAccessToken() } } );
+
+    }
 
   }

@@ -57,6 +57,7 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
                 this.overlayLoadingTemplate =
                 '<span class="ag-overlay-loading-center" style="font-size: 18px">Ricerca in corso. Attendere...</span>';
                 this.overlayNoRowsTemplate =
+                // tslint:disable-next-line:max-line-length
                 '<span style="font-size: 18px; padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">Nessun risultato soddisfa la ricerca</span>';
 
                 this.showLoading = false;
@@ -99,13 +100,19 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
     // console.log('UPDATE GRID IN');
     this.gridApi.showLoadingOverlay();
 
-    this.ds.GetCollaudo(this.lotto, this.normativaSelezionata)
+    // this.ds.GetCollaudo(this.lotto, this.normativaSelezionata)
+    this.ds.getCollaudoWithToken(this.lotto, this.normativaSelezionata)
           .subscribe(data => {
+
+            this.columnDefs = [];
+
             this.rowData = data.TabellaCollaudo;
             this.Prescritte = data.Prescritte;
             this.prove = data.Prove;
             this.normativaSelezionata = data.NormativaSelezionata;
 
+            console.log('INITIALIZE');
+            console.log(this.columnDefs);
             this.initializeColumnsDefs();
 
             this.columnDefs.push (
@@ -123,6 +130,9 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
                 width: 110
               }
             );
+
+            console.log('MIN MAX');
+            console.log(this.columnDefs);
 
             // tslint:disable-next-line:only-arrow-functions
             this.prove.forEach( (value) => {
@@ -142,14 +152,18 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
               } );
             } );
 
+            console.log('PROVE');
+            console.log(this.columnDefs);
+
+
             this.columnDefs.push ( {
               headerName: 'Eventi',
               resizable: false,
               cellRenderer: 'accodaRenderer',
-              colId: 'params',
               width: 90
           });
 
+            console.log('EVENTI');
             console.log(this.columnDefs);
 
             // console.log(this.columnDefs);
@@ -161,20 +175,10 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
 
          });
 
-    // setTimeout(() => {
-    //   this.gridApi.hideOverlay();
-    //   console.log('SHOWLOADING : ' + this.showLoading);
-    //   console.log('UPDATE GRID OUT');
-    // }, 5000 );
-
-
-
         }
 
 proveCollaudoNormativa() {
   this.gridApi.hideOverlay();
-
-
   this.updateGrid();
 }
 
@@ -218,34 +222,6 @@ updateProveSelezionate( numeroProva, stato ) {
   console.log(this.proveSelezionate);
 
 }
-
-// generateCert(value: string[]) {
-
-//   this.updatesToSend = [];
-//   this.updates = value.length;
-
-//   value.forEach(element => {
-
-//     const current = { lotto: element, commessa: ''};
-//     this.updatesToSend.push(current);
-
-//   });
-
-//   console.log('PARENT 1 : ' + this.updatesToSend);
-
-//   const headers = new HttpHeaders().set('Content-type', 'application/json');
-//   const body = {
-//                       body: this.updatesToSend
-//                };
-
-//   console.log(body);
-
-//   this.http.post<GenerateCertsResult>('http://localhost:4518/api/Stampe', this.updatesToSend, {headers} )
-//     .subscribe(res => {
-//       alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
-//     });
-// }
-
 
 }
 

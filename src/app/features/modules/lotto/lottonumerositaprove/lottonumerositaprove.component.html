@@ -1,18 +1,18 @@
     <div  class="d-flex background" >
         <div class="flex-fill">
             <label>NUMEROSITA' PROVE</label>
-            <label>COLLAUDO</label> 
+            <label class="ml-2">COLLAUDO</label> 
             <span *ngIf="mecFatte" class="ml-2">{{mecFatte}}/{{mecTotali}}</span> 
-            <label>LABORATORIO</label> 
+            <label class="ml-2">LABORATORIO</label> 
             <span *ngIf="anaFatte" class="ml-2">{{anaFatte}}/{{anaTotali}}</span> 
-            <label>MACRO</label> 
+            <label class="ml-2">MACRO</label> 
             <span *ngIf="macroFatte" class="ml-2">{{macroFatte}}/{{macroTotali}}</span> 
         </div>
         <div>
             <span>NUMEROSITA' PRESCRITTE:</span>
-            <span>{{dimPrescritte}}</span>
-            <span>NUMEROSITA' PROVE:</span>
-            <span>{{dimNumerosita}}</span>
+            <span class="ml-2">{{dimPrescritte}}</span>
+            <span class="ml-2">NUMEROSITA' PROVE:</span>
+            <span class="ml-2">{{dimNumerosita}}</span>
         </div>
         <i class="fa fa-circle fa-2x"></i>
     </div>

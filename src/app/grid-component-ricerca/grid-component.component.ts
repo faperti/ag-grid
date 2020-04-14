@@ -76,12 +76,12 @@ export class GridComponentComponent implements OnInit, OnChanges {
           width: 100
         },
         {
-          headerName: 'Data Lancio',
+          headerName: 'Lancio',
           field: 'datalancio',
           width: this.widthData
         },
         {
-          headerName: 'Data Chiusura',
+          headerName: 'Chiusura',
           field: 'data_chiusura',
           width: this.widthData
         },

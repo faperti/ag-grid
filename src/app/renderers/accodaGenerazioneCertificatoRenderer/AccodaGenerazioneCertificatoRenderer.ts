@@ -9,7 +9,7 @@ import { TitleCasePipe } from '@angular/common';
   template: '<div>' +
   '<i class="fa fa-plus fa-2x" aria-hidden="true" title="Accoda a certificato esistente" (click)="accodaGenerazioneStandard()"></i>&nbsp;' +
   '<i class="fa fa-print fa-2x" aria-hidden="true" title="Accoda" (click)="accodaCertificato()"></i>&nbsp;' +
-  '<i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" title="Accoda" (click)="accodaCertificato()"></i>&nbsp;'
+  '<i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" title="Visualizza certificato" (click)="accodaCertificato()"></i>&nbsp;'
   // '<img border="0" (click)="accodaGenerazioneStandard()" title="Standard" width="32" height="32" src="/assets/images/accoda.gif"/>'
   // tslint:disable-next-line:max-line-length
   // '<img border="0" (click)="accodaCertificato()" title="Accoda a certificato esistente" width="32" height="32" src="/assets/images/accoda.gif"/>'
@@ -32,6 +32,7 @@ import { TitleCasePipe } from '@angular/common';
     // tslint:disable-next-line:no-any
     agInit(params: any): void {
       this.myParams = params;
+      // console.log('AGINIT AccodaGenerazioneCertificatoRendererComponent');
       // console.log(params);
     }
 
