@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { AccodaGenerazioneModel } from 'src/app/renderers/model/accoda-generazione-model';
-import { HeaderGridComponent } from 'src/app/header-grid-component/header-grid-component.component';
+import { HeaderGridComponent } from 'src/app/features/modules/lotto/header-grid-component/header-grid-component.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 // tslint:disable-next-line:max-line-length
@@ -27,18 +27,23 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
   private normativaSelezionata: string;
   private currentPrescritta: string;
   private Prescritte: string[];
+  // tslint:disable-next-line:no-any
   private columnDefs: any[];
   private defaultColDef;
+  // tslint:disable-next-line:no-any
   private rowData: any[];
+  // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
   private message = '';
   private urlString = '';
   private lottiToGenerate: string[];
   private prove: string[];
   private proveSelezionate: string[];
+  // tslint:disable-next-line:no-any
   private frameworkComponents: any;
   private context;
   private elementiCoda: AccodaGenerazioneModel[];
+  // tslint:disable-next-line:no-any
   elaboratoFormatter: any;
   private overlayLoadingTemplate: string;
   private overlayNoRowsTemplate: string;

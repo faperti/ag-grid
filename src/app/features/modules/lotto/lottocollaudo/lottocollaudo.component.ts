@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { AccodaGenerazioneModel } from 'src/app/renderers/model/accoda-generazione-model';
-import { HeaderGridComponent } from 'src/app/header-grid-component/header-grid-component.component';
+import { HeaderGridComponent } from 'src/app/features/modules/lotto/header-grid-component/header-grid-component.component';
 import { Router, ActivatedRoute } from '@angular/router';
 // tslint:disable-next-line:max-line-length
 import { AccodaGenerazioneCertificatoRendererComponent } from 'src/app/renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
@@ -24,32 +24,43 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
   private gridColumnApi;
 
   private normativaSelezionata: string;
+  private commessaSelezionata: string;
   private currentPrescritta: string;
+  private elencoCommesse: string[];
   private Prescritte: string[];
+  // tslint:disable-next-line:no-any
   private columnDefs: any[];
-  private defaultColDef;
+  // tslint:disable-next-line:no-any
+  elaboratoFormatter: any;
+  // tslint:disable-next-line:no-any
   private rowData: any[];
+  // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
+  // tslint:disable-next-line:no-any
+  private frameworkComponents: any;
+
+  private defaultColDef;
   private message = '';
   private urlString = '';
   private lottiToGenerate: string[];
   private prove: string[];
   private proveSelezionate: string[];
-  private frameworkComponents: any;
+
   private context;
-  private elementiCoda: AccodaGenerazioneModel[];
-  elaboratoFormatter: any;
+  // private elementiCoda: AccodaGenerazioneModel[];
+
   private overlayLoadingTemplate: string;
   private overlayNoRowsTemplate: string;
-  private showLoading: boolean;
+  private isLoading: boolean;
+  private gcc: boolean;
 
 
   constructor(http: HttpClient,
               activatedRoute: ActivatedRoute,
               router: Router,
-              dataservice: LottoDataService) {
+              dataService: LottoDataService) {
 
-                super( http, activatedRoute, dataservice);
+                super( http, activatedRoute, dataService);
                 this.proveSelezionate = [];
 
                 this.normativaSelezionata = 'EURAL';
@@ -60,7 +71,7 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
                 // tslint:disable-next-line:max-line-length
                 '<span style="font-size: 18px; padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">Nessun risultato soddisfa la ricerca</span>';
 
-                this.showLoading = false;
+                this.isLoading = true;
 
                 this.initializeColumnsDefs();
 
@@ -81,12 +92,12 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
     this.columnDefs = [];
 
     this.columnDefs = [
-      {
-        headerName: 'Selezione',
-        width: 100,
-        headerCheckboxSelection: true,
-        checkboxSelection: true
-      },
+      // {
+      //   headerName: 'Selezione',
+      //   width: 100,
+      //   headerCheckboxSelection: true,
+      //   checkboxSelection: true
+      // },
       {
         headerName: 'Elemento',
         field: 'Elemento',
@@ -108,11 +119,13 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
 
             this.rowData = data.TabellaCollaudo;
             this.Prescritte = data.Prescritte;
+            this.elencoCommesse = data.ElencoCommesse;
             this.prove = data.Prove;
             this.normativaSelezionata = data.NormativaSelezionata;
+            this.gcc = data.GeneraCertificatiCliente;
 
-            console.log('INITIALIZE');
-            console.log(this.columnDefs);
+            this.commessaSelezionata = this.elencoCommesse[0];
+
             this.initializeColumnsDefs();
 
             this.columnDefs.push (
@@ -130,9 +143,6 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
                 width: 110
               }
             );
-
-            console.log('MIN MAX');
-            console.log(this.columnDefs);
 
             // tslint:disable-next-line:only-arrow-functions
             this.prove.forEach( (value) => {
@@ -152,23 +162,16 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
               } );
             } );
 
-            console.log('PROVE');
-            console.log(this.columnDefs);
-
-
-            this.columnDefs.push ( {
-              headerName: 'Eventi',
-              resizable: false,
-              cellRenderer: 'accodaRenderer',
-              width: 90
-          });
-
-            console.log('EVENTI');
-            console.log(this.columnDefs);
+          //   this.columnDefs.push ( {
+          //     headerName: 'Eventi',
+          //     resizable: false,
+          //     cellRenderer: 'accodaRenderer',
+          //     width: 90
+          // });
 
             // console.log(this.columnDefs);
             this.gridApi.setColumnDefs(this.columnDefs);
-            this.showLoading = false;
+            this.isLoading = false;
 
             this.gridApi.hideOverlay();
             // console.log(this.showLoading);
@@ -178,6 +181,7 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
         }
 
 proveCollaudoNormativa() {
+  this.isLoading = true;
   this.gridApi.hideOverlay();
   this.updateGrid();
 }
@@ -185,6 +189,7 @@ proveCollaudoNormativa() {
 ngOnInit() {
   super.ngOnInit();
   this.normativaSelezionata = '';
+  this.commessaSelezionata = '';
 
   // this.activatedRoute.parent.params.subscribe(params => {
   //   if ( params.lotto != null  ) {
@@ -194,7 +199,8 @@ ngOnInit() {
 }
 
 onGridReady(params) {
-  // console.log('gridReady');
+  this.isLoading = true;
+  console.log('gridReady');
   this.gridApi = params.api;
   this.gridColumnApi = params.columnApi;
   this.updateGrid();
@@ -203,7 +209,7 @@ onGridReady(params) {
 methodFromParent( coda: AccodaGenerazioneProvaModel) {
   // alert('lotto collaudo methodFromParent ' + coda );
   // this.proveSelezionate.push(coda);
-  console.log('PARENT ' + coda.NumeroProva + ' ' + coda.Stato);
+  console.log('METHOD FROM PARENT LOTTO COLLAUDO ' + coda.NumeroProva + ' ' + coda.Stato);
   this.updateProveSelezionate(coda.NumeroProva, coda.Stato);
 }
 
@@ -222,6 +228,21 @@ updateProveSelezionate( numeroProva, stato ) {
   console.log(this.proveSelezionate);
 
 }
+
+generaCertificatoProve() {
+
+  const elementoCoda = new AccodaGenerazioneModel();
+
+  elementoCoda.Lotto = this.lotto;
+  elementoCoda.Commessa = this.commessaSelezionata;
+  elementoCoda.ProveSelezionate = this.proveSelezionate;
+  elementoCoda.TipoAccodamento = 2;
+
+  this.ds.accodaCertificato(elementoCoda);
+
+}
+
+
 
 }
 

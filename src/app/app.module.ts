@@ -19,7 +19,7 @@ import { AnchorEventClickRendererComponent } from './anchor-event-click-renderer
 import { ElaboratoAssegnazioneRendererComponent } from './elaborato-assegnazione-renderer/elaborato-assegnazione-renderer.component';
 // tslint:disable-next-line:max-line-length
 import { AccodaGenerazioneCertificatoRendererComponent } from './renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
-import { HeaderGridComponent } from './header-grid-component/header-grid-component.component';
+import { HeaderGridComponent } from './features/modules/lotto/header-grid-component/header-grid-component.component';
 
 import { AuthDataService } from './shared/services/AuthData.service';
 import { DataService } from './shared/services/data.service';

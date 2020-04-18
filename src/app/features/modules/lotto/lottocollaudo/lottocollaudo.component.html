@@ -1,12 +1,28 @@
-Prescritte:
-<select [(ngModel)]="normativaSelezionata">
-    <option *ngFor="let item of Prescritte" [ngValue]="item">
-        {{item}}
-    </option>
-</select>
-
-<button (click)="proveCollaudoNormativa()">Cambia normativa</button><span *ngIf="showLoading">Caricamento in corso....</span>
-
+<ng-container *ngIf="!isLoading">
+    <div class="d-flex">
+        <div class="flex-fill">
+            Prescritte:
+            <select [(ngModel)]="normativaSelezionata">
+                <option *ngFor="let item of Prescritte" [ngValue]="item">
+                    {{item}}
+                </option>
+            </select>
+            <button (click)="proveCollaudoNormativa()">Cambia normativa</button>
+            <span class="ml-4" *ngIf="gcc">
+                Scegli commessa:
+                <select [(ngModel)]="commessaSelezionata">
+                    <option *ngFor="let item of elencoCommesse;let i = index" [ngValue]="item" [selected]="i==0">
+                        {{item}}
+                    </option>
+                </select>
+            </span>
+            <button *ngIf="gcc" (click)="generaCertificatoProve()">{{commessaSelezionata}}</button>
+            </div>
+        <i *ngIf="gcc" class="fa fa-plus fa-2x" aria-hidden="true" title="Accoda a certificato esistente" (click)="accodaGenerazioneStandard()"></i>&nbsp;
+        <i *ngIf="gcc" class="fa fa-print fa-2x" aria-hidden="true" title="Accoda" (click)="accodaCertificato()"></i>&nbsp;
+        <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" title="Visualizza certificato" (click)="accodaCertificato()"></i>&nbsp;
+    </div>
+</ng-container>
 
 <ag-grid-angular
 #agGrid

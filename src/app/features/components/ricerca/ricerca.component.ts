@@ -16,15 +16,23 @@ export class Parent1Component implements OnInit {
   @Input() inpCriteria: SearchCriteria;
   @Input() showGrid: boolean;
   @Input() emptyData: boolean;
+  // tslint:disable-next-line:no-any
   @Input() rowData: any[];
+  // tslint:disable-next-line:no-any
   @Input() statoData: any[];
+  // tslint:disable-next-line:no-any
   @Input() formeData: any[];
+  // tslint:disable-next-line:no-any
   @Input() legheData: any[];
+  // tslint:disable-next-line:no-any
   @Input() presseData: any[];
+  // tslint:disable-next-line:no-any
   @Input() statiCicloData: any[];
+  // tslint:disable-next-line:no-any
   @Input() statiFisiciData: any[];
 
   @Output() search: EventEmitter<SearchCriteria> = new EventEmitter<SearchCriteria>();
+  // tslint:disable-next-line:no-any
   @Output() noLoading = new EventEmitter<any>();
   // @Output() login = new EventEmitter<LoginData>();
 
@@ -33,6 +41,7 @@ export class Parent1Component implements OnInit {
   private urlString: string;
   private criteriaToGrid: SearchCriteria;
   private updates: number;
+  // tslint:disable-next-line:no-any
   private updatesToSend: any[];
 
   constructor( public ds: DataService, private http: HttpClient, private router: Router ) {
@@ -69,42 +78,5 @@ export class Parent1Component implements OnInit {
 
     this.router.navigate(['/login']);
 
-  //   this.updatesToSend = [];
-  //   this.updates = value.length;
-
-  //   value.forEach(element => {
-
-  //     const current = { lotto: element, commessa: ''};
-  //     this.updatesToSend.push(current);
-
-  //   });
-
-  //   console.log('PARENT 1 TOKEN : ' + this.ds.getAccessToken());
-
-  //   let headers = new HttpHeaders().set('Content-type', 'application/json');
-  //   headers = headers.set('Authorization', 'Bearer ' + this.ds.accessToken);
-
-  //   const body = {
-  //                       body: this.updatesToSend
-  //                };
-
-  //   console.log('PARENT1 HEADERS ' + headers);
-
-  //   // this.http.post('http://localhost:4518/api/test/resource1', null , { headers } )
-  //   //   .subscribe( res => {
-  //   //     alert(res);
-  //   //   },
-  //   //   error => {
-  //   //     alert('Visualizzazione non disponibile');
-  //   //   }
-  //   //   );
-
-  //   this.http.post<GenerateCertsResult>('http://localhost:4518/api/Stampe', this.updatesToSend, {headers} )
-  //     .subscribe(res => {
-  //       alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
-  // },
-  // error => {
-  //   alert('Visualizzazione non disponibile');
-  // });
 }
 }

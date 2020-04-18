@@ -83,6 +83,8 @@ export class Lotto {
     public ProveMacroDaEffettuare: number;
 
     public ProveMacroEffettuate: number;
+    public EstrusioneLordaOra: number;
+    public EstrusioneNettaOra: number;
 
     /*
     public CLottoClienti ElencoCommesseLotto

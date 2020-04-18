@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
-import { AccodaGenerazioneProvaModel } from '../renderers/model/accoda-generazione-prova-model';
+import { AccodaGenerazioneProvaModel } from '../../../../renderers/model/accoda-generazione-prova-model';
 // tslint:disable-next-line:max-line-length
 // import { AccodaGenerazioneCertificatoRendererComponent } from '../renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
 
@@ -13,6 +13,7 @@ export class HeaderGridComponent {
 
   @Output() emitProva = new EventEmitter<string>();
 
+  // tslint:disable-next-line:no-any
   private params: any;
 
   private valore: AccodaGenerazioneProvaModel;
@@ -20,6 +21,7 @@ export class HeaderGridComponent {
   private noSort: string;
 
     agInit(params): void {
+      console.log(params);
       this.params = params;
 
       // params.column.addEventListener('sortChanged', this.onSortChanged.bind(this));
@@ -31,6 +33,9 @@ export class HeaderGridComponent {
     this.valore = new AccodaGenerazioneProvaModel();
     this.valore.NumeroProva = this.params.numeroProva;
     this.valore.Stato = this.isChecked;
+
+    console.log('HeaderGridComponent');
+    console.log(this.valore);
 
     this.params.context.componentParent.methodFromParent(this.valore);
 }

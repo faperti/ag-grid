@@ -6,7 +6,7 @@ import { SearchCriteriaCertificatoProve } from '../model/SearchCriteriaCertifica
 import { RouterLinkRendererComponent } from '../router-link-renderer/router-link-renderer.component';
 
 import { AccodaGenerazioneProvaModel } from 'src/app/renderers/model/accoda-generazione-prova-model';
-import { HeaderGridComponent } from 'src/app/header-grid-component/header-grid-component.component';
+import { HeaderGridComponent } from 'src/app/features/modules/lotto/header-grid-component/header-grid-component.component';
 import { AccodaGenerazioneModel } from '../renderers/model/accoda-generazione-model';
 
 

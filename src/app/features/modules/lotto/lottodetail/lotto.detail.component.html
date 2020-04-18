@@ -1,39 +1,69 @@
 <div *ngIf="cLotto && cLotto.Lotto">
+    <div class="d-flex back-even">
+        <label>DESFORMA:</label>
+        <span class="ml-2">{{cLotto.DesForma}}</span>
+        <label class="ml-2">DIAMETRO:</label>
+        <span class="ml-2">{{cLotto.Diametro}}</span>
+        <label class="ml-2">DESLEGA:</label> 
+        <span class="ml-2">{{cLotto.DesLega}}</span>
+        <label class="ml-2">DESSTATOFISICO:</label>
+        <span class="ml-2">{{cLotto.DesStatoFisico}}</span>
+        <label class="ml-2">DESSTATOCICLO:</label>
+        <span class="ml-2">{{cLotto.DesStatoCiclo}}</span>
+    </div>
+    <div class="d-flex back-odd">
+        <label>COLATA:</label> 
+        <span class="ml-2">{{cLotto.COLATA}}</span> 
+        <label class="ml-2">PRESSA:</label> 
+        <span class="ml-2">{{cLotto.Pressa}}</span> 
+        <label class="ml-2">LUNGHEZZA:</label> 
+        <span class="ml-2">{{cLotto.Lunghezza}}</span>
+        <label class="ml-2">KG/H LORDI:</label> 
+        <span class="ml-2">{{cLotto.EstrusioneLordaOra}}</span>
+        <label class="ml-2">KG/H NETTI:</label> 
+        <span class="ml-2">{{cLotto.EstrusioneNettaOra}}</span>    
+        <!-- <label class="ml-2">MATRICOLA:</label>
+        <span class="ml-2">{{cLotto.Matricola}}</span> -->
+    </div>
     <div  class="d-flex back-even" >
+        <div class="flex-fill">
+            <label>LANCIO:</label> 
+            <span class="ml-2">{{cLotto.DataLancio}}</span> 
+            <label class="ml-2">ESTRUSIONE:</label>
+            <span class="ml-2">{{cLotto.DataEstrusione}}</span>
+            <label class="ml-2">TEMPRA:</label>
+            <span class="ml-2">{{cLotto.DataTempra}}</span>
+            <label class="ml-2">COLLAUDO:</label>
+            <span class="ml-2">{{cLotto.DataCollaudo}}</span>
+            <label class="ml-2">ANALISI:</label>
+            <span class="ml-2">{{cLotto.DataAnalisi}}</span>
+            <label class="ml-2">CHIUSURA:</label>
+            <span class="ml-2">{{cLotto.DataChiusura}}</span>
+        </div>
+        <i class="fa fa-exclamation-circle fa-2x"></i>
+    </div>
+    <div class="d-flex back-odd" >
         <div class="flex-fill">
             <label>LOTTO:</label> 
             <span class="ml-2">{{cLotto.Lotto}}</span> 
             <label class="ml-2">CODICE:</label>
             <span class="ml-2">{{cLotto.Codice}}</span>
+            <label class="ml-2">KG RICHIESTI:</label>
+            <span class="ml-2">{{cLotto.QtaRichiesta}}</span>
+            <label class="ml-2">KG ESTRUSI:</label>
+            <span class="ml-2">{{cLotto.QtaEstrusa}}</span>
         </div>
         <i class="fa fa-circle fa-2x"></i>
     </div>
-    <div class="d-flex back-odd">
-        <label>PRESSA:</label> 
-        <span class="ml-2">{{cLotto.Pressa}}</span> 
-        <label class="ml-2">LUNGHEZZA:</label> 
-        <span class="ml-2">{{cLotto.Lunghezza}}</span> 
-        <label class="ml-2">MATRICOLA:</label>
-        <span class="ml-2">{{cLotto.Matricola}}</span>
-    </div>
 
-    <div class="d-flex back-even">
+    <!-- <div class="d-flex back-even">
         <label>LEGA:</label>
         <span class="ml-2">{{cLotto.Lega}}</span>
-        <label class="ml-2">DIAMETRO:</label>
-        <span class="ml-2">{{cLotto.Diametro}}</span>
-        <label class="ml-2">DESLEGA:</label> 
-        <span class="ml-2">{{cLotto.DesLega}}</span>
+
+
         <label class="ml-2">DIMENSIONI:</label>
         <span class="ml-2">{{cLotto.Dimensioni}}</span>
-    </div>
-    <div class="d-flex back-odd">
-        <label>DESFORMA:</label>
-        <span class="ml-2">{{cLotto.DesForma}}</span>
-        <label class="ml-2">DESSTATOCICLO:</label>
-        <span class="ml-2">{{cLotto.DesStatoCiclo}}</span>
-        <label class="ml-2">DESSTATOFISICO:</label>
-        <span class="ml-2">{{cLotto.DesStatoFisico}}</span>
-    </div>
+    </div> -->
+
 </div>
 <!-- <button type="button" class="btn btn-primary" (click)="clickMe(5)">Click Me!</button> -->
