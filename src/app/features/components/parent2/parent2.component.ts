@@ -15,7 +15,7 @@ export class Parent2Component implements OnInit {
 
   private lt: string;
   private myLotto: string;
-  private criteriaToGrid: SearchCriteriaRiassegnazioni;
+  criteriaToGrid: SearchCriteriaRiassegnazioni;
 
   constructor(
     private route: ActivatedRoute,

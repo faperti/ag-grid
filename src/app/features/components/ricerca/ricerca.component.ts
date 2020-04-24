@@ -39,7 +39,7 @@ export class Parent1Component implements OnInit {
   private myValue: number;
   private lottoToChild: string;
   private urlString: string;
-  private criteriaToGrid: SearchCriteria;
+  criteriaToGrid: SearchCriteria;
   private updates: number;
   // tslint:disable-next-line:no-any
   private updatesToSend: any[];
@@ -75,8 +75,7 @@ export class Parent1Component implements OnInit {
   }
 
   generateCerts(value: string[]) {
-
     this.router.navigate(['/login']);
-
-}
+  }
+  
 }

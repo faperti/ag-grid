@@ -9,7 +9,8 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [RicercaContainerComponent],
   imports: [
     CommonModule, Parent1Module, SpinnerSharedModule, NgbDatepickerModule
-  ]
+  ],
+  exports: [RicercaContainerComponent]
 })
 export class RicercaContainerModule {
 }

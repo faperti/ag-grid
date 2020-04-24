@@ -24,14 +24,14 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
   private gridApi;
   private gridColumnApi;
 
-  private normativaSelezionata: string;
+  normativaSelezionata: string;
   private currentPrescritta: string;
-  private Prescritte: string[];
+  Prescritte: string[];
   // tslint:disable-next-line:no-any
-  private columnDefs: any[];
-  private defaultColDef;
+  columnDefs: any[];
+  defaultColDef;
   // tslint:disable-next-line:no-any
-  private rowData: any[];
+  rowData: any[];
   // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
   private message = '';
@@ -40,14 +40,14 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
   private prove: string[];
   private proveSelezionate: string[];
   // tslint:disable-next-line:no-any
-  private frameworkComponents: any;
-  private context;
+  frameworkComponents: any;
+  context;
   private elementiCoda: AccodaGenerazioneModel[];
   // tslint:disable-next-line:no-any
   elaboratoFormatter: any;
   private overlayLoadingTemplate: string;
   private overlayNoRowsTemplate: string;
-  private showLoading: boolean;
+  showLoading: boolean;
 
   constructor(http: HttpClient,
               activatedRoute: ActivatedRoute,

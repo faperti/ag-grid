@@ -14,10 +14,10 @@ export class HeaderGridComponent {
   @Output() emitProva = new EventEmitter<string>();
 
   // tslint:disable-next-line:no-any
-  private params: any;
+  params: any;
 
   private valore: AccodaGenerazioneProvaModel;
-  private isChecked: boolean;
+  isChecked: boolean;
   private noSort: string;
 
     agInit(params): void {
@@ -28,7 +28,7 @@ export class HeaderGridComponent {
       // this.onSortChanged();
   }
 
-  public invokeParentMethod() {
+  public invokeParentMethod(value: any) {
     // tslint:disable-next-line:max-line-length
     this.valore = new AccodaGenerazioneProvaModel();
     this.valore.NumeroProva = this.params.numeroProva;

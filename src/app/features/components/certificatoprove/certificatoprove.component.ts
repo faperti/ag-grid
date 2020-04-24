@@ -16,7 +16,7 @@ export class CertificatoProveComponent implements OnInit {
   private myValue: number;
   private lottoToChild: string;
   private urlString: string;
-  private criteriaToGrid: SearchCriteriaCertificatoProve;
+  criteriaToGrid: SearchCriteriaCertificatoProve;
   private updates: number;
   private updatesToSend: AccodaGenerazioneModel[];
 

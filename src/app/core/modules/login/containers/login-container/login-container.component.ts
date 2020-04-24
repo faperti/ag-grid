@@ -17,8 +17,8 @@ export class LoginContainerComponent implements OnInit {
   private authParams: BearerParams;
   private TokenAPI: string;
 
-  private loading: boolean;
-  private errorLoading: string;
+  loading: boolean;
+  errorLoading: string;
 
   // constructor( public ds: DataService, private authService: AuthenticationService, private router: Router, private http: HttpClient ) {
   //   this.accessToken = '';
@@ -44,6 +44,7 @@ export class LoginContainerComponent implements OnInit {
     this.authService.login(username, password)
     .subscribe(
       data => {
+        console.log(data.access_token);
         this.ds.setAccessToken(data.access_token);
 
         // this.ds.setMenu(data.Menu);

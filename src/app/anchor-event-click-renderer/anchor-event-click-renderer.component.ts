@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   template: '<a [routerLink]=""><i (click)="passTheSalt([myParams.data.id_variaz])">{{myParams.data.commessaDa}}</i></a>',
   })
   export class AnchorEventClickRendererComponent implements AgRendererComponent {
+    // tslint:disable-next-line:no-any
     myParams: any;
     urlString: string;
     variazioneResponse: string;
@@ -15,6 +16,7 @@ import { HttpClient } from '@angular/common/http';
 
     }
 
+    // tslint:disable-next-line:no-any
     agInit(params: any): void {
       // console.log(params);
       this.myParams = params;
@@ -23,11 +25,13 @@ import { HttpClient } from '@angular/common/http';
       // console.log(this.myParams.idRiassegnazione);
     }
 
+    // tslint:disable-next-line:no-any
     refresh(params: any): boolean {
       return false;
     }
 
-    passTheSalt(idVariazione: number) {
+    // tslint:disable-next-line:no-any
+    passTheSalt(idVariazione: any) {
       // tslint:disable-next-line:max-line-length
       this.urlString = 'http://localhost:4518/api/RiAssegnazioniSMEA?idVar=' + idVariazione;
       alert(this.urlString);

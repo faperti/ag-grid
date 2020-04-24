@@ -19,11 +19,11 @@ export class GridRiassegnazioniComponent implements OnInit, OnChanges {
   private gridApi;
   private gridColumnApi;
 
-  private columnDefs;
-  private defaultColDef;
-  private rowData: any;
+  columnDefs;
+  defaultColDef;
+  rowData: any;
   private rowDataLoaded: any;
-  private message = '';
+  message = '';
   private urlString = '';
   private lottiToGenerate: string[];
 

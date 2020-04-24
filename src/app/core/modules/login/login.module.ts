@@ -14,6 +14,7 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule, LoginRoutingModule, FormsModule, SpinnerSharedModule, NgbDatepickerModule
   ],
+  exports: [ LoginContainerComponent ],
   providers: [ AuthenticationService ]
 })
 export class LoginModule { }

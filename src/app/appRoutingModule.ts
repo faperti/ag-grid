@@ -7,7 +7,7 @@ import { QualitaModule } from './core/modules/qualita/qualita.module';
 import { QualitaContainerComponent } from './core/modules/qualita/components/qualita-container/qualita-container.component';
 
 import { RicercaContainerComponent } from './features/containers/ricerca-container/ricerca-container.component';
-import { LottoModule } from './features/modules/lotto/lotto.module';
+// import { LottoModule } from './features/modules/lotto/lotto.module';
 import { LottoComponent } from './features/modules/lotto/lotto/lotto.component';
 import { RiassegnazioniContainerComponent } from './features/containers/riassegnazioni-container/riassegnazioni-container.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -15,19 +15,21 @@ import { AuthGuard } from './auth/auth.guard';
 import { ImportaRiassegnazioniContainerComponent } from './features/containers/importa-riassegnazioni-container/importa-riassegnazioni-container.component';
 // tslint:disable-next-line:max-line-length
 import { CertificatoProveContainerComponent } from './features/containers/certificato-prove-container/certificato-prove-container.component';
-import { AttachmentComponent } from './shared/components/attachment/attachment.component';
-
+import { LoginContainerComponent } from './core/modules/login/containers/login-container/login-container.component';
+// AOT - JIT
+// npm -i light-server -g --save
+// light-server -s dist/my-app-aggrid -p 4201
 const appRoutes: Routes = [
-  { path: 'login', loadChildren: () => LoginModule },
+  { path: 'login', component: LoginContainerComponent },
   { path: 'qualita', component: QualitaContainerComponent, canActivate: [AuthGuard],
   children: [
     { path: 'parent1', component: RicercaContainerComponent, canActivate: [AuthGuard] } ,
-    { path: 'parent1/:id', component: AttachmentComponent },
     { path: 'parent2', component: RiassegnazioniContainerComponent, canActivate: [AuthGuard] },
     { path: 'parent3', component: ImportaRiassegnazioniContainerComponent, canActivate: [AuthGuard] },
     { path: 'certificatoprove', component: CertificatoProveContainerComponent },
     // { path: 'lotto', component: LottoComponent},
-    { path: 'lotto', loadChildren: () => LottoModule }
+    // { path: 'lotto', loadChildren: './features/modules/lotto/lotto.module#LottoModule' },
+    { path: 'lotto', loadChildren: () => import('./features/modules/lotto/lotto.module').then(m => m.LottoModule) }
   ] },
 
   { path: '',   redirectTo: '/login', pathMatch: 'full' },

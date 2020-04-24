@@ -41,32 +41,4 @@ export class DataService {
     return this.accessToken;
   }
 
-
-  // setKeyValue(value: string) {
-  //   this.key.next(this.currentLogin + ' ' + value);
-  //   this.currentLogin = value;
-  //   console.log('CURRENT LOGIN ' + this.currentLogin);
-  // }
-
-  // getKeyValue(): Observable<string> {
-  //   return this.Key;
-  // }
-
-  // setMenu(value: Menu[]) {
-  //   this.VociMenu = JSON.parse(value.toString());
-  //   // alert('SET MENU : ' + this.VociMenu.length);
-  //   // console.log('VOCI MENU : ' + this.VociMenu);
-
-  //   this.menu.next(value);
-  // }
-
-  // clearMenu() {
-  //   this.VociMenu = null;
-  //   this.menu.next(null);
-  // }
-
-  // getMenuValue(): Observable<Menu[]> {
-  //   return this.Menu;
-  // }
-
   }

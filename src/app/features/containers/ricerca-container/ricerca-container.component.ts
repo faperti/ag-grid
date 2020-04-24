@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SearchCriteria } from 'src/app/model/searchCriteria';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/shared/services/data.service';
+import { RicercaContainerDataService } from './services/ricerca-container-data.service';
 
 @Component({
   selector: 'app-ricerca-container',
@@ -13,22 +14,29 @@ export class RicercaContainerComponent implements OnInit {
   // @Input() inpCriteria: SearchCriteria;
 
   urlString = '';
+  // tslint:disable-next-line:no-any
   rowDataLoaded: any;
+  // tslint:disable-next-line:no-any
   myRowData: any;
   inpCriteria: SearchCriteria;
   loading: boolean;
   emptyData: boolean;
+// tslint:disable-next-line:no-any
+  statoData: any;
+  // tslint:disable-next-line:no-any
+  formeData: any;
+  // tslint:disable-next-line:no-any
+  legheData: any;
+  // tslint:disable-next-line:no-any
+  presseData: any;
+  // tslint:disable-next-line:no-any
+  statiCicloData: any;
+  // tslint:disable-next-line:no-any
+  statiFisiciData: any;
+  showGrid: boolean;
+  uploadCounter = 0;
 
-  private statoData: any;
-  private formeData: any;
-  private legheData: any;
-  private presseData: any;
-  private statiCicloData: any;
-  private statiFisiciData: any;
-  private showGrid: boolean;
-  private uploadCounter = 0;
-
-  constructor(private http: HttpClient, private ds: DataService) {
+  constructor(private http: HttpClient, private ds: DataService, private rs: RicercaContainerDataService) {
     this.urlString = '';
   }
 
@@ -47,7 +55,7 @@ export class RicercaContainerComponent implements OnInit {
   }
 
   noLoading() {
-    console.log('NO LOADING');
+    // console.log('NO LOADING');
 
     this.loading = false;
   }
@@ -58,28 +66,28 @@ export class RicercaContainerComponent implements OnInit {
 
     this.inpCriteria = value;
 
-    // tslint:disable-next-line:max-line-length
-    this.urlString = 'http://localhost:4518/api/CicliLanciati?lotto=' + this.inpCriteria.Lotto;
-    this.urlString = this.urlString + '&data_da=' + this.inpCriteria.DataStart;
-    this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
-    this.urlString = this.urlString + '&tipo_data=' + this.inpCriteria.TipoData;
-    this.urlString = this.urlString + '&id_lega=' + this.inpCriteria.IdLega;
-    this.urlString = this.urlString + '&id_forma=' + this.inpCriteria.IdForma;
-    this.urlString = this.urlString + '&id_statociclo=' + this.inpCriteria.IdStatoCiclo;
-    this.urlString = this.urlString + '&id_statofisico=' + this.inpCriteria.IdStatoFisico;
-    this.urlString = this.urlString + '&id_cliente=' + this.inpCriteria.IdCliente;
-    this.urlString = this.urlString + '&pressa=' + this.inpCriteria.Pressa;
-    this.urlString = this.urlString + '&bLottiAperti=' + this.inpCriteria.LottiAperti;
-    this.urlString = this.urlString + '&bLottiChiusi=' + this.inpCriteria.LottiChiusi;
-    this.urlString = this.urlString + '&bRicercaCommessa=' + this.inpCriteria.Commessa;
-    this.urlString = this.urlString + '&bRicercaMatricola=' + this.inpCriteria.Matricola;
-    this.urlString = this.urlString + '&dimensione=' + this.inpCriteria.Dimensione;
-    this.urlString = this.urlString + '&colata=' + this.inpCriteria.Colata;
+    // // tslint:disable-next-line:max-line-length
+    // this.urlString = 'http://localhost:4518/api/CicliLanciati?lotto=' + this.inpCriteria.Lotto;
+    // this.urlString = this.urlString + '&data_da=' + this.inpCriteria.DataStart;
+    // this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
+    // this.urlString = this.urlString + '&tipo_data=' + this.inpCriteria.TipoData;
+    // this.urlString = this.urlString + '&id_lega=' + this.inpCriteria.IdLega;
+    // this.urlString = this.urlString + '&id_forma=' + this.inpCriteria.IdForma;
+    // this.urlString = this.urlString + '&id_statociclo=' + this.inpCriteria.IdStatoCiclo;
+    // this.urlString = this.urlString + '&id_statofisico=' + this.inpCriteria.IdStatoFisico;
+    // this.urlString = this.urlString + '&id_cliente=' + this.inpCriteria.IdCliente;
+    // this.urlString = this.urlString + '&pressa=' + this.inpCriteria.Pressa;
+    // this.urlString = this.urlString + '&bLottiAperti=' + this.inpCriteria.LottiAperti;
+    // this.urlString = this.urlString + '&bLottiChiusi=' + this.inpCriteria.LottiChiusi;
+    // this.urlString = this.urlString + '&bRicercaCommessa=' + this.inpCriteria.Commessa;
+    // this.urlString = this.urlString + '&bRicercaMatricola=' + this.inpCriteria.Matricola;
+    // this.urlString = this.urlString + '&dimensione=' + this.inpCriteria.Dimensione;
+    // this.urlString = this.urlString + '&colata=' + this.inpCriteria.Colata;
 
     // console.log(this.urlString);
     this.showGrid = true;
 
-    this.http.get(this.urlString)
+    this.rs.GetRicerca(this.inpCriteria)
                 .subscribe(data => {
                   // console.log(data);
                   this.loading = false;
@@ -98,20 +106,18 @@ export class RicercaContainerComponent implements OnInit {
   }
 
   updateStatiFisici() {
-    this.http
-    .get('http://localhost:4518/api/StatoFisico')
+    this.rs.GetStatiFisici()
       .subscribe(data => {
         this.statiFisiciData = data;
         // this.currentStatoFisico = data[0];
         this.uploadCounter++;
         this.checkLoading(this.uploadCounter);
       });
-    console.log('CURRENT STATO FISICO : ');
+    // console.log('CURRENT STATO FISICO : ');
   }
 
   updateStatiCiclo() {
-    this.http
-    .get('http://localhost:4518/api/StatoCiclo')
+    this.rs.GetStatiCiclo()
       .subscribe(data => {
         this.statiCicloData = data;
         // this.currentStatoCiclo = data[0];
@@ -121,22 +127,20 @@ export class RicercaContainerComponent implements OnInit {
   }
 
   updatePresse() {
-    this.http
-    .get('http://localhost:4518/api/Presse')
-  .subscribe(data => {
-  this.presseData = data;
-  this.uploadCounter++;
-  this.checkLoading(this.uploadCounter);
+    this.rs.GetPresse()
+    .subscribe(data => {
+    this.presseData = data;
+    this.uploadCounter++;
+    this.checkLoading(this.uploadCounter);
   });
   }
 
   updateLeghe() {
-    this.http
-    .get('http://localhost:4518/api/Leghe')
-  .subscribe(data => {
-  this.legheData = data;
-  this.uploadCounter++;
-  this.checkLoading(this.uploadCounter);
+    this.rs.GetLeghe()
+    .subscribe(data => {
+    this.legheData = data;
+    this.uploadCounter++;
+    this.checkLoading(this.uploadCounter);
   });
   }
 
@@ -147,9 +151,8 @@ export class RicercaContainerComponent implements OnInit {
   }
 
   updateForme() {
-    this.http
-    .get('http://localhost:4518/api/Forme')
-  .subscribe(data => {
+    this.rs.GetForme()
+    .subscribe(data => {
     this.formeData = data;
     this.uploadCounter++;
     this.checkLoading(this.uploadCounter);

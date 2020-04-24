@@ -3,15 +3,20 @@ import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BearerParams } from 'src/app/model/BearerParams';
 import { NavbarModel } from 'src/app/model/navbar/NavbarModel';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 
 @Injectable()
 export class AuthenticationService {
 
-  private TokenAPI = 'http://localhost:4518/token';
-  private GetMenuAPI = 'http://localhost:4518/api/menu';
+  // private TokenAPI = 'http://localhost:4518/token';
+  // private GetMenuAPI = 'http://localhost:4518/api/menu';
 
-  constructor( private http: HttpClient ) { }
+  private GetMenuAPI = this.commonService.baseUrl + '/menu';
+  private TokenAPI = this.commonService.baseUrlToken;
+
+
+  constructor( private http: HttpClient, private commonService: CommonService ) { }
 
   login(userName: string, password: string): Observable<BearerParams> {
     const headersForTokenAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });

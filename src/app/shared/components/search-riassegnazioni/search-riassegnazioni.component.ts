@@ -26,7 +26,7 @@ export class SearchRiassegnazioniComponent implements OnInit {
     day: this.test1.getUTCDate()
   };
 
-  private searchCriteriaForm = new FormGroup({
+  searchCriteriaForm = new FormGroup({
     searchCommessa: new FormControl(''),
     searchElaborato: new FormControl(false),
     dp1: new FormControl( this.ngb ),

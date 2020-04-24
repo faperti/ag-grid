@@ -11,8 +11,8 @@ export class ImportaRiassegnazioniContainerComponent implements OnInit {
 
   private urlString = '';
   private rowDataLoaded: any;
-  private rowData: any[];
-  private emptyData: boolean;
+  rowData: any[];
+  emptyData: boolean;
 
   constructor( private http: HttpClient ) {
     this.emptyData = true;

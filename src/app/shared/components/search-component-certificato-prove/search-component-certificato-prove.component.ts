@@ -17,9 +17,9 @@ export class SearchCertificatoProveComponent implements OnInit, OnChanges {
   @Output() clickSearch = new EventEmitter<SearchCriteriaCertificatoProve>();
 
   private currentForma: any;
-  private currentCommessa: any;
-  private currentLotto: any;
-  private lotti: any;
+  currentCommessa: any;
+  currentLotto: any;
+  lotti: any;
   private currentLottiAperti: boolean;
   private currentLottiChiusi: boolean;
 

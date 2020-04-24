@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from 'src/app/shared/services/data.service';
-import { AuthenticationService } from 'src/app/core/modules/login/services/authentication/authentication.service';
 import { AccodaGenerazioneModel } from 'src/app/renderers/model/accoda-generazione-model';
 import { GenerateCertsResult } from 'src/app/model/GenerateCertsResult';
+import { SearchCriteria } from 'src/app/model/searchCriteria';
 
 @Injectable()
-export class LottoDataService {
+export class RicercaContainerDataService {
 
   private baseUrlString = 'http://certificatiwebapi.eural.com/api/';
 
@@ -15,12 +15,67 @@ export class LottoDataService {
   }
 
   // tslint:disable-next-line:no-any
-  GetClienti(lotto: string): any {
-    // tslint:disable-next-line:max-line-length
-    const urlString = this.baseUrlString + 'CicliLanciatiClienti?lotto=' + lotto;
+  GetRicerca(inpCriteria: SearchCriteria): any {
 
+        // tslint:disable-next-line:max-line-length
+        let urlString = this.baseUrlString + '/CicliLanciati?lotto=' + inpCriteria.Lotto;
+        urlString = urlString + '&data_da=' + inpCriteria.DataStart;
+        urlString = urlString + '&data_a=' + inpCriteria.DataEnd;
+        urlString = urlString + '&tipo_data=' + inpCriteria.TipoData;
+        urlString = urlString + '&id_lega=' + inpCriteria.IdLega;
+        urlString = urlString + '&id_forma=' + inpCriteria.IdForma;
+        urlString = urlString + '&id_statociclo=' + inpCriteria.IdStatoCiclo;
+        urlString = urlString + '&id_statofisico=' + inpCriteria.IdStatoFisico;
+        urlString = urlString + '&id_cliente=' + inpCriteria.IdCliente;
+        urlString = urlString + '&pressa=' + inpCriteria.Pressa;
+        urlString = urlString + '&bLottiAperti=' + inpCriteria.LottiAperti;
+        urlString = urlString + '&bLottiChiusi=' + inpCriteria.LottiChiusi;
+        urlString = urlString + '&bRicercaCommessa=' + inpCriteria.Commessa;
+        urlString = urlString + '&bRicercaMatricola=' + inpCriteria.Matricola;
+        urlString = urlString + '&dimensione=' + inpCriteria.Dimensione;
+        urlString = urlString + '&colata=' + inpCriteria.Colata;
+
+        return this.http.get(urlString);
+
+  }
+
+
+  // tslint:disable-next-line:no-any
+  GetLeghe(): any {
+    // tslint:disable-next-line:max-line-length
+    const urlString = this.baseUrlString + 'Leghe';
     return this.http.get(urlString);
   }
+
+  // tslint:disable-next-line:no-any
+  GetForme(): any {
+    // tslint:disable-next-line:max-line-length
+    const urlString = this.baseUrlString + 'Forme';
+    return this.http.get(urlString);
+  }
+
+  // tslint:disable-next-line:no-any
+  GetPresse(): any {
+    // tslint:disable-next-line:max-line-length
+    const urlString = this.baseUrlString + 'Presse';
+    return this.http.get(urlString);
+  }
+
+  // tslint:disable-next-line:no-any
+  GetStatiCiclo(): any {
+    // tslint:disable-next-line:max-line-length
+    const urlString = this.baseUrlString + 'StatoCiclo';
+    return this.http.get(urlString);
+  }
+
+  // tslint:disable-next-line:no-any
+  GetStatiFisici(): any {
+    // tslint:disable-next-line:max-line-length
+    const urlString = this.baseUrlString + 'StatoFisico';
+    return this.http.get(urlString);
+  }
+
+
 
   // tslint:disable-next-line:no-any
   GetLottoDetail(lotto: string): any {
@@ -61,12 +116,11 @@ export class LottoDataService {
     getCollaudoWithToken(lotto: string, normativa: string): any {
 
       console.log('getCollaudoWithToken');
-      // console.log(this.DS.getAccessToken());
+      console.log(this.DS.getAccessToken());
 
       // tslint:disable-next-line:object-literal-shorthand
       const body = { lotto: lotto, normativa: normativa };
       console.log(body);
-      console.log(this.DS.getAccessToken());
 
       // const urlString = this.baseUrlString +  'ProveCollaudoReport?lotto=' + lotto + '&normativa=' + normativa;
       const urlString = this.baseUrlString +  'ProveCollaudoReport';
@@ -93,7 +147,6 @@ export class LottoDataService {
                    };
 
       console.log(body);
-
       this.http.post<GenerateCertsResult>('http://localhost:4518/api/Stampe', updatesToSend, {headers} )
         .subscribe(res => {
           alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);

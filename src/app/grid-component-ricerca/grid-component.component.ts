@@ -22,14 +22,14 @@ export class GridComponentComponent implements OnInit, OnChanges {
   private gridApi;
   private gridColumnApi;
 
-  private gridPageSize = 10;
-  private columnDefs;
-  private defaultColDef;
+  gridPageSize = 10;
+  columnDefs;
+  defaultColDef;
   // tslint:disable-next-line:no-any
-  private rowData: any;
+  rowData: any;
   // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
-  private message = '';
+  message = '';
   private urlString = '';
   private lottiToGenerate: string[];
 
@@ -143,15 +143,6 @@ export class GridComponentComponent implements OnInit, OnChanges {
 
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnChanges(changes: SimpleChanges) {
-      // changes.prop contains the old and the new value...
-
-      // alert('Grid Changes');
-
-      // console.log(' VALORE CORRENTE : ' + changes.inpCriteria.currentValue);
-      // console.log(' VALORE PRECEDENTE : ' + changes.inpCriteria.previousValue);
-
-      // this.showCriteria();
-
       this.updateGrid();
     }
 

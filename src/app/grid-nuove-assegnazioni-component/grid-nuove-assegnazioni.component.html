@@ -1,13 +1,13 @@
 <div class="test-header">
     Page Size:
-    <select (change)="onPageSizeChanged()" id="page-size">
+    <select (change)="onPageSizeChanged(30)" id="page-size">
       <option value="2" selected="">2</option>
       <option value="4">4</option>
       <option value="6">6</option>
       <option value="10" selected>10</option>
     </select>
 
-    <label>{{message}}</label>
+    <label>message</label>
     <button *ngIf="rowData" class="btn btn-primary" (click)="impAssegnazioni()">Importa assegnazioni</button>  
     <button *ngIf="variazioniReady" (click)="showVariazioniValues()">Mostra variazioni</button>   
 </div>

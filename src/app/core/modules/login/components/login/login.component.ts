@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
   @Input() isLoading: boolean;
   @Output() login = new EventEmitter<LoginData>();
 
-  private username: string;
-  private password: string;
+  public username: string;
+  public password: string;
   private accessToken: string;
 
   constructor(  ) {

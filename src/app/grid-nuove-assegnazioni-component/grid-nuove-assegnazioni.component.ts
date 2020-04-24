@@ -21,16 +21,16 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
   private gridApi;
   private gridColumnApi;
 
-  private columnDefs;
-  private defaultColDef;
-  private rowData: any;
+  columnDefs;
+  defaultColDef;
+  rowData: any;
   private rowDataLoaded: any;
-  private norecordfound = 'No record found';
+  norecordfound = 'No record found';
   private urlString = '';
   private variazioniToGenerate: any[];
-  private variazioniResults: string[];
-  private variazioniReady: boolean;
-  private showVariazioni: boolean;
+  variazioniResults: string[];
+  variazioniReady: boolean;
+  showVariazioni: boolean;
 
 
     constructor(private http: HttpClient) {

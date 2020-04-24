@@ -2,9 +2,11 @@
 <app-grid-nuove-assegnazioni-component *ngIf="gridData || emptyData; else loadingtemplate" 
 [gridData]="gridData" 
 [emptyData]="emptyData"
-[inpCriteria]="criteriaToGrid" (generateCerts)="generateCerts($event)"></app-grid-nuove-assegnazioni-component>
+[inpCriteria]="criteriaToGrid"></app-grid-nuove-assegnazioni-component>
 <ng-template #loadingtemplate>
     <div class="d-flex w-100 h-100 justify-content-center align-items-center">
     <app-spinner></app-spinner>
     </div>
 </ng-template>
+
+<!-- [inpCriteria]="criteriaToGrid" (generateCerts)="generateCerts($event)"></app-grid-nuove-assegnazioni-component> -->

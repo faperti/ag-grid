@@ -31,17 +31,17 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
   rowStyle = {
     // 'font-size': '14px'
   };
-  private defaultColDef;
+  defaultColDef;
   // tslint:disable-next-line:no-any
-  private rowData: any;
+  rowData: any;
   // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
   private message = '';
   private urlString = '';
   private lottiToGenerate: string[];
   // tslint:disable-next-line:no-any
-  private frameworkComponents: any;
-  private context;
+  frameworkComponents: any;
+  context;
   private elementiCoda: AccodaGenerazioneModel[];
 
     constructor(http: HttpClient,
@@ -166,6 +166,7 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
 
 
     ngOnInit() {
+      console.log('LOTTO CLIENTI INIT');
       super.ngOnInit();
       this.updateGrid();
     }
@@ -202,6 +203,7 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
     }
 
     onGridReady(params) {
+      console.log('LOTTO CLIENTI GRID READY');
       this.gridApi = params.api;
       this.gridColumnApi = params.columnApi;
 

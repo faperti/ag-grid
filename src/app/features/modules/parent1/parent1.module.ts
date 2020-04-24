@@ -9,6 +9,7 @@ import 'ag-grid-enterprise';
 import { GridComponentComponent } from 'src/app/grid-component-ricerca/grid-component.component';
 import { SpinnerSharedModule } from 'src/app/shared/modules/spinner/spinner-shared.module';
 import { DatePickerModule } from 'src/app/shared/modules/datepicker/datepicker.module';
+import { RicercaContainerDataService } from '../../containers/ricerca-container/services/ricerca-container-data.service';
 
 @NgModule({
   declarations: [ Parent1Component, GridComponentComponent, SearchComponentComponent ],
@@ -17,7 +18,7 @@ import { DatePickerModule } from 'src/app/shared/modules/datepicker/datepicker.m
   ],
   exports: [ Parent1Component ],
   providers: [
-    DatePipe
+    DatePipe, RicercaContainerDataService
   ]
 })
 export class Parent1Module { }

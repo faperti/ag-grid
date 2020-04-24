@@ -16,7 +16,7 @@ export class ImportaRiassegnazioniComponent implements OnInit {
 
   private lt: string;
   private myLotto: string;
-  private criteriaToGrid: SearchCriteriaRiassegnazioni;
+  criteriaToGrid: SearchCriteriaRiassegnazioni;
   private searchCriteriaForma: FormGroup;
 
   constructor( ) {

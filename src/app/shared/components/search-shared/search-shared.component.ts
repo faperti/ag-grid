@@ -25,16 +25,14 @@ export class SearchComponentComponent implements OnInit, OnChanges {
   @Output() clickSearch = new EventEmitter<any>();
   @Output() stopLoading = new EventEmitter<any>();
 
-  private clientiData: any;
+  clientiData: any;
   private clientiDataLoaded: Cliente[];
 
-  // private Data1: any;
-  // private Data2: any;
   private currentItem: any;
   private currentLotto = '';
-  private currentDataDa: any;
-  private currentDataA: any;
-  private currentTipoData = 'ESTRUSIONE';
+  currentDataDa: any;
+  currentDataA: any;
+  currentTipoData = 'ESTRUSIONE';
   private currentColata = '';
   private currentDimensione = '';
 
@@ -42,7 +40,7 @@ export class SearchComponentComponent implements OnInit, OnChanges {
   private currentLottiAperti: boolean;
   private currentLottiChiusi: boolean;
 
-  private errorMessage: string;
+  errorMessage: string;
   private ricercaMatricola: boolean;
   private ricercaCommessa: boolean;
   private uploadCounter = 0;
@@ -64,14 +62,7 @@ export class SearchComponentComponent implements OnInit, OnChanges {
     day: this.test1.getUTCDate()
   };
 
-  // private searchCriteriaForm = new FormGroup({
-  //   dp1: new FormControl( this.ngb ),
-  //   dp2: new FormControl( this.ngb )
-  // });
-
-
-
- private searchCriteriaForm = new FormGroup({
+ searchCriteriaForm = new FormGroup({
     statoData: new FormControl( this.currentTipoData ),
     formeData: new FormControl(''),
     legheData: new FormControl(''),

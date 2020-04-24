@@ -16,7 +16,7 @@ export class LottoDetailComponent implements OnInit {
   @Output() clickSearch = new EventEmitter<number>();
 
   private urlString: string;
-  private cLotto: Lotto;
+  cLotto: Lotto;
 
   constructor(private http: HttpClient, private dataservice: LottoDataService) { }
 
@@ -28,17 +28,6 @@ export class LottoDetailComponent implements OnInit {
         this.cLotto = data as Lotto;
     });
 
-      // tslint:disable-next-line:max-line-length
-      // this.urlString = 'http://localhost:4518/api/Lotto?lotto=' + this.lotto;
-
-      // alert(this.urlString);
-
-    //   this.http
-    //   .get(this.urlString)
-    //   .subscribe(data => {
-    //     console.log(data);
-    //     this.cLotto = data as Lotto;
-    // });
   }
 
   clickMe(value: number) {

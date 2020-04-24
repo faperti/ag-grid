@@ -23,36 +23,36 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
   private gridApi;
   private gridColumnApi;
 
-  private normativaSelezionata: string;
-  private commessaSelezionata: string;
+  normativaSelezionata: string;
+  commessaSelezionata: string;
   private currentPrescritta: string;
-  private elencoCommesse: string[];
-  private Prescritte: string[];
+  elencoCommesse: string[];
+  Prescritte: string[];
   // tslint:disable-next-line:no-any
-  private columnDefs: any[];
+  columnDefs: any[];
   // tslint:disable-next-line:no-any
   elaboratoFormatter: any;
   // tslint:disable-next-line:no-any
-  private rowData: any[];
+  rowData: any[];
   // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
   // tslint:disable-next-line:no-any
-  private frameworkComponents: any;
+  frameworkComponents: any;
 
-  private defaultColDef;
+  defaultColDef;
   private message = '';
   private urlString = '';
   private lottiToGenerate: string[];
   private prove: string[];
   private proveSelezionate: string[];
 
-  private context;
+  context;
   // private elementiCoda: AccodaGenerazioneModel[];
 
-  private overlayLoadingTemplate: string;
-  private overlayNoRowsTemplate: string;
-  private isLoading: boolean;
-  private gcc: boolean;
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  isLoading: boolean;
+  gcc: boolean;
 
 
   constructor(http: HttpClient,

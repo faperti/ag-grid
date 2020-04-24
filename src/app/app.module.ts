@@ -29,7 +29,6 @@ import { LottoModule } from './features/modules/lotto/lotto.module';
 import { SpinnerSharedModule } from './shared/modules/spinner/spinner-shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonService } from './shared/services/common.service';
-import { AttachmentComponent } from './shared/components/attachment/attachment.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
@@ -56,8 +55,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
      // SearchRiassegnazioniComponent,
      ElaboratoAssegnazioneRendererComponent,
      AccodaGenerazioneCertificatoRendererComponent,
-     HeaderGridComponent,
-     AttachmentComponent
+     HeaderGridComponent
       ],
   bootstrap: [AppComponent],
   providers: [AuthDataService, DataService, CommonService]

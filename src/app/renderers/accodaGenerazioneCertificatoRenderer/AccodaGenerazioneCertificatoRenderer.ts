@@ -56,12 +56,12 @@ import { TitleCasePipe } from '@angular/common';
       this.myParams.context.componentParent.methodFromParent(this.acm);
   }
 
-    accodaGenerazioneStandard($event) {
+    accodaGenerazioneStandard() {
       console.log(this.myParams);
       // this.invokeParentMethod(GenerazioneCertificatoCliente.GenerazioneStandard);
     }
 
-    accodaCertificato($event) {
+    accodaCertificato() {
       console.log(this.myParams);
       // this.invokeParentMethod(GenerazioneCertificatoCliente.AccodaCertificato);
     }
