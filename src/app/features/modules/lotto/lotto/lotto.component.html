@@ -1,4 +1,8 @@
-<app-lotto-detail [lotto]="myLotto"></app-lotto-detail>
-<app-lottonumerositaprove [lotto]="myLotto"></app-lottonumerositaprove>
-<app-lottonavbar [lotto]="myLotto"></app-lottonavbar>
-<router-outlet></router-outlet>
+<div class="d-flex flex-column w-100 h-100">
+    <app-lotto-detail [lotto]="myLotto"></app-lotto-detail>
+    <app-lottonumerositaprove [lotto]="myLotto"></app-lottonumerositaprove>
+    <app-lottonavbar [lotto]="myLotto"></app-lottonavbar>
+    <div class="flex-fill overflow-auto">
+        <router-outlet></router-outlet>
+    </div>
+</div>

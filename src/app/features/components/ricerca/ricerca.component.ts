@@ -52,19 +52,20 @@ export class Parent1Component implements OnInit {
   }
 
   ngOnInit() {
+    console.log('RICERCA COMPONENT' + this.rowData);
     this.myValue = 0;
     this.lottoToChild = '';
-    this.showGrid = false;
+    // this.showGrid = false;
   }
 
   updateMyGrid(value: SearchCriteria) {
 
     this.criteriaToGrid = value;
-    this.showGrid = true;
+    // this.showGrid = true;
     this.rowData = null;
 
     this.search.emit(this.criteriaToGrid);
-    console.log(' post EMIT PARENT1 ');
+    console.log(' post EMIT PARENT1 RICERCA COMPONENT ');
   }
 
   stopLoading() {
@@ -77,5 +78,5 @@ export class Parent1Component implements OnInit {
   generateCerts(value: string[]) {
     this.router.navigate(['/login']);
   }
-  
+
 }

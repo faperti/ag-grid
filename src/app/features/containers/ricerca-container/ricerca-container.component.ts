@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { SearchCriteria } from 'src/app/model/searchCriteria';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/shared/services/data.service';
@@ -9,7 +9,7 @@ import { RicercaContainerDataService } from './services/ricerca-container-data.s
   templateUrl: './ricerca-container.component.html',
   styleUrls: ['./ricerca-container.component.scss']
 })
-export class RicercaContainerComponent implements OnInit {
+export class RicercaContainerComponent implements OnInit, AfterViewInit {
 
   // @Input() inpCriteria: SearchCriteria;
 
@@ -36,11 +36,12 @@ export class RicercaContainerComponent implements OnInit {
   showGrid: boolean;
   uploadCounter = 0;
 
-  constructor(private http: HttpClient, private ds: DataService, private rs: RicercaContainerDataService) {
+  constructor(private http: HttpClient, private ds: DataService, public rs: RicercaContainerDataService) {
     this.urlString = '';
   }
 
   ngOnInit() {
+    console.log('NG INIT');
     this.loading = true;
     this.showGrid = false;
     this.emptyData = false;
@@ -51,8 +52,17 @@ export class RicercaContainerComponent implements OnInit {
     this.updatePresse();
     this.updateStatiCiclo();
     this.updateStatiFisici();
-
   }
+
+  ngAfterViewInit() {
+
+    if ( this.rs.lastSearchCriteria !== null &&
+      this.rs.lastSearchCriteria !== undefined ) {
+        this.inpCriteria = this.rs.lastSearchCriteria;
+        this.searchGrid(this.inpCriteria);
+      }
+  }
+
 
   noLoading() {
     // console.log('NO LOADING');
@@ -64,25 +74,8 @@ export class RicercaContainerComponent implements OnInit {
     console.log('RICERCA CONTAINER SEARCH GRID');
     this.showGrid = true;
 
+    this.rs.lastSearchCriteria = value;
     this.inpCriteria = value;
-
-    // // tslint:disable-next-line:max-line-length
-    // this.urlString = 'http://localhost:4518/api/CicliLanciati?lotto=' + this.inpCriteria.Lotto;
-    // this.urlString = this.urlString + '&data_da=' + this.inpCriteria.DataStart;
-    // this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
-    // this.urlString = this.urlString + '&tipo_data=' + this.inpCriteria.TipoData;
-    // this.urlString = this.urlString + '&id_lega=' + this.inpCriteria.IdLega;
-    // this.urlString = this.urlString + '&id_forma=' + this.inpCriteria.IdForma;
-    // this.urlString = this.urlString + '&id_statociclo=' + this.inpCriteria.IdStatoCiclo;
-    // this.urlString = this.urlString + '&id_statofisico=' + this.inpCriteria.IdStatoFisico;
-    // this.urlString = this.urlString + '&id_cliente=' + this.inpCriteria.IdCliente;
-    // this.urlString = this.urlString + '&pressa=' + this.inpCriteria.Pressa;
-    // this.urlString = this.urlString + '&bLottiAperti=' + this.inpCriteria.LottiAperti;
-    // this.urlString = this.urlString + '&bLottiChiusi=' + this.inpCriteria.LottiChiusi;
-    // this.urlString = this.urlString + '&bRicercaCommessa=' + this.inpCriteria.Commessa;
-    // this.urlString = this.urlString + '&bRicercaMatricola=' + this.inpCriteria.Matricola;
-    // this.urlString = this.urlString + '&dimensione=' + this.inpCriteria.Dimensione;
-    // this.urlString = this.urlString + '&colata=' + this.inpCriteria.Colata;
 
     // console.log(this.urlString);
     this.showGrid = true;
@@ -94,8 +87,10 @@ export class RicercaContainerComponent implements OnInit {
                   this.rowDataLoaded = data;
                   if ( this.rowDataLoaded.length > 0 ) {
                       this.myRowData = this.rowDataLoaded;
+                      this.showGrid = true;
                       this.emptyData = false;
                     } else {
+                      this.showGrid = true;
                       this.emptyData = true;
                     }
                 }, error => {
@@ -145,7 +140,7 @@ export class RicercaContainerComponent implements OnInit {
   }
 
   updateStatoData() {
-    this.statoData = ['TRAZIONE', 'ANALISI', 'ESTRUSIONE', 'LANCIO'];
+    this.statoData = this.rs.GetTipoData();
     this.uploadCounter++;
     this.checkLoading(this.uploadCounter);
   }

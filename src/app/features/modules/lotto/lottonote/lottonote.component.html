@@ -1,0 +1,11 @@
+<div class="d-flex flex-column w-100 h-100">
+  <div class="d-flex flex-row-reverse" >
+    <!-- <a (click)="ShowNote('GENERALI')">GENERALI</a>&nbsp;
+    <a (click)="ShowNote('PROCESSO')">PROCESSO</a>&nbsp;
+    <a (click)="ShowNote('COLLAUDO')">COLLAUDO</a>&nbsp; -->
+    <i class="fa fa-tags fa-1x" (click)="ShowNote('PROCESSO')"></i>&nbsp;
+    <i class="fa fa-tasks fa-1x" (click)="ShowNote('COLLAUDO')"></i>&nbsp;
+    <i class="fa fa-tag fa-1x" (click)="ShowNote('GENERALI')"></i>&nbsp;
+  </div>
+  <textarea class="flex-fill rounded" disabled style="resize: none">{{note}}</textarea>
+</div>

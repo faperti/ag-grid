@@ -144,7 +144,6 @@ initializeColumnsDefs() {
       this.initializeColumnsDefs();
 
       this.frameworkComponents = {
-        // accodaRenderer: AccodaGenerazioneCertificatoRendererComponent,
         agColumnHeader: HeaderGridComponent
       };
 

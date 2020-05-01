@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { AccodaGenerazioneModel } from '../model/accoda-generazione-model';
 import { GenerazioneCertificatoCliente } from '../../model/enums/GenerazioneCertificatoCliente';
-import { TitleCasePipe } from '@angular/common';
 
 @Component({
   template: '<div>' +
@@ -32,8 +31,6 @@ import { TitleCasePipe } from '@angular/common';
     // tslint:disable-next-line:no-any
     agInit(params: any): void {
       this.myParams = params;
-      // console.log('AGINIT AccodaGenerazioneCertificatoRendererComponent');
-      // console.log(params);
     }
 
     // tslint:disable-next-line:no-any

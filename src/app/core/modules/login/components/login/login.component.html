@@ -3,10 +3,11 @@
         EURAL GNUTTI SPA
         </div>    
     <div class="form-label-group">
-<input type="text" [(ngModel)]="username" placeholder="login" class="form-control" name="login">
+<input type="text" #formLogin [(ngModel)]="username" placeholder="login" class="form-control" name="login" id="test">
 </div>
 <div class="form-label-group">
-<input type="password" [(ngModel)]="password" placeholder="password" class="form-control" name="password">
+<input type="password" #formPassword [(ngModel)]="password" placeholder="password" class="form-control" name="password" id="test">
+<!-- <input type="file" (change)="test($event)"> -->
 </div>
 
 <div class="form-label-group">

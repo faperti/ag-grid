@@ -1,7 +1,5 @@
 import { Component, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { AccodaGenerazioneProvaModel } from '../../../../renderers/model/accoda-generazione-prova-model';
-// tslint:disable-next-line:max-line-length
-// import { AccodaGenerazioneCertificatoRendererComponent } from '../renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
 
 @Component({
   selector: 'app-header-grid-component',

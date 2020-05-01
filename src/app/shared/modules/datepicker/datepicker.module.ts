@@ -5,9 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomControlComponent } from '../../components/datepicker/datepicker.component';
 import { DatePipe, CommonModule } from '@angular/common';
 
-// import { NgbdDatepickerAdapter } from '../../components/datepicker/datepicker.component';
-
-
 @NgModule({
   imports: [
     BrowserModule,

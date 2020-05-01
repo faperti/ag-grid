@@ -1,0 +1,16 @@
+<div class="modal fade" [id]="modalId">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ng-content select="[id=modalHeader]"></ng-content>
+                <i class="fa fa-times text-danger" style="cursor: pointer;" data-dismiss="modal"></i>            
+            </div>
+            <div class="modal-body">
+                <ng-content select="[id=modalBody]"></ng-content>
+            </div>
+            <div class="modal-footer">
+                <ng-content select="[id=modalFooter]"></ng-content>
+            </div>
+        </div>
+    </div>
+</div>

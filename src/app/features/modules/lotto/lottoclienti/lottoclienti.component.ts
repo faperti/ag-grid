@@ -2,9 +2,6 @@ import { Component, Output, EventEmitter, OnInit, Input, OnChanges, SimpleChange
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-// tslint:disable-next-line:max-line-length
-// import { AccodaGenerazioneCertificatoRendererComponent } from '../../renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
-// import { AccodaGenerazioneModel } from '../../renderers/model/accoda-generazione-model';
 
 // tslint:disable-next-line:max-line-length
 import { AccodaGenerazioneCertificatoRendererComponent } from '../../../../renderers/accodaGenerazioneCertificatoRenderer/AccodaGenerazioneCertificatoRenderer';
@@ -15,6 +12,8 @@ import { AccodaGenerazioneModel } from '../../../../renderers/model/accoda-gener
 import 'ag-grid-enterprise';
 import { LottoDataService } from '../lotto-data.service';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
+import { NoteClienteRendererComponent } from 'src/app/features/modules/lotto/lottoclienti/NoteClienteRenderer/NoteClienteRenderer';
+import { CellEvent } from 'ag-grid-community/dist/lib/events';
 
 @Component({
   selector: 'app-lottoclienti-component',
@@ -42,6 +41,9 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
   // tslint:disable-next-line:no-any
   frameworkComponents: any;
   context;
+  showModal = false;
+  title = '';
+  content = '' ;
   private elementiCoda: AccodaGenerazioneModel[];
 
     constructor(http: HttpClient,
@@ -51,7 +53,8 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
 
       super(http, activatedRoute, dataservice);
       this.frameworkComponents = {
-        accodaRenderer: AccodaGenerazioneCertificatoRendererComponent
+        accodaRenderer: AccodaGenerazioneCertificatoRendererComponent,
+        noteClienteRenderer: NoteClienteRendererComponent
       };
 
       this.columnDefs = [
@@ -79,7 +82,15 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
         {
           headerName: 'Cliente',
           field: 'des_cliente',
-          width: 110
+          width: 150
+        },
+        {
+          headerName: 'Note Cliente',
+          resizable: false,
+          cellRenderer: 'noteClienteRenderer',
+          cellStyle: { 'text-align': 'center' },
+          colId: 'params',
+          width: 100
         },
         {
           headerName: 'Normativa',
@@ -104,7 +115,7 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
         {
           headerName: 'Note',
           field: 'note',
-          width: 90
+          width: 200
         },
         {
           headerName: 'Elaborato',
@@ -210,6 +221,31 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
       this.gridApi.hideOverlay();
     }
 
+    onCellClicked(event: CellEvent) {
+      console.log(event.colDef.headerName);
+
+      if ( event.colDef.headerName === 'Note Cliente') {
+        console.log(event.data.note);
+        console.log(event);
+
+        this.content = event.data.note;
+        this.title = 'NOTE';
+
+        this.showModal = true;
+      }
+    }
+
+    hide() {
+      this.showModal = false;
+    }
+
+    show() {
+      this.showModal = true;
+      this.content = 'CONTENT!';
+      this.title = 'TITLE';
+    }
+
+
     onPageSizeChanged(newPageSize) {
 
       this.lottiToGenerate = [];
@@ -241,6 +277,16 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
       ' src="/assets/images/accoda.gif"></img></div>';
       }
       return cert;
+    }
+
+
+    mostraNote(params) {
+      const note1 = params.data.note;
+      const note2 = params.data.notelaboratorio;
+
+      // console.log('NOTE1 :' + note1 + ' NOTE2 :' + note2);
+
+      alert(note1 + '\r\n' + note2);
     }
 
     // methodFromParent( coda: AccodaGenerazioneModel) {

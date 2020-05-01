@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import 'ag-grid-enterprise';
@@ -87,9 +87,11 @@ export class GridComponentComponent implements OnInit, OnChanges {
         },
         {
           headerName: 'Certificato',
-          field: 'pathCertificato',
+          // field: 'data_chiusura',
+          // field: 'pathCertificato',
           width: 150,
-          cellRenderer: this.certificatoRenderer
+          cellRenderer: this.certificatoRenderer.bind(this),
+          cellStyle: { 'text-align': 'center' }
         },
         // {
         //   headerName: 'Certificato', field: 'lotto',
@@ -171,15 +173,30 @@ export class GridComponentComponent implements OnInit, OnChanges {
     }
 
     certificatoRenderer(params) {
-      // // tslint:disable-next-line:prefer-const
-      // let cert = '<A href="' + params.data.pathCertificato + '"><img border="0" width="32" height="32"' +
-      // ' src="/assets/images/' +
-      // params.data.imgCertificato + '"></img></A>';
-
       // tslint:disable-next-line:max-line-length
-      const cert = '<A target="_blank" href="' + 'assets/certificati/' + params.data.lotto + '.pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>' + params.data.lotto + '</A>';
+      const cert = '<a target="_blank" href="' + 'http://archiviocertificati.eural.com/' + this.makePathLotto(params) + '"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>';
+
       return cert;
     }
+
+    // tslint:disable-next-line:no-any
+    makePathLotto(params: any): string {
+      const lottoVar = params.data.lotto;
+
+      const lottoPath = '20' + lottoVar.substr(0, 2) + '/' + lottoVar.substr(4, 2) + '/' + lottoVar + '.pdf';
+      // const lottoPath = '20' + lottoVar.substr(0, 2) + '/' + lottoVar.substr(4, 2) + '/' + lottoVar.substr(6, 2) + '/' + lottoVar + '.pdf';
+
+      return lottoPath;
+    //   if ( params !== null && params !== undefined ) {
+    //   console.log(params.data);
+    // //   if ( lotto !== undefined && lotto.length === 10 ){
+    // //     return lotto.substr(0, 4) + '/' + lotto.substr(4, 2) + '/' + lotto.substr(6, 2) + '/' + lotto + '.pdf';
+    // // } else {
+    //   // return params.data.lotto;
+    //  }
+    }
+
+
 
     printCerts() {
       this.lottiToGenerate = [];

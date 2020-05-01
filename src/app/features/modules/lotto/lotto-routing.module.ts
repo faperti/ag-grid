@@ -6,6 +6,7 @@ import { LottoDetailComponent } from './lottodetail/lotto.detail.component';
 import { LottoanalisiComponent } from './lottoanalisi/lottoanalisi.component';
 import { LottocollaudoComponent } from './lottocollaudo/lottocollaudo.component';
 import { LottoclientiComponent } from './lottoclienti/lottoclienti.component';
+import { LottonoteComponent } from './lottonote/lottonote.component';
 
 const routes: Routes = [
     { path: '', component: LottoComponent ,
@@ -34,6 +35,10 @@ const routes: Routes = [
             {
                 path: 'detail',
                 component: LottoDetailComponent
+            },
+            {
+                path: 'note',
+                component: LottonoteComponent
             }
         ]
     }

@@ -30,6 +30,9 @@ import { SpinnerSharedModule } from './shared/modules/spinner/spinner-shared.mod
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonService } from './shared/services/common.service';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ModalComponent } from './shared/components/modal/modal.component';
+import { ModalReadOnlyComponent } from './shared/components/modal-read-only/modal-read-only.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     imports: [
@@ -41,12 +44,14 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
       FormsModule, // <-- import the FormsModule before binding with [(ngModel)]
       HttpClientModule,
       LottoModule,
-      SpinnerSharedModule,
+      // SpinnerSharedModule,
       ReactiveFormsModule,
-      PdfViewerModule
+      PdfViewerModule,
+      SharedModule
   ],
   entryComponents: [ RouterLinkRendererComponent, AnchorEventClickRendererComponent,
-    ElaboratoAssegnazioneRendererComponent, AccodaGenerazioneCertificatoRendererComponent, HeaderGridComponent ],
+    ElaboratoAssegnazioneRendererComponent, AccodaGenerazioneCertificatoRendererComponent,
+    HeaderGridComponent ],
   declarations: [AppComponent,
     PageNotFoundComponent,
     RouterLinkRendererComponent,
@@ -55,7 +60,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
      // SearchRiassegnazioniComponent,
      ElaboratoAssegnazioneRendererComponent,
      AccodaGenerazioneCertificatoRendererComponent,
-     HeaderGridComponent
+     HeaderGridComponent,
       ],
   bootstrap: [AppComponent],
   providers: [AuthDataService, DataService, CommonService]

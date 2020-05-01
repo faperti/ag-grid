@@ -23,8 +23,11 @@ function toInteger(value: any): number {
 @Injectable()
 export class CommonService {
 
-baseUrl = 'http://certificatiwebapi.eural.com/api';
-baseUrlToken = 'http://certificatiwebapi.eural.com/token';
+// baseUrl = 'http://certificatiwebapi.eural.com/api';
+// baseUrlToken = 'http://certificatiwebapi.eural.com/token';
+
+baseUrl = 'http://localhost:4518/api';
+baseUrlToken = 'http://localhost:4518/token';
 
 constructor() {
     // this.accessToken = '';

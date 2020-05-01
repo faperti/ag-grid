@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from 'src/app/shared/services/data.service';
-import { AuthenticationService } from 'src/app/core/modules/login/services/authentication/authentication.service';
+// import { AuthenticationService } from 'src/app/core/modules/login/services/authentication/authentication.service';
 import { AccodaGenerazioneModel } from 'src/app/renderers/model/accoda-generazione-model';
 import { GenerateCertsResult } from 'src/app/model/GenerateCertsResult';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Injectable()
 export class LottoDataService {
 
   private baseUrlString = 'http://certificatiwebapi.eural.com/api/';
 
-  constructor( private http: HttpClient, private DS: DataService ) {
-    // this.accessToken = '';
+  constructor( private http: HttpClient, private DS: DataService, private cs: CommonService ) {
+    this.baseUrlString = this.cs.baseUrl;
   }
 
   // tslint:disable-next-line:no-any
   GetClienti(lotto: string): any {
     // tslint:disable-next-line:max-line-length
-    const urlString = this.baseUrlString + 'CicliLanciatiClienti?lotto=' + lotto;
+    const urlString = this.baseUrlString + '/CicliLanciatiClienti?lotto=' + lotto;
 
     return this.http.get(urlString);
   }
@@ -27,7 +28,7 @@ export class LottoDataService {
 
       // this.lotto = '1812050025';
       // tslint:disable-next-line:max-line-length
-      const urlString = this.baseUrlString + 'Lotto?lotto=' + lotto;
+      const urlString = this.baseUrlString + '/Lotto?lotto=' + lotto;
 
       return this.http.get(urlString);
       // .subscribe(data => {
@@ -35,24 +36,38 @@ export class LottoDataService {
       //   this.cLotto = data as Lotto;
   }
 
+  // tslint:disable-next-line:no-any
+  GetLottoNote(lotto: string, area: string): any {
+
+    // this.lotto = '1812050025';
+    // tslint:disable-next-line:max-line-length
+    const urlString = this.baseUrlString + '/LottoNote?lotto=' + lotto + '&area=' + area;
+
+    return this.http.get(urlString);
+    // .subscribe(data => {
+    //   console.log(data);
+    //   this.cLotto = data as Lotto;
+}
+
+
 // tslint:disable-next-line:no-any
   GetAnalisi(lotto: string): any {
 
     // tslint:disable-next-line:max-line-length
-    const urlString = this.baseUrlString + 'ProveAnalisiReport?lotto=' + lotto + '&normativa=EURAL&bAlter=false';
+    const urlString = this.baseUrlString + '/ProveAnalisiReport?lotto=' + lotto + '&normativa=EURAL&bAlter=false';
     return this.http.get(urlString);
   }
 
   // tslint:disable-next-line:no-any
   GetCollaudo(lotto: string, normativa: string): any {
-    const urlString = this.baseUrlString +  'ProveCollaudoReport?lotto=' + lotto + '&normativa=' + normativa;
+    const urlString = this.baseUrlString +  '/ProveCollaudoReport?lotto=' + lotto + '&normativa=' + normativa;
     // console.log(urlString);
     return this.http.get(urlString);
   }
 
   // tslint:disable-next-line:no-any
   GetNumerositaProve(lotto: string): any {
-    const urlString = this.baseUrlString +  'NumerositaProve?lotto=' + lotto ;
+    const urlString = this.baseUrlString +  '/NumerositaProve?lotto=' + lotto ;
     // console.log(urlString);
     return this.http.get(urlString);
   }
@@ -69,7 +84,7 @@ export class LottoDataService {
       console.log(this.DS.getAccessToken());
 
       // const urlString = this.baseUrlString +  'ProveCollaudoReport?lotto=' + lotto + '&normativa=' + normativa;
-      const urlString = this.baseUrlString +  'ProveCollaudoReport';
+      const urlString = this.baseUrlString +  '/ProveCollaudoReport';
 
       // tslint:disable-next-line:max-line-length
       return this.http.post(urlString, body , { headers : { 'Content-Type': 'application/json', Authorization: 'Bearer ' + this.DS.getAccessToken() } } );

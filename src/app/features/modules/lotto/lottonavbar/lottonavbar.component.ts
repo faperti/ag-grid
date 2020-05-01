@@ -12,8 +12,8 @@ export class LottonavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('NAVBAR : ');
-    console.log(this.lotto);
+    // console.log('NAVBAR : ');
+    // console.log(this.lotto);
   }
 
 }

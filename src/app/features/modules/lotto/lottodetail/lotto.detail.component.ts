@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 // import { Lotto } from '/model/lotto';
 import { Lotto } from '../../../../model/lotto';
 import { LottoDataService } from '../lotto-data.service';
+import { BaseLottoView } from '../models/abstracts/base-lotto-view';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lotto-detail',
@@ -10,7 +12,7 @@ import { LottoDataService } from '../lotto-data.service';
   styleUrls: ['./lotto.detail.component.scss']
 })
 // tslint:disable-next-line:component-class-suffix
-export class LottoDetailComponent implements OnInit {
+export class LottoDetailComponent extends BaseLottoView implements OnInit {
 
   @Input() lotto = '';
   @Output() clickSearch = new EventEmitter<number>();
@@ -18,11 +20,20 @@ export class LottoDetailComponent implements OnInit {
   private urlString: string;
   cLotto: Lotto;
 
-  constructor(private http: HttpClient, private dataservice: LottoDataService) { }
+  constructor(http: HttpClient,
+              activatedRoute: ActivatedRoute,
+              router: Router,
+              dataservice: LottoDataService) {
+
+    super( http, activatedRoute, dataservice);
+
+  }
 
   ngOnInit() {
 
-      this.dataservice.GetLottoDetail(this.lotto)
+    super.ngOnInit();
+
+    this.ds.GetLottoDetail(this.lotto)
       .subscribe(data => {
         console.log(data);
         this.cLotto = data as Lotto;
