@@ -131,10 +131,14 @@ export class GridComponentComponent implements OnInit, OnChanges {
           width: this.widthData
         },
         {
-          headerName: 'Sel.',
+          headerName: 'Selezione',
           width: 100,
-          headerCheckboxSelection: true,
-          checkboxSelection: true
+          // headerCheckboxSelection: false,
+          checkboxSelection: true,
+          // cellRenderer: this.selezioneRenderer.bind(this),
+          cellStyle: {
+            'text-align': 'center'
+            }
         }
       ];
       this.defaultColDef = {
@@ -160,6 +164,14 @@ export class GridComponentComponent implements OnInit, OnChanges {
       // this.showCriteria();
     }
 
+    selezioneRenderer(params) {
+      // tslint:disable-next-line:max-line-length
+      const selezione = '<input type="checkbox"/>';
+      return selezione;
+    }
+
+
+
     certificatoFormatter(params) {
       // return '(' + params.Certificato + ') - ' + params.imgCertificato;
       // console.log('PAR ' + params.certificato);
@@ -178,6 +190,10 @@ export class GridComponentComponent implements OnInit, OnChanges {
 
       return cert;
     }
+
+
+
+
 
     // tslint:disable-next-line:no-any
     makePathLotto(params: any): string {
@@ -208,7 +224,7 @@ export class GridComponentComponent implements OnInit, OnChanges {
 
       console.log('PRINT CERTS : ' + this.lottiToGenerate);
 
-      // this.generateCerts.emit(this.lottiToGenerate);
+      this.generateCerts.emit(this.lottiToGenerate);
     }
 
 

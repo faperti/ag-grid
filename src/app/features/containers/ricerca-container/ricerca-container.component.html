@@ -8,10 +8,34 @@
 [statiFisiciData]="statiFisiciData"
 [showGrid]="showGrid"
 [emptyData]="emptyData"
-(search)="searchGrid($event)"></app-ricerca>
+(search)="searchGrid($event)"
+(generateCertsToContainer)="generateCerts($event)"></app-ricerca>
 <ng-template #loadingtemplate>
     <div class="d-flex w-100 h-100 justify-content-center align-items-center">
     <app-spinner [inputSpinnerClass]="'fa-4x'"></app-spinner>
     </div>
 </ng-template>
 <!-- <app-spinner *ngIf="loading"></app-spinner> -->
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+     
+        <div class="modal-header">
+          <h4 class="modal-title">{{ title }}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+          {{ content }}
+        </div>
+        
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div> 

@@ -34,7 +34,7 @@ export class Parent1Component implements OnInit {
   @Output() search: EventEmitter<SearchCriteria> = new EventEmitter<SearchCriteria>();
   // tslint:disable-next-line:no-any
   @Output() noLoading = new EventEmitter<any>();
-  // @Output() login = new EventEmitter<LoginData>();
+  @Output() generateCertsToContainer = new EventEmitter<string[]>();
 
   private myValue: number;
   private lottoToChild: string;
@@ -76,7 +76,8 @@ export class Parent1Component implements OnInit {
   }
 
   generateCerts(value: string[]) {
-    this.router.navigate(['/login']);
+    console.log('RICERCA : ' + value);
+    this.generateCertsToContainer.emit(value);
   }
 
 }

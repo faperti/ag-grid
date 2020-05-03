@@ -22,10 +22,11 @@ Lotto: {{inpLotto}} -->
         [defaultColDef]="defaultColDef"
         [animateRows]="true"
         rowSelection="multiple"
-        [enableRangeSelection]="true"
+        [enableRangeSelection]="false"
         [pagination]="true"
         [paginationPageSize]="30"
         [rowData]="rowData"
         (gridReady)="onGridReady($event)"
+        [suppressRowClickSelection]="true"
   >
   </ag-grid-angular>

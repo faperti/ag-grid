@@ -14,6 +14,8 @@ export class RicercaContainerComponent implements OnInit, AfterViewInit {
   // @Input() inpCriteria: SearchCriteria;
 
   urlString = '';
+  title = 'title to display';
+  content = 'content to display';
   // tslint:disable-next-line:no-any
   rowDataLoaded: any;
   // tslint:disable-next-line:no-any
@@ -159,5 +161,16 @@ export class RicercaContainerComponent implements OnInit, AfterViewInit {
       this.loading = false;
     }
   }
+
+  generateCerts(value: string[]) {
+    console.log('CONTAINER : ' + value);
+    this.title = 'Generazione certificati';
+    this.content = value.toString();
+
+    document.getElementById('openModalButton').click();
+
+
+  }
+
 
 }
