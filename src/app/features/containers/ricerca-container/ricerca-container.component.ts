@@ -3,6 +3,7 @@ import { SearchCriteria } from 'src/app/model/searchCriteria';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/shared/services/data.service';
 import { RicercaContainerDataService } from './services/ricerca-container-data.service';
+import { AccodaGenerazioneModel } from 'src/app/renderers/model/accoda-generazione-model';
 
 @Component({
   selector: 'app-ricerca-container',
@@ -162,15 +163,30 @@ export class RicercaContainerComponent implements OnInit, AfterViewInit {
     }
   }
 
-  generateCerts(value: string[]) {
+  generateLottiCerts(value: string[]) {
+    const toGenerate: AccodaGenerazioneModel[] = [];
+
+    value.forEach(element => {
+      const singleGen = new AccodaGenerazioneModel();
+      singleGen.Lotto = element;
+      singleGen.Commessa = '';
+      singleGen.TipoAccodamento = 1;
+      singleGen.ProveSelezionate = [];
+
+      toGenerate.push(singleGen);
+    });
+
+
     console.log('CONTAINER : ' + value);
     this.title = 'Generazione certificati';
     this.content = value.toString();
 
-    document.getElementById('openModalButton').click();
 
-
+    if ( toGenerate !== null && toGenerate !== undefined && toGenerate.length > 0 ) {
+      this.rs.accodaCertificati(toGenerate).subscribe( res => {
+        this.content = 'Richiesti : ' + res.richiesteInviate + ' - OK : ' + res.richiesteOK + ' - KO : ' + res.richiesteKO;
+        document.getElementById('openModalButton').click();
+      });
+    }
   }
-
-
 }

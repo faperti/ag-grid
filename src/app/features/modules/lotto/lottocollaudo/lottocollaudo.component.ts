@@ -155,6 +155,7 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
                   suppressMenu: true,
                   // tslint:disable-next-line:object-literal-shorthand
                   cellStyle: function(params) {
+                      console.log(params.data);
                       const valColore = value + '_colore';
                       // console.log('COLORE : ' + params.data[valColore]);
                       return { backgroundColor: params.data[valColore] };

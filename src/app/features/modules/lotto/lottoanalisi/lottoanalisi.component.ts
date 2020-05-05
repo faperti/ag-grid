@@ -56,6 +56,7 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
 
 
     super(http, activatedRoute, dataservice);
+
     this.proveSelezionate = [];
 
     this.normativaSelezionata = 'EURAL';
@@ -114,7 +115,10 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
             this.rowData = data.TabellaPrescritta;
             this.Prescritte = data.Prescritte;
             this.prove = data.Prove;
-            // console.log(this.prove);
+
+            console.log(this.rowData);
+            console.log(this.Prescritte);
+            console.log(this.prove);
 
             this.normativaSelezionata = data.NormativaSelezionata;
 
@@ -144,10 +148,11 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
 
             // // tslint:disable-next-line:only-arrow-functions
             this.prove.forEach( (value) => {
-               console.log(value);
+               // console.log(value);
+               // console.log(params.data[value + '_colore']);
                this.columnDefs.push( {
                   headerName: 'Prova ' + value,
-                  headerComponentParams: { showCheck: true, numeroProva: value },
+                  headerComponentParams: { showCheck: false, numeroProva: value },
                   field: value,
                   width: 110,
                   hide: false,
@@ -155,19 +160,18 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
                   // tslint:disable-next-line:object-literal-shorthand
                   cellStyle: function(params) {
                     const valColore = value + '_colore';
-                    // console.log('COLORE : ' + params.data[valColore]);
                     return { backgroundColor: params.data[valColore] };
                 }
               } );
              } );
 
-            this.columnDefs.push ( {
-              headerName: 'Eventi',
-              resizable: false,
-              cellRenderer: 'accodaRenderer',
-              colId: 'params',
-              width: 90
-          });
+          //   this.columnDefs.push ( {
+          //     headerName: 'Eventi',
+          //     resizable: false,
+          //     cellRenderer: 'accodaRenderer',
+          //     colId: 'params',
+          //     width: 90
+          // });
 
             // console.log(this.columnDefs);
             this.gridApi.setColumnDefs(this.columnDefs);
@@ -175,6 +179,36 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
 
           });
 }
+
+calculateBackground(minValue: number, maxValue: number, value: number ): string {
+  console.log('calculateBackground');
+  console.log(minValue);
+  console.log(maxValue);
+  console.log(value);
+
+
+  if ( minValue === null ) {
+    minValue = -1;
+  }
+
+  if ( maxValue === null ) {
+    maxValue = 101;
+  }
+
+  if ( value < minValue ) {
+    return 'blue';
+  }
+
+  if ( value > maxValue ) {
+    return 'red';
+  }
+
+  if ( value >= minValue && value <= maxValue ) {
+    return 'green';
+  }
+
+}
+
 
 proveAnalisiNormativa() {
   this.initializeColumnsDefs();
@@ -211,7 +245,6 @@ updateProveSelezionate( numeroProva, stato ) {
     this.proveSelezionate = [];
   }
 
-
   if ( stato === false ) {
     this.proveSelezionate = this.proveSelezionate.filter(obj => obj !== numeroProva);
   } else {
@@ -221,9 +254,4 @@ updateProveSelezionate( numeroProva, stato ) {
   console.log(this.proveSelezionate);
 
 }
-
 }
-
-
-
-
