@@ -9,6 +9,7 @@ import { AccodaGenerazioneProvaModel } from 'src/app/renderers/model/accoda-gene
 import { getCurrencySymbol } from '@angular/common';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { LottoDataService } from '../lotto-data.service';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-lottoanalisi',
@@ -19,7 +20,6 @@ import { LottoDataService } from '../lotto-data.service';
 export class LottoanalisiComponent extends BaseLottoView implements OnInit {
 
   @Input() lotto: string;
-  // @Output() generateCerts = new EventEmitter<string[]>();
 
   private gridApi;
   private gridColumnApi;
@@ -45,40 +45,20 @@ export class LottoanalisiComponent extends BaseLottoView implements OnInit {
   private elementiCoda: AccodaGenerazioneModel[];
   // tslint:disable-next-line:no-any
   elaboratoFormatter: any;
-  private overlayLoadingTemplate: string;
-  private overlayNoRowsTemplate: string;
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
   showLoading: boolean;
 
   constructor(http: HttpClient,
               activatedRoute: ActivatedRoute,
               router: Router,
-              dataservice: LottoDataService) {
+              dataservice: LottoDataService,
+              commonService: CommonService) {
 
 
-    super(http, activatedRoute, dataservice);
+    super(http, activatedRoute, dataservice, commonService);
 
-    this.proveSelezionate = [];
 
-    this.normativaSelezionata = 'EURAL';
-    this.overlayLoadingTemplate =
-      '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
-    this.overlayNoRowsTemplate =
-      '<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">This is a custom no rows overlay</span>';
-
-    this.showLoading = true;
-
-    this.initializeColumnsDefs();
-
-    this.frameworkComponents = {
-      accodaRenderer: AccodaGenerazioneCertificatoRendererComponent,
-      agColumnHeader: HeaderGridComponent
-    };
-
-    this.context = { componentParent: this };
-    this.defaultColDef = {
-      sortable: true,
-      filter: true
-    };
 
   }
 
@@ -219,11 +199,28 @@ ngOnInit() {
   super.ngOnInit();
   this.normativaSelezionata = '';
 
-  // this.activatedRoute.parent.params.subscribe(params => {
-  //   if ( params.lotto != null  ) {
-  //     this.lotto = params.lotto;
-  //   }
-  // });
+  this.proveSelezionate = [];
+
+  this.normativaSelezionata = 'EURAL';
+  this.overlayLoadingTemplate = this.cs.overlayLoadingTemplate;
+
+  this.overlayNoRowsTemplate =
+    '<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">This is a custom no rows overlay</span>';
+
+  this.showLoading = true;
+
+  this.initializeColumnsDefs();
+
+  this.frameworkComponents = {
+    accodaRenderer: AccodaGenerazioneCertificatoRendererComponent,
+    agColumnHeader: HeaderGridComponent
+  };
+
+  this.context = { componentParent: this };
+  this.defaultColDef = {
+    sortable: true,
+    filter: true
+  };
 
   this.updateGrid();
 }

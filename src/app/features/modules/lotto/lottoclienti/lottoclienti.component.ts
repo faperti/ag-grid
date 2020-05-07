@@ -14,6 +14,7 @@ import { LottoDataService } from '../lotto-data.service';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { NoteClienteRendererComponent } from 'src/app/features/modules/lotto/lottoclienti/NoteClienteRenderer/NoteClienteRenderer';
 import { CellEvent } from 'ag-grid-community/dist/lib/events';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-lottoclienti-component',
@@ -49,9 +50,10 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
     constructor(http: HttpClient,
                 activatedRoute: ActivatedRoute,
                 router: Router,
-                dataservice: LottoDataService ) {
+                dataservice: LottoDataService,
+                commonService: CommonService ) {
 
-      super(http, activatedRoute, dataservice);
+      super(http, activatedRoute, dataservice, commonService);
       this.frameworkComponents = {
         accodaRenderer: AccodaGenerazioneCertificatoRendererComponent,
         noteClienteRenderer: NoteClienteRendererComponent

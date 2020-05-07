@@ -11,13 +11,16 @@ import { FormGroup } from '@angular/forms';
 export class ImportaRiassegnazioniComponent implements OnInit {
 
   @Input() emptyData: boolean;
+  // tslint:disable-next-line:no-any
   @Input() gridData: any[];
+  @Input() showGrid: boolean;
   @Output() clickSearch: EventEmitter<SearchCriteriaRiassegnazioni> = new EventEmitter<SearchCriteriaRiassegnazioni>();
 
   private lt: string;
   private myLotto: string;
   criteriaToGrid: SearchCriteriaRiassegnazioni;
   private searchCriteriaForma: FormGroup;
+  loading: boolean;
 
   constructor( ) {
     console.log('constructor importa riassegnazioni ');
@@ -34,7 +37,8 @@ export class ImportaRiassegnazioniComponent implements OnInit {
 
   updateMyGrid(value: SearchCriteriaRiassegnazioni) {
     this.emptyData = false;
-    this.gridData = undefined;
+    this.showGrid = true;
+    this.gridData = null;
     this.clickSearch.emit(value);
   }
 }

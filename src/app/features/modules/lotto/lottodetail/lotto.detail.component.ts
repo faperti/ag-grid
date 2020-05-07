@@ -5,6 +5,7 @@ import { Lotto } from '../../../../model/lotto';
 import { LottoDataService } from '../lotto-data.service';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-lotto-detail',
@@ -23,9 +24,10 @@ export class LottoDetailComponent extends BaseLottoView implements OnInit {
   constructor(http: HttpClient,
               activatedRoute: ActivatedRoute,
               router: Router,
-              dataservice: LottoDataService) {
+              dataservice: LottoDataService,
+              commonservice: CommonService) {
 
-    super( http, activatedRoute, dataservice);
+    super( http, activatedRoute, dataservice, commonservice);
 
   }
 

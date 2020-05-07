@@ -13,9 +13,11 @@ export class ImportaRiassegnazioniContainerComponent implements OnInit {
   private rowDataLoaded: any;
   rowData: any[];
   emptyData: boolean;
+  showGrid: boolean;
 
   constructor( private http: HttpClient ) {
     this.emptyData = true;
+    this.showGrid = false;
   }
 
   ngOnInit() {
@@ -40,9 +42,11 @@ export class ImportaRiassegnazioniContainerComponent implements OnInit {
           if ( this.rowDataLoaded.length > 0 ) {
               this.rowData = this.rowDataLoaded;
               this.emptyData = false;
+              this.showGrid = true;
               console.log('load data 1: ' + this.emptyData);
             } else {
               this.emptyData = true;
+              this.showGrid = false;
               this.rowData = [];
               console.log('load data 2: ' + this.emptyData);
             }

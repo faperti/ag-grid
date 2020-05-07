@@ -26,12 +26,13 @@
         [paginationPageSize]="30"
         [suppressRowClickSelection]="true"
         [rowData]="gridData"
+        [overlayLoadingTemplate]="overlayLoadingTemplate"
+        [overlayNoRowsTemplate]="overlayNoRowsTemplate"
         (gridReady)="onGridReady($event)"
-        [overlayNoRowsTemplate]="norecordfound"
       >
 </ag-grid-angular>
 
 <div *ngIf="showVariazioni">
-  Show Variazioni
+  Show Variazioni TEST
  {{variazioniResults}}
 </div>

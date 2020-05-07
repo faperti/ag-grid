@@ -5,6 +5,7 @@ import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { ModalModule } from '../../../../shared/modules/modal/modal.module';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-lottonote',
@@ -21,13 +22,13 @@ export class LottonoteComponent extends BaseLottoView implements OnInit {
   noteModalId = 12345;
   noteLaboratorio = 'note Laboratorio per modal';
 
-  constructor( http: HttpClient, activatedRoute: ActivatedRoute, dataservice: LottoDataService) {
-    super(http, activatedRoute, dataservice);
+  constructor( http: HttpClient, activatedRoute: ActivatedRoute, dataservice: LottoDataService, commonservice: CommonService) {
+    super(http, activatedRoute, dataservice, commonservice);
   }
 
   ngOnInit() {
-    console.log('LOTTO NOTE');
-    console.log(this.lotto);
+    // console.log('LOTTO NOTE');
+    // console.log(this.lotto);
 
     super.ngOnInit();
     this.ShowNote('GENERALI');

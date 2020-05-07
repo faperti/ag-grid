@@ -5,6 +5,7 @@ import 'ag-grid-enterprise';
 import { SearchCriteriaRiassegnazioni } from '../model/SearchCriteriaRiassegnazioni';
 import { AnchorEventClickRendererComponent } from '../anchor-event-click-renderer/anchor-event-click-renderer.component';
 import { ElaboratoAssegnazioneRendererComponent } from '../elaborato-assegnazione-renderer/elaborato-assegnazione-renderer.component';
+import { CommonService } from '../shared/services/common.service';
 
 @Component({
   selector: 'app-grid-nuove-assegnazioni-component',
@@ -14,8 +15,8 @@ import { ElaboratoAssegnazioneRendererComponent } from '../elaborato-assegnazion
 export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
   @Input() inpCriteria: SearchCriteriaRiassegnazioni;
+  // tslint:disable-next-line:no-any
   @Input() gridData: any[];
-  @Input() emptyData: boolean;
   @Output() generateCerts = new EventEmitter<string[]>();
 
   private gridApi;
@@ -23,17 +24,62 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
   columnDefs;
   defaultColDef;
+  // tslint:disable-next-line:no-any
   rowData: any;
+  // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
-  norecordfound = 'No record found';
   private urlString = '';
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+
+  // tslint:disable-next-line:no-any
   private variazioniToGenerate: any[];
   variazioniResults: string[];
   variazioniReady: boolean;
   showVariazioni: boolean;
 
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private commonService: CommonService) {
+
+    }
+
+    // tslint:disable-next-line:use-lifecycle-interface
+    ngOnChanges() {
+      console.log('grid nuove riassegnazioni component: ONCHANGES');
+
+      this.updateGrid();
+    }
+
+    elaboratoFormatter(params) {
+      if (params.value === 0) {
+        return 'Da elaborare';
+      }
+
+      if (params.value === 1) {
+        return 'Elaborato e Stampato';
+      }
+
+      if (params.value === 2) {
+        return 'Elaborato e da stampare';
+      }
+    }
+
+    updateGrid() {
+
+      console.log( 'updateGrid grid data : ' + this.gridData );
+
+    }
+
+    ngOnInit() {
+      this.inpCriteria = new SearchCriteriaRiassegnazioni();
+      this.inpCriteria.DataStart = '';
+      this.inpCriteria.DataEnd = '';
+
+      this.variazioniReady = false;
+      this.showVariazioni = true;
+
+      this.overlayLoadingTemplate = this.commonService.overlayLoadingTemplate;
+      this.overlayNoRowsTemplate = this.commonService.overlayNoRowsTemplate;
 
       this.columnDefs = [
         {
@@ -60,10 +106,6 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
         {
           headerName: 'Da',
           cellRendererFramework: AnchorEventClickRendererComponent,
-          // cellRendererParams: {
-          //   idVar: "idRiassegnazione",
-          //   commessaDa: '9988776655'
-          // },
           width: 110
         },
         {
@@ -74,7 +116,7 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
         {
           headerName: 'Collo',
           field: 'collo',
-          width: 110
+          width: 120
         },
         {
           headerName: 'KgVariazione',
@@ -107,69 +149,7 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
       };
 
       this.variazioniReady = false;
-    }
 
-    // tslint:disable-next-line:use-lifecycle-interface
-    ngOnChanges() {
-      console.log('grid riassegnazioni component: ONCHANGES');
-
-      this.updateGrid();
-    }
-
-    elaboratoFormatter(params) {
-      if (params.value === 0) {
-        return 'Da elaborare';
-      }
-
-      if (params.value === 1) {
-        return 'Elaborato e Stampato';
-      }
-
-      if (params.value === 2) {
-        return 'Elaborato e da stampare';
-      }
-    }
-
-    updateGrid() {
-
-      console.log( 'updateGrid grid data : ' + this.gridData );
-
-      // this.rowData = this.gridData;
-      // if ( this.gridData !== undefined && this.gridData.length > 0 ) {
-      //   console.log('hideoverlay');
-      //   this.gridApi.hideOverlay();
-      // }
-
-      // if (this.gridApi !== undefined) {
-          //   this.gridApi.showLoadingOverlay();
-          // }
-
-          // // alert('UPDATE GRID riassegnazioni component');
-          // // tslint:disable-next-line:max-line-length
-          // this.urlString = 'http://localhost:4518/api/RiAssegnazioniSMEA?';
-          // this.urlString = this.urlString + 'data_da=' + this.inpCriteria.DataStart;
-          // this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
-
-          // alert(this.urlString);
-
-          // this.http
-          //       .get(this.urlString)
-          //       .subscribe(data => {
-          //         this.rowDataLoaded = data;
-          //         if ( this.rowDataLoaded.length > 0 ) {
-          //             this.rowData = this.rowDataLoaded;
-          //             console.log(this.rowData);
-          //           }
-          //       });
-    }
-
-    ngOnInit() {
-      this.inpCriteria = new SearchCriteriaRiassegnazioni();
-      this.inpCriteria.DataStart = '';
-      this.inpCriteria.DataEnd = '';
-
-      this.variazioniReady = false;
-      this.showVariazioni = true;
     }
 
     certificatoFormatter(params) {
@@ -212,12 +192,12 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
       this.gridApi = params.api;
       this.gridColumnApi = params.columnApi;
 
-      console.log('grid ready empty data : ' + this.emptyData);
+      // console.log('grid ready empty data : ' + this.emptyData);
 
-      if ( this.emptyData || this.emptyData === undefined ) {
-        this.gridApi.hideOverlay();
-        this.gridApi.showNoRowsOverlay();
-      }
+      // if ( this.emptyData || this.emptyData === undefined ) {
+      //   this.gridApi.hideOverlay();
+      //   this.gridApi.showNoRowsOverlay();
+      // }
 
       // this.gridApi.hideOverlay();
       // this.gridApi.showNoRowsOverlay();

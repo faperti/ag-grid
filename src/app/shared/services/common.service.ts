@@ -12,10 +12,12 @@ function padNumber(value: number) {
   }
 }
 
+// tslint:disable-next-line:no-any
 function isNumber(value: any): boolean {
   return !isNaN(toInteger(value));
 }
 
+// tslint:disable-next-line:no-any
 function toInteger(value: any): number {
   return parseInt(`${value}`, 10);
 }
@@ -28,6 +30,11 @@ export class CommonService {
 
 baseUrl = 'http://localhost:4518/api';
 baseUrlToken = 'http://localhost:4518/token';
+overlayLoadingTemplate = '<span class="ag-overlay-loading-center" style="font-size: 18px">Ricerca in corso. Attendere...</span>';
+
+// tslint:disable-next-line:max-line-length
+overlayNoRowsTemplate = '<span style="font-size: 18px; padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">Nessun risultato soddisfa la ricerca</span>';
+
 
 constructor() {
     // this.accessToken = '';
@@ -53,5 +60,8 @@ format(date: NgbDateStruct): string {
 
     return stringDate;
   }
+
+
+
 
   }

@@ -3,6 +3,7 @@ import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { HttpClient } from '@angular/common/http';
 import { LottoDataService } from '../lotto-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-lottonumerositaprove',
@@ -25,8 +26,8 @@ export class LottonumerositaproveComponent extends BaseLottoView implements OnIn
   dimPrescritte: '';
 
 
-  constructor(http: HttpClient, activatedRoute: ActivatedRoute, ds: LottoDataService) {
-    super(http, activatedRoute, ds);
+  constructor(http: HttpClient, activatedRoute: ActivatedRoute, ds: LottoDataService, cs: CommonService) {
+    super(http, activatedRoute, ds, cs);
 
   }
 

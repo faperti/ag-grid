@@ -9,6 +9,7 @@ import { getCurrencySymbol } from '@angular/common';
 import { LottoDataService } from '../lotto-data.service';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { HttpClient } from '@angular/common/http';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-lottocollaudo',
@@ -58,33 +59,10 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
   constructor(http: HttpClient,
               activatedRoute: ActivatedRoute,
               router: Router,
-              dataService: LottoDataService) {
+              dataService: LottoDataService,
+              commonService: CommonService) {
 
-                super( http, activatedRoute, dataService);
-                this.proveSelezionate = [];
-
-                this.normativaSelezionata = 'EURAL';
-
-                this.overlayLoadingTemplate =
-                '<span class="ag-overlay-loading-center" style="font-size: 18px">Ricerca in corso. Attendere...</span>';
-                this.overlayNoRowsTemplate =
-                // tslint:disable-next-line:max-line-length
-                '<span style="font-size: 18px; padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">Nessun risultato soddisfa la ricerca</span>';
-
-                this.isLoading = true;
-
-                this.initializeColumnsDefs();
-
-                this.frameworkComponents = {
-      accodaRenderer: AccodaGenerazioneCertificatoRendererComponent,
-      agColumnHeader: HeaderGridComponent
-    };
-
-                this.context = { componentParent: this };
-                this.defaultColDef = {
-      sortable: true,
-      filter: true
-    };
+                super( http, activatedRoute, dataService, commonService) ;
   }
 
   initializeColumnsDefs() {
@@ -92,12 +70,6 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
     this.columnDefs = [];
 
     this.columnDefs = [
-      // {
-      //   headerName: 'Selezione',
-      //   width: 100,
-      //   headerCheckboxSelection: true,
-      //   checkboxSelection: true
-      // },
       {
         headerName: 'Elemento',
         field: 'Elemento',
@@ -153,7 +125,6 @@ export class LottocollaudoComponent extends BaseLottoView implements OnInit {
                   width: 110,
                   hide: false,
                   suppressMenu: true,
-                  // tslint:disable-next-line:object-literal-shorthand
                   cellStyle: function(params) {
                       console.log(params.data);
                       const valColore = value + '_colore';
@@ -192,11 +163,33 @@ ngOnInit() {
   this.normativaSelezionata = '';
   this.commessaSelezionata = '';
 
-  // this.activatedRoute.parent.params.subscribe(params => {
-  //   if ( params.lotto != null  ) {
-  //     this.lotto = params.lotto;
-  //   }
-  // });
+  this.proveSelezionate = [];
+
+  this.normativaSelezionata = 'EURAL';
+
+  // console.log('OVERLAY');
+  // console.log(this.cs);
+
+  this.overlayLoadingTemplate = this.cs.overlayLoadingTemplate;
+
+  this.overlayNoRowsTemplate =
+  // tslint:disable-next-line:max-line-length
+  '<span style="font-size: 18px; padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">Nessun risultato soddisfa la ricerca</span>';
+
+  this.isLoading = true;
+
+  this.initializeColumnsDefs();
+
+  this.frameworkComponents = {
+accodaRenderer: AccodaGenerazioneCertificatoRendererComponent,
+agColumnHeader: HeaderGridComponent
+};
+
+  this.context = { componentParent: this };
+  this.defaultColDef = {
+sortable: true,
+filter: true
+};
 }
 
 onGridReady(params) {
