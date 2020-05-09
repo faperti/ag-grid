@@ -32,7 +32,7 @@ export class ImportaRiassegnazioniContainerComponent implements OnInit {
     this.urlString = this.urlString + 'data_da=' + inpCriteria.DataStart;
     this.urlString = this.urlString + '&data_a=' + inpCriteria.DataEnd;
     this.urlString = this.urlString + '&commessa=' + inpCriteria.Commessa;
-    this.urlString = this.urlString + '&elaborato=' + inpCriteria.Elaborato;
+    // this.urlString = this.urlString + '&elaborato=' + inpCriteria.Elaborato;
 
     console.log(this.urlString);
 

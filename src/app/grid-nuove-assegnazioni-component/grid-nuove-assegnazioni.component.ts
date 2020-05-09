@@ -84,15 +84,15 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
       this.columnDefs = [
         {
           headerName: '#',
-          field: 'idRiassegnazione',
+          field: 'id_variaz',
           width: 90
         },
-        {
-          headerName: 'Selezione',
-          width: 100,
-          headerCheckboxSelection: true,
-          checkboxSelection: true
-        },
+        // {
+        //   headerName: 'Selezione',
+        //   width: 100,
+        //   headerCheckboxSelection: true,
+        //   checkboxSelection: true
+        // },
         {
           headerName: 'Data',
           field: 'data_variazione',
@@ -222,7 +222,7 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
       alert('impAssegnazioni');
       // tslint:disable-next-line:prefer-const
 
-      for (const item of this.rowDataLoaded) {
+      for (const item of this.gridData) {
         if ( item.elaborato === true ) {
           this.variazioniToGenerate.push(item.id_variaz);
           console.log(item. id_variaz + ' ' + item.commessaDa + ' ' + item.elaborato);
@@ -231,16 +231,16 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
       console.log(this.variazioniToGenerate);
 
-      this.http.post<string[]>('http://localhost:4518/api/RiAssegnazioniSMEA', this.variazioniToGenerate, {headers} )
-      .subscribe(res => {
-        this.variazioniResults = res;
-        if ( this.variazioniResults.length > 0 ) {
-          this.variazioniReady = true;
-        } else {
-          this.variazioniReady = false;
-        }
-        alert(this.variazioniResults);
-      });
+      // this.http.post<string[]>('http://localhost:4518/api/RiAssegnazioniSMEA', this.variazioniToGenerate, {headers} )
+      // .subscribe(res => {
+      //   this.variazioniResults = res;
+      //   if ( this.variazioniResults.length > 0 ) {
+      //     this.variazioniReady = true;
+      //   } else {
+      //     this.variazioniReady = false;
+      //   }
+      //   alert(this.variazioniResults);
+      // });
     }
 
     showVariazioniValues() {

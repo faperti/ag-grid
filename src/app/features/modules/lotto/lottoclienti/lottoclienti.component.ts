@@ -10,7 +10,7 @@ import { AccodaGenerazioneModel } from '../../../../renderers/model/accoda-gener
 
 // ag-grid
 import 'ag-grid-enterprise';
-import { LottoDataService } from '../lotto-data.service';
+import { LottoDataService } from '../dataservicelotto/lotto-data.service';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { NoteClienteRendererComponent } from 'src/app/features/modules/lotto/lottoclienti/NoteClienteRenderer/NoteClienteRenderer';
 import { CellEvent } from 'ag-grid-community/dist/lib/events';

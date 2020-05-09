@@ -9,8 +9,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RiassegnazioniContainerComponent implements OnInit {
 
+  // tslint:disable-next-line:no-any
   rowData: any[];
   urlString: string;
+  // tslint:disable-next-line:no-any
   rowDataLoaded: any;
 
 

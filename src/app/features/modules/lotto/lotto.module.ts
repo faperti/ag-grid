@@ -13,7 +13,7 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { LottoRoutingModule } from './lotto-routing.module';
 import { LottoclientiComponent } from './lottoclienti/lottoclienti.component';
-import { LottoDataService } from './lotto-data.service';
+import { LottoDataService } from './dataservicelotto/lotto-data.service';
 import { LottonumerositaproveComponent } from './lottonumerositaprove/lottonumerositaprove.component';
 import { LottonoteComponent } from './lottonote/lottonote.component';
 import { NoteClienteRendererComponent } from './lottoclienti/NoteClienteRenderer/NoteClienteRenderer';

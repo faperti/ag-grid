@@ -8,7 +8,7 @@ import { AccodaGenerazioneCertificatoRendererComponent } from 'src/app/renderers
 import { AccodaGenerazioneProvaModel } from 'src/app/renderers/model/accoda-generazione-prova-model';
 import { getCurrencySymbol } from '@angular/common';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
-import { LottoDataService } from '../lotto-data.service';
+import { LottoDataService } from '../dataservicelotto/lotto-data.service';
 import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({

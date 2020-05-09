@@ -19,7 +19,9 @@ import { HttpClient } from '@angular/common/http';
     // tslint:disable-next-line:no-any
     agInit(params: any): void {
       // console.log(params);
+      console.log('ANCHOR RENDERER');
       this.myParams = params;
+      console.log(this.myParams);
       // console.log('pass the salt');
       // console.log(this.myParams.CommessaDa);
       // console.log(this.myParams.idRiassegnazione);

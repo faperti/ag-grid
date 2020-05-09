@@ -1,8 +1,9 @@
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LottoDataService } from '../../lotto-data.service';
+
 import { HttpClient } from '@angular/common/http';
 import { CommonService } from 'src/app/shared/services/common.service';
+import { LottoDataService } from '../../dataservicelotto/lotto-data.service';
 
 export abstract class BaseLottoView implements OnInit {
     lotto: string;

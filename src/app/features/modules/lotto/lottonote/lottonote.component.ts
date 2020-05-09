@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { LottoDataService } from '../lotto-data.service';
+import { LottoDataService } from '../dataservicelotto/lotto-data.service';
 import { Lotto } from 'src/app/model/lotto';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { HttpClient } from '@angular/common/http';

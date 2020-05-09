@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BaseLottoView } from '../models/abstracts/base-lotto-view';
 import { HttpClient } from '@angular/common/http';
-import { LottoDataService } from '../lotto-data.service';
+import { LottoDataService } from '../dataservicelotto/lotto-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/shared/services/common.service';
 
