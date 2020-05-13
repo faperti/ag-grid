@@ -10,9 +10,12 @@ import { RicercaRiassegnazioniSharedModule } from 'src/app/shared/modules/ricerc
 import { DatePickerModule } from 'src/app/shared/modules/datepicker/datepicker.module';
 import { SearchRiassegnazioniComponent } from 'src/app/shared/components/search-riassegnazioni/search-riassegnazioni.component';
 import { SpinnerSharedModule } from 'src/app/shared/modules/spinner/spinner-shared.module';
+import { RicercaContainerDataService } from '../../containers/ricerca-container/services/ricerca-container-data.service';
+import { ImportaRiassegnazioniContainerComponent } from '../../containers/importa-riassegnazioni-container/importa-riassegnazioni-container.component';
+import { ImportaRiassegnazioniContainerDataService } from '../../containers/importa-riassegnazioni-container/services/importa-riassegnazioni-data.service';
 
 @NgModule({
-  declarations: [ ImportaRiassegnazioniComponent, GridNuoveAssegnazioniComponent ],
+  declarations: [ ImportaRiassegnazioniContainerComponent, ImportaRiassegnazioniComponent, GridNuoveAssegnazioniComponent ],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,6 +25,7 @@ import { SpinnerSharedModule } from 'src/app/shared/modules/spinner/spinner-shar
     ReactiveFormsModule,
     SpinnerSharedModule
   ],
-  exports: [ ImportaRiassegnazioniComponent ]
+  exports: [ ImportaRiassegnazioniContainerComponent, ImportaRiassegnazioniComponent ],
+  providers: [ ImportaRiassegnazioniContainerDataService ]
 })
 export class ImportaRiassegnazioniModule { }

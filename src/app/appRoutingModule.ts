@@ -9,26 +9,21 @@ import { QualitaContainerComponent } from './core/modules/qualita/components/qua
 import { RicercaContainerComponent } from './features/containers/ricerca-container/ricerca-container.component';
 // import { LottoModule } from './features/modules/lotto/lotto.module';
 import { LottoComponent } from './features/modules/lotto/lotto/lotto.component';
-import { RiassegnazioniContainerComponent } from './features/containers/riassegnazioni-container/riassegnazioni-container.component';
 import { AuthGuard } from './auth/auth.guard';
 // tslint:disable-next-line:max-line-length
 import { ImportaRiassegnazioniContainerComponent } from './features/containers/importa-riassegnazioni-container/importa-riassegnazioni-container.component';
-// tslint:disable-next-line:max-line-length
-import { CertificatoProveContainerComponent } from './features/containers/certificato-prove-container/certificato-prove-container.component';
 import { LoginContainerComponent } from './core/modules/login/containers/login-container/login-container.component';
+import { CodaStampaContainerComponent } from './features/containers/coda-stampa-container/coda-stampa-container.component';
 // AOT - JIT
 // npm -i light-server -g --save
 // light-server -s dist/my-app-aggrid -p 4201
 const appRoutes: Routes = [
   { path: 'login', component: LoginContainerComponent },
+  { path: 'codastampa', component: CodaStampaContainerComponent },
   { path: 'qualita', component: QualitaContainerComponent, canActivate: [AuthGuard],
   children: [
     { path: 'parent1', component: RicercaContainerComponent, canActivate: [AuthGuard] } ,
-    { path: 'parent2', component: RiassegnazioniContainerComponent, canActivate: [AuthGuard] },
     { path: 'parent3', component: ImportaRiassegnazioniContainerComponent, canActivate: [AuthGuard] },
-    { path: 'certificatoprove', component: CertificatoProveContainerComponent },
-    // { path: 'lotto', component: LottoComponent},
-    // { path: 'lotto', loadChildren: './features/modules/lotto/lotto.module#LottoModule' },
     { path: 'lotto', loadChildren: () => import('./features/modules/lotto/lotto.module').then(m => m.LottoModule) }
   ] },
 

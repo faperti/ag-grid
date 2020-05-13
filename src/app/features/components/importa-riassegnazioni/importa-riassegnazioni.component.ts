@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchCriteriaRiassegnazioni } from '../../../model/SearchCriteriaRiassegnazioni';
 import { DataService } from '../../../shared/services/data.service';
 import { FormGroup } from '@angular/forms';
+import { Dettaglio } from '../../containers/importa-riassegnazioni-container/model/importaVariazioni';
 
 @Component({
   selector: 'app-importa-riassegnazioni',
@@ -14,7 +15,9 @@ export class ImportaRiassegnazioniComponent implements OnInit {
   // tslint:disable-next-line:no-any
   @Input() gridData: any[];
   @Input() showGrid: boolean;
+  @Input() dettagliImportazione: Dettaglio[];
   @Output() clickSearch: EventEmitter<SearchCriteriaRiassegnazioni> = new EventEmitter<SearchCriteriaRiassegnazioni>();
+  @Output() impVariazioni: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   private lt: string;
   private myLotto: string;
@@ -41,4 +44,10 @@ export class ImportaRiassegnazioniComponent implements OnInit {
     this.gridData = null;
     this.clickSearch.emit(value);
   }
+
+  importVariazioni(value: string[]) {
+    console.log('IMPORT VARIAZIONI : ' + value );
+    this.impVariazioni.emit(value);
+  }
+
 }

@@ -1,15 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SearchCriteriaRiassegnazioni } from 'src/app/model/SearchCriteriaRiassegnazioni';
 import { HttpClient } from '@angular/common/http';
-import { ImportaRiassegnazioniContainerDataService } from './services/importa-riassegnazioni-data.service';
+
 import { Dettaglio, ImportaVariazioni } from './model/importaVariazioni';
+import { CodaStampaContainerDataService } from './services/coda-stampa-container-data.service';
 
 @Component({
-  selector: 'app-importa-riassegnazioni-container',
-  templateUrl: './importa-riassegnazioni-container.component.html',
-  styleUrls: ['./importa-riassegnazioni-container.component.scss']
+  selector: 'app-coda-stampa-container',
+  templateUrl: './coda-stampa-container.component.html',
+  styleUrls: ['./coda-stampa-container.component.scss']
 })
-export class ImportaRiassegnazioniContainerComponent implements OnInit {
+export class CodaStampaContainerComponent implements OnInit {
 
   private urlString = '';
   // tslint:disable-next-line:no-any
@@ -20,7 +21,7 @@ export class ImportaRiassegnazioniContainerComponent implements OnInit {
   showGrid: boolean;
   dettagliImportazione: Dettaglio[];
 
-  constructor( private http: HttpClient, private rcds: ImportaRiassegnazioniContainerDataService ) {
+  constructor( private http: HttpClient, private cscds: CodaStampaContainerDataService ) {
     this.emptyData = true;
     this.showGrid = false;
     this.dettagliImportazione = [];
@@ -65,7 +66,7 @@ updateGrid(value: SearchCriteriaRiassegnazioni) {
 
 impVariazioni(value: string[]) {
   console.log('IMPORTA VARIAZIONI CONTAINER : ' + value);
-  this.rcds.importaRiassegnazioni(value).subscribe( val => {
+  this.cscds.importaRiassegnazioni(value).subscribe( val => {
     const res = val as ImportaVariazioni;
     console.log(res.dettagli);
     this.dettagliImportazione = res.dettagli;

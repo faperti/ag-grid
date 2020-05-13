@@ -2,7 +2,9 @@
 <div *ngIf="showGrid" style="width: 100%; height:100%;">
     <app-grid-nuove-assegnazioni-component *ngIf="gridData else loadingtemplate" 
     [gridData]="gridData"    
-    [inpCriteria]="criteriaToGrid"></app-grid-nuove-assegnazioni-component>
+    [inpCriteria]="criteriaToGrid"
+    [dettagliImportazione]="dettagliImportazione"
+    (importVariazioni)="importVariazioni($event)"></app-grid-nuove-assegnazioni-component>
     <ng-template #loadingtemplate>
         <div class="d-flex w-100 h-100 justify-content-center align-items-center">
         <app-spinner inputSpinnerClass='fa-4x'></app-spinner>

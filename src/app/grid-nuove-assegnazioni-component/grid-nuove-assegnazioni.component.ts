@@ -6,6 +6,7 @@ import { SearchCriteriaRiassegnazioni } from '../model/SearchCriteriaRiassegnazi
 import { AnchorEventClickRendererComponent } from '../anchor-event-click-renderer/anchor-event-click-renderer.component';
 import { ElaboratoAssegnazioneRendererComponent } from '../elaborato-assegnazione-renderer/elaborato-assegnazione-renderer.component';
 import { CommonService } from '../shared/services/common.service';
+import { Dettaglio, ElencoVariazioni } from '../features/containers/importa-riassegnazioni-container/model/importaVariazioni';
 
 @Component({
   selector: 'app-grid-nuove-assegnazioni-component',
@@ -16,8 +17,11 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
   @Input() inpCriteria: SearchCriteriaRiassegnazioni;
   // tslint:disable-next-line:no-any
-  @Input() gridData: any[];
+  // @Input() gridData: any[];
+  @Input() gridData: ElencoVariazioni[];
+  @Input() dettagliImportazione: Dettaglio[];
   @Output() generateCerts = new EventEmitter<string[]>();
+  @Output() importVariazioni = new EventEmitter<string[]>();
 
   private gridApi;
   private gridColumnApi;
@@ -45,7 +49,8 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnChanges() {
-      console.log('grid nuove riassegnazioni component: ONCHANGES');
+      console.log('DETTAGLI IMPORTAZIONE : ');
+      console.log(this.dettagliImportazione);
 
       this.updateGrid();
     }
@@ -64,9 +69,40 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
       }
     }
 
+    trovaVariazione(val, numeroVariazione) {
+       return val.id_variaz === numeroVariazione;
+    }
+
     updateGrid() {
 
-      console.log( 'updateGrid grid data : ' + this.gridData );
+      console.log('UPDATEGRID DETTAGLI IMPORTAZIONE');
+      console.log(this.dettagliImportazione);
+
+      if ( this.dettagliImportazione.length > 0 ) {
+        this.dettagliImportazione.forEach( val => {
+          // console.log(val);
+          this.gridData.forEach(riga => {
+              // console.log(riga);
+              if (riga.id_variaz === val.NumeroVariazione ) {
+                console.log('TROVATA ' + riga.id_variaz);
+                console.log(val);
+                riga.statoImportazione = val.VariazioneResult;
+              }
+            });
+          // this.gridData.find(riga => riga.id_variaz === val.NumeroVariazione).statoImportazione = val.Stato;
+        });
+
+        // console.log(this.gridData);
+
+        const params = { force: true };
+        this.gridApi.refreshCells(params);
+
+      }
+
+      // this.gridData.find()
+
+
+      // console.log( 'updateGrid grid data : ' + this.gridData );
 
     }
 
@@ -134,6 +170,11 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
           width: 90
         },
         {
+          headerName: 'Stato Imp.',
+          field: 'statoImportazione',
+          width: 90
+        },
+        {
           headerName: 'Elaborato',
           cellRendererFramework: ElaboratoAssegnazioneRendererComponent,
           cellRendererParams: { statoComponente: {  dataElaborato: '12345', checkboxVisibile: true } },
@@ -142,6 +183,7 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
           valueFormatter: this.elaboratoFormatter,
           width: 190
         }
+
       ];
       this.defaultColDef = {
         sortable: true,
@@ -173,19 +215,6 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
       return resultRenderer;
 
     }
-
-    // printCerts() {
-    //   this.lottiToGenerate = [];
-    //   const rowsSelection = this.gridApi.getSelectedRows();
-
-    //   rowsSelection.forEach(element => {
-    //     this.lottiToGenerate.push(element.lotto);
-    //   });
-
-    //   console.log('PRINT CERTS : ' + this.lottiToGenerate);
-
-    //   this.generateCerts.emit(this.lottiToGenerate);
-    // }
 
     onGridReady(params) {
       console.log('onGridReady');
@@ -219,8 +248,6 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
     impAssegnazioni() {
       this.variazioniToGenerate = [];
       const headers = new HttpHeaders().set('Content-type', 'application/json');
-      alert('impAssegnazioni');
-      // tslint:disable-next-line:prefer-const
 
       for (const item of this.gridData) {
         if ( item.elaborato === true ) {
@@ -230,6 +257,9 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
       }
 
       console.log(this.variazioniToGenerate);
+
+      this.importVariazioni.emit(this.variazioniToGenerate);
+
 
       // this.http.post<string[]>('http://localhost:4518/api/RiAssegnazioniSMEA', this.variazioniToGenerate, {headers} )
       // .subscribe(res => {

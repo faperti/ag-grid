@@ -5,7 +5,6 @@ import 'ag-grid-enterprise';
 import { SearchCriteria } from '../model/searchCriteria';
 import { RouterLinkRendererComponent } from '../router-link-renderer/router-link-renderer.component';
 
-
 @Component({
   selector: 'app-grid-component',
   templateUrl: './grid-component.component.html',
