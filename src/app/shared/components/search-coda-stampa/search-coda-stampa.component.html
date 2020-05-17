@@ -6,6 +6,11 @@
         <div class="col">
           <app-datepicker formControlName="dp2"></app-datepicker>
         </div>
+        <select formControlName="tipo" class="form-control">
+          <option *ngFor="let item of tipoAccodamento" [ngValue]="item">
+              {{item.Descrizione}}
+          </option>
+      </select>
     </div>
   </form>
   

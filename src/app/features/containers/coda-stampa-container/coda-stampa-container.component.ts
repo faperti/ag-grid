@@ -2,8 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SearchCriteriaRiassegnazioni } from 'src/app/model/SearchCriteriaRiassegnazioni';
 import { HttpClient } from '@angular/common/http';
 
-import { Dettaglio, ImportaVariazioni } from './model/importaVariazioni';
+// import { Dettaglio, ImportaVariazioni } from './model/importaVariazioni';
 import { CodaStampaContainerDataService } from './services/coda-stampa-container-data.service';
+import { SearchCriteriaCodaGenerazioneCertificati } from 'src/app/model/SearchCriteriaCodaGenerazioneCertificati';
 
 @Component({
   selector: 'app-coda-stampa-container',
@@ -19,31 +20,22 @@ export class CodaStampaContainerComponent implements OnInit {
   rowData: any[];
   emptyData: boolean;
   showGrid: boolean;
-  dettagliImportazione: Dettaglio[];
+  // dettagliImportazione: Dettaglio[];
 
   constructor( private http: HttpClient, private cscds: CodaStampaContainerDataService ) {
     this.emptyData = true;
     this.showGrid = false;
-    this.dettagliImportazione = [];
+   // this.dettagliImportazione = [];
   }
 
   ngOnInit() {
   }
 
-  loadData(inpCriteria: SearchCriteriaRiassegnazioni) {
+  loadData(inpCriteria: SearchCriteriaCodaGenerazioneCertificati) {
 
-    console.log('LOAD DATA CONTAINER RIASSEGNAZIONI');
+    console.log('LOAD DATA CODA STAMPA CONTAINER');
 
-    // tslint:disable-next-line:max-line-length
-    this.urlString = 'http://localhost:4518/api/RiAssegnazioniSMEA?';
-    this.urlString = this.urlString + 'data_da=' + inpCriteria.DataStart;
-    this.urlString = this.urlString + '&data_a=' + inpCriteria.DataEnd;
-    this.urlString = this.urlString + '&commessa=' + inpCriteria.Commessa;
-    // this.urlString = this.urlString + '&elaborato=' + inpCriteria.Elaborato;
-
-    console.log(this.urlString);
-
-    this.http.get(this.urlString)
+    this.cscds.GetCodaGenerazione(inpCriteria.DataStart, inpCriteria.DataEnd, inpCriteria.Tipo)
         .subscribe(data => {
           this.rowDataLoaded = data;
           if ( this.rowDataLoaded.length > 0 ) {
@@ -60,18 +52,23 @@ export class CodaStampaContainerComponent implements OnInit {
         });
 }
 
-updateGrid(value: SearchCriteriaRiassegnazioni) {
+updateGrid(value: SearchCriteriaCodaGenerazioneCertificati) {
   this.loadData(value);
 }
 
-impVariazioni(value: string[]) {
+importGenerazioni(value: number[]) {
   console.log('IMPORTA VARIAZIONI CONTAINER : ' + value);
-  this.cscds.importaRiassegnazioni(value).subscribe( val => {
-    const res = val as ImportaVariazioni;
-    console.log(res.dettagli);
-    this.dettagliImportazione = res.dettagli;
+
+  this.cscds.importGenerazioni(value).subscribe( val => {
+    console.log(val);
   }
-    );
+  );
+  // this.cscds.importaRiassegnazioni(value).subscribe( val => {
+  //   const res = val as ImportaVariazioni;
+  //   console.log(res.dettagli);
+  //   this.dettagliImportazione = res.dettagli;
+  // }
+  // );
 }
 
 

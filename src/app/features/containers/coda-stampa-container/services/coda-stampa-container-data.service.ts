@@ -19,6 +19,12 @@ export class CodaStampaContainerDataService {
     this.baseUrlString = this.cs.baseUrl;
   }
 
+  GetCodaGenerazione(dataStart: string, dataEnd: string, tipo: number): any {
+    const urlString = this.baseUrlString +  '/CodaGenerazione?data_da=' + dataStart + '&data_a=' + dataEnd + '&tipo=' + tipo;
+    // console.log(urlString);
+    return this.http.get(urlString);
+  }
+
 
   // tslint:disable-next-line:no-any
     getCollaudoWithToken(lotto: string, normativa: string): any {
@@ -38,12 +44,12 @@ export class CodaStampaContainerDataService {
 
     }
 
-    importaRiassegnazioni(value: string[]): any {
+    importGenerazioni(value: number[]): any {
       const headers = new HttpHeaders().set('Content-type', 'application/json');
-      const body = { assegnazioni : value };
+      const body = { certificatiGenerati : value };
 
       console.log(body);
-      return this.http.post(this.baseUrlString + '/RiassegnazioniSmea', value, {headers} );
+      return this.http.post(this.baseUrlString + '/CodaGenerazione', value, {headers} );
       //  .subscribe(res => {
       //    console.log('RES');
       //    console.log(res);

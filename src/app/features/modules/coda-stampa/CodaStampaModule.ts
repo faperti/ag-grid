@@ -10,13 +10,15 @@ import { AgGridModule } from 'ag-grid-angular';
 import { DatePickerModule } from 'src/app/shared/modules/datepicker/datepicker.module';
 import { SearchCodaStampaComponent } from 'src/app/shared/components/search-coda-stampa/search-coda-stampa.component';
 import { CodaStampaContainerDataService } from '../../containers/coda-stampa-container/services/coda-stampa-container-data.service';
+import { StampaCertificatoRendererComponent } from '../../components/codastampa/stampa-certificato-renderer/stampa-certificato-renderer.component';
 
 
 @NgModule({
-  declarations: [CodaStampaContainerComponent, CodastampaComponent, SearchCodaStampaComponent],
+  declarations: [CodaStampaContainerComponent, CodastampaComponent, SearchCodaStampaComponent, StampaCertificatoRendererComponent],
   imports: [
     CommonModule, FormsModule, SpinnerSharedModule, AgGridModule.withComponents([]), DatePickerModule, ReactiveFormsModule
   ],
+  entryComponents: [ StampaCertificatoRendererComponent ],
   exports: [CodaStampaContainerComponent],
   providers: [
     DatePipe, CodaStampaContainerDataService

@@ -1,2 +1,2 @@
-<app-search-coda-stampa></app-search-coda-stampa>
-<app-codastampa></app-codastampa>
+<app-search-coda-stampa (clickSearch)="loadData($event)"></app-search-coda-stampa>
+<app-codastampa (importGenerazioni)="importGenerazioni($event)" [gridData]="rowData"></app-codastampa>
