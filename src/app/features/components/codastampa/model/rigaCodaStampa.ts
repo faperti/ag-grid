@@ -7,5 +7,6 @@ export class RigaCodaStampa {
     tipogenerazione: number;
     elencoprove: string;
     generato: string;
+    stampato: string;
     stampa: boolean;
 }

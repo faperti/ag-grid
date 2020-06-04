@@ -4,9 +4,10 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { AccodaGenerazioneModel } from 'src/app/renderers/model/accoda-generazione-model';
 import { GenerateCertsResult } from 'src/app/model/GenerateCertsResult';
 import { SearchCriteria } from 'src/app/model/searchCriteria';
-import { CommonService } from 'src/app/shared/services/common.service'
+import { CommonService } from 'src/app/shared/services/common.service';
 import { StampeResultModel } from 'src/app/renderers/model/StampeResultModel';
 import { Observable } from 'rxjs';
+
 
 @Injectable()
 export class CodaStampaContainerDataService {
@@ -44,6 +45,7 @@ export class CodaStampaContainerDataService {
 
     }
 
+    // tslint:disable-next-line:no-any
     importGenerazioni(value: number[]): any {
       const headers = new HttpHeaders().set('Content-type', 'application/json');
       const body = { certificatiGenerati : value };

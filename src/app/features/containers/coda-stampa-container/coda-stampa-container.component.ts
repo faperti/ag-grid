@@ -20,12 +20,12 @@ export class CodaStampaContainerComponent implements OnInit {
   rowData: any[];
   emptyData: boolean;
   showGrid: boolean;
-  // dettagliImportazione: Dettaglio[];
+    // tslint:disable-next-line:no-any
+  resultAccodaStampe: any[];
 
   constructor( private http: HttpClient, private cscds: CodaStampaContainerDataService ) {
     this.emptyData = true;
     this.showGrid = false;
-   // this.dettagliImportazione = [];
   }
 
   ngOnInit() {
@@ -40,12 +40,14 @@ export class CodaStampaContainerComponent implements OnInit {
           this.rowDataLoaded = data;
           if ( this.rowDataLoaded.length > 0 ) {
               this.rowData = this.rowDataLoaded;
+              this.resultAccodaStampe = null;
               this.emptyData = false;
               this.showGrid = true;
               console.log('load data 1: ' + this.emptyData);
             } else {
               this.emptyData = true;
               this.showGrid = false;
+              this.resultAccodaStampe = null;
               this.rowData = [];
               console.log('load data 2: ' + this.emptyData);
             }
@@ -61,6 +63,7 @@ importGenerazioni(value: number[]) {
 
   this.cscds.importGenerazioni(value).subscribe( val => {
     console.log(val);
+    this.resultAccodaStampe = val;
   }
   );
   // this.cscds.importaRiassegnazioni(value).subscribe( val => {

@@ -144,12 +144,9 @@ GetTipoData(): string[] {
 
       const updatesToSend: AccodaGenerazioneModel[] = [];
 
-      // this.updatesToSend = [];
-      // this.updates = 1;
-
       updatesToSend.push(acm);
 
-      console.log('lotto data service accodaCertificato : ' + updatesToSend);
+      // console.log('lotto data service accodaCertificato : ' + updatesToSend);
 
       const headers = new HttpHeaders().set('Content-type', 'application/json');
       const body = {
@@ -157,7 +154,7 @@ GetTipoData(): string[] {
                    };
 
       console.log(body);
-      this.http.post<GenerateCertsResult>('http://localhost:4518/api/Stampe', updatesToSend, {headers} )
+      this.http.post<GenerateCertsResult>(this.baseUrlString + '/api/Stampe', updatesToSend, {headers} )
         .subscribe(res => {
           alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
         });

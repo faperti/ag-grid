@@ -8,6 +8,7 @@ import { CommonService } from 'src/app/shared/services/common.service';
 import { SearchCriteriaCodaGenerazioneCertificati } from 'src/app/model/SearchCriteriaCodaGenerazioneCertificati';
 import { StampaCertificatoRendererComponent } from './stampa-certificato-renderer/stampa-certificato-renderer.component';
 import { RigaCodaStampa } from './model/rigaCodaStampa';
+import { AccodaStampeResult } from 'src/app/model/AccodaStampeResult';
 
 
 
@@ -16,14 +17,15 @@ import { RigaCodaStampa } from './model/rigaCodaStampa';
   templateUrl: './codastampa.component.html',
   styleUrls: ['./codastampa.component.scss']
 })
-export class CodastampaComponent implements OnInit {
+export class CodastampaComponent implements OnInit, OnChanges {
 
   @Input() inpCriteria: SearchCriteriaCodaGenerazioneCertificati;
   // tslint:disable-next-line:no-any
   // @Input() gridData: any[];
   @Input() gridData: RigaCodaStampa[];
+  @Input() accodaStampeImport: AccodaStampeResult;
   @Output() generateCerts = new EventEmitter<string[]>();
-  @Output() importGenerazioni = new EventEmitter<number[]>();
+  @Output() importStampe = new EventEmitter<number[]>();
 
   private gridApi;
   private gridColumnApi;
@@ -39,7 +41,7 @@ export class CodastampaComponent implements OnInit {
   overlayNoRowsTemplate: string;
 
   // tslint:disable-next-line:no-any
-  private variazioniToGenerate: any[];
+  private stampeDaAccodare: any[];
   variazioniResults: string[];
   variazioniReady: boolean;
   showVariazioni: boolean;
@@ -51,9 +53,28 @@ export class CodastampaComponent implements OnInit {
 
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnChanges() {
-      console.log('DETTAGLI IMPORTAZIONE : ');
+      console.log('DETTAGLI CODA STAMPA COMPONENT : ');
 
-      this.updateGrid();
+      if ( this.accodaStampeImport != null ) {
+        console.log(this.accodaStampeImport);
+
+        this.gridData.forEach( item => {
+          this.accodaStampeImport.dettaglioGenerazione.forEach(element => {
+            if (element.idGenerazione === item.id_generazione && element.result === true ) {
+              item.stampa = true;
+              item.stampato = 'Elemento stampato';
+            }
+          });
+
+
+        });
+
+        this.gridApi.refreshCells();
+
+      } else {
+        console.log('ACCODA STAMPE NULL!!');
+      }
+
     }
 
     elaboratoFormatter(params) {
@@ -71,36 +92,7 @@ export class CodastampaComponent implements OnInit {
     }
 
     updateGrid() {
-
       console.log('UPDATEGRID CODA STAMPA COMPONENT');
-      // console.log(this.dettagliImportazione);
-
-      // if ( this.dettagliImportazione.length > 0 ) {
-      //   this.dettagliImportazione.forEach( val => {
-      //     // console.log(val);
-      //     this.gridData.forEach(riga => {
-      //         // console.log(riga);
-      //         if (riga.id_variaz === val.NumeroVariazione ) {
-      //           console.log('TROVATA ' + riga.id_variaz);
-      //           console.log(val);
-      //           riga.statoImportazione = val.VariazioneResult;
-      //         }
-      //       });
-      //     // this.gridData.find(riga => riga.id_variaz === val.NumeroVariazione).statoImportazione = val.Stato;
-      //   });
-
-      //   // console.log(this.gridData);
-
-      //   const params = { force: true };
-      //   this.gridApi.refreshCells(params);
-
-      // }
-
-      // this.gridData.find()
-
-
-      // console.log( 'updateGrid grid data : ' + this.gridData );
-
     }
 
     ngOnInit() {
@@ -158,9 +150,14 @@ export class CodastampaComponent implements OnInit {
           width: 150
         },
         {
+          headerName: 'Stampato',
+          field: 'stampato',
+          width: 150
+        },
+        {
           headerName: 'Stampa',
           cellRendererFramework: StampaCertificatoRendererComponent,
-          cellRendererParams: { statoComponente: {  dataElaborato: 'elbaorazine dati' } },
+          cellRendererParams: { statoComponente: {  dataElaborato: 'elaborazine dati' } },
           field: 'stampa',
           resizable: true,
           width: 190
@@ -227,31 +224,25 @@ export class CodastampaComponent implements OnInit {
 
     }
 
-    impAssegnazioni() {
-      this.variazioniToGenerate = [];
+    impStampe() {
+      console.log('IMPSTAMPE');
+      this.accodaStampeImport = null;
+      this.stampeDaAccodare = [];
       // const headers = new HttpHeaders().set('Content-type', 'application/json');
 
       for (const item of this.gridData) {
+
+        // console.log(item);
+
         if ( item.stampa === true ) {
-          this.variazioniToGenerate.push(item.id_generazione);
+          this.stampeDaAccodare.push(item.id_generazione);
         }
       }
 
-      console.log(this.variazioniToGenerate);
+      // console.log(this.variazioniToGenerate);
 
-      this.importGenerazioni.emit(this.variazioniToGenerate);
+      this.importStampe.emit(this.stampeDaAccodare);
 
-
-      // this.http.post<string[]>('http://localhost:4518/api/RiAssegnazioniSMEA', this.variazioniToGenerate, {headers} )
-      // .subscribe(res => {
-      //   this.variazioniResults = res;
-      //   if ( this.variazioniResults.length > 0 ) {
-      //     this.variazioniReady = true;
-      //   } else {
-      //     this.variazioniReady = false;
-      //   }
-      //   alert(this.variazioniResults);
-      // });
     }
 
     showVariazioniValues() {
