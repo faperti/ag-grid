@@ -8,6 +8,7 @@ export class AccodaStampeResult {
 export class DettaglioGenerazione {
     idGenerazione: number;
     result: boolean;
+    stampato: string;
     dettagli: Dettagli[];
 }
 

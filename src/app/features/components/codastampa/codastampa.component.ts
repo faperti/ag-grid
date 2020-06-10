@@ -62,7 +62,7 @@ export class CodastampaComponent implements OnInit, OnChanges {
           this.accodaStampeImport.dettaglioGenerazione.forEach(element => {
             if (element.idGenerazione === item.id_generazione && element.result === true ) {
               item.stampa = true;
-              item.stampato = 'Elemento stampato';
+              item.stampato = element.stampato;
             }
           });
 
@@ -196,7 +196,7 @@ export class CodastampaComponent implements OnInit, OnChanges {
     }
 
     onGridReady(params) {
-      console.log('onGridReady');
+      // console.log('onGridReady');
       this.gridApi = params.api;
       this.gridColumnApi = params.columnApi;
 
@@ -234,15 +234,16 @@ export class CodastampaComponent implements OnInit, OnChanges {
 
         // console.log(item);
 
-        if ( item.stampa === true ) {
+        if ( item.stampa === true && item.stampato === '' ) {
+          console.log(item.id_generazione);
           this.stampeDaAccodare.push(item.id_generazione);
         }
       }
 
       // console.log(this.variazioniToGenerate);
-
-      this.importStampe.emit(this.stampeDaAccodare);
-
+      if ( this.stampeDaAccodare.length > 0 ) {
+        this.importStampe.emit(this.stampeDaAccodare);
+      }
     }
 
     showVariazioniValues() {

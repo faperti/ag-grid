@@ -291,8 +291,9 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
       alert(note1 + '\r\n' + note2);
     }
 
-    // methodFromParent( coda: AccodaGenerazioneModel) {
-    //   alert('methodFromParent ' + coda.Lotto + ' ' + coda.Commessa + ' ' + coda.TipoAccodamento);
+    methodFromParent( coda: AccodaGenerazioneModel) {
+      alert('methodFromParent ' + coda.Lotto + ' ' + coda.Commessa + ' ' + coda.TipoAccodamento);
+      this.ds.accodaCertificato(coda);
 
     //   this.elementiCoda = [ coda ];
 
@@ -302,16 +303,14 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
     //   .subscribe(res => {
     //     alert(res);
     //     console.log(res);
-        // if ( this.variazioniResults.length > 0 ) {
-        //   this.variazioniReady = true;
-        // } else {
-        //   this.variazioniReady = false;
-        // }
-        // alert(this.variazioniResults);
-        // alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
+    //     if ( this.variazioniResults.length > 0 ) {
+    //       this.variazioniReady = true;
+    //     } else {
+    //       this.variazioniReady = false;
+    //     }
+    //     alert(this.variazioniResults);
+    //     alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
     //  });
-    // }
-
-
+    }
   }
 

@@ -86,14 +86,4 @@ export class Lotto {
     public EstrusioneLordaOra: number;
     public EstrusioneNettaOra: number;
 
-    /*
-    public CLottoClienti ElencoCommesseLotto
-    {
-        get
-        {
-            return _mLottoClienti;
-        }
-    }
-    */
-
 }

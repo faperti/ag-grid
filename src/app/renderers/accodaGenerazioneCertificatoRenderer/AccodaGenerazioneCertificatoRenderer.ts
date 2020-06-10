@@ -6,9 +6,10 @@ import { GenerazioneCertificatoCliente } from '../../model/enums/GenerazioneCert
 
 @Component({
   template: '<div>' +
-  '<i class="fa fa-plus fa-2x" aria-hidden="true" title="Accoda a certificato esistente" (click)="accodaGenerazioneStandard()"></i>&nbsp;' +
-  '<i class="fa fa-print fa-2x" aria-hidden="true" title="Accoda" (click)="accodaCertificato()"></i>&nbsp;' +
-  '<i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" title="Visualizza certificato" (click)="accodaCertificato()"></i>&nbsp;'
+  '<i class="fa fa-plus fa-2x" aria-hidden="true" title="Accoda a certificato esistente" (click)="accodaCertificato()"></i>&nbsp;' +
+  '<i class="fa fa-print fa-2x" aria-hidden="true" title="Accoda" (click)="accodaGenerazioneStandard()"></i>&nbsp;' +
+  // tslint:disable-next-line:max-line-length
+  '<a href="http://certificati.eural.com/{{myParams.data.lotto}}.pdf" target="_blank"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" title="Visualizza certificato"></i></a>'
   // '<img border="0" (click)="accodaGenerazioneStandard()" title="Standard" width="32" height="32" src="/assets/images/accoda.gif"/>'
   // tslint:disable-next-line:max-line-length
   // '<img border="0" (click)="accodaCertificato()" title="Accoda a certificato esistente" width="32" height="32" src="/assets/images/accoda.gif"/>'
@@ -25,12 +26,14 @@ import { GenerazioneCertificatoCliente } from '../../model/enums/GenerazioneCert
     acm: AccodaGenerazioneModel;
 
     constructor(private http: HttpClient) {
-
     }
 
     // tslint:disable-next-line:no-any
     agInit(params: any): void {
+      // console.log('AG INIT');
       this.myParams = params;
+      console.log('MY PARAMS : ');
+      console.log(this.myParams);
     }
 
     // tslint:disable-next-line:no-any
@@ -54,13 +57,13 @@ import { GenerazioneCertificatoCliente } from '../../model/enums/GenerazioneCert
   }
 
     accodaGenerazioneStandard() {
-      console.log(this.myParams);
-      // this.invokeParentMethod(GenerazioneCertificatoCliente.GenerazioneStandard);
+      // console.log(this.myParams);
+      this.invokeParentMethod(GenerazioneCertificatoCliente.GenerazioneStandard);
     }
 
     accodaCertificato() {
-      console.log(this.myParams);
-      // this.invokeParentMethod(GenerazioneCertificatoCliente.AccodaCertificato);
+      // console.log(this.myParams);
+      this.invokeParentMethod(GenerazioneCertificatoCliente.AccodaCertificato);
     }
 
     passTheSalt(idVariazione: number) {
