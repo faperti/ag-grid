@@ -20,6 +20,7 @@ export class CodaStampaContainerDataService {
     this.baseUrlString = this.cs.baseUrl;
   }
 
+  // tslint:disable-next-line:no-any
   GetCodaGenerazione(dataStart: string, dataEnd: string, tipo: number): any {
     const urlString = this.baseUrlString +  '/CodaGenerazione?data_da=' + dataStart + '&data_a=' + dataEnd + '&tipo=' + tipo;
     // console.log(urlString);

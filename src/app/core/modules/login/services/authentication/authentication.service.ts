@@ -19,6 +19,11 @@ export class AuthenticationService {
   constructor( private http: HttpClient, private commonService: CommonService ) { }
 
   login(userName: string, password: string): Observable<BearerParams> {
+  // login(userName: string, password: string): any {
+
+    console.log('LOGIN : ');
+    console.log(this.TokenAPI);
+
     const headersForTokenAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
     const data = 'grant_type=password&username=' + userName + '&password=' + password;
 
@@ -26,9 +31,6 @@ export class AuthenticationService {
   }
 
   getMenu(token): Observable<NavbarModel> {
-
-    // console.log('GET MENU');
-    // console.log('TOKEN ' + token);
 
     // tslint:disable-next-line:object-literal-key-quotes
     const headersAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', Authorization: 'Bearer "' + token + '"'});

@@ -4,17 +4,15 @@ import { Parent1Module } from './modules/parent1/parent1.module';
 import { RicercaContainerModule } from './modules/ricerca-container/RicercaContainerModule';
 import { Parent2Module } from './modules/parent2/parent2.module';
 import { ImportaRiassegnazioniModule } from './modules/parent3/importa-riassegnazioni.module';
-// import { RiassegnazioniContainerComponent } from './containers/riassegnazioni-container/riassegnazioni-container.component';
-// tslint:disable-next-line:max-line-length
-import { ImportaRiassegnazioniContainerComponent } from './containers/importa-riassegnazioni-container/importa-riassegnazioni-container.component';
-import { SearchRiassegnazioniComponent } from '../shared/components/search-riassegnazioni/search-riassegnazioni.component';
+
 import { CertificatoProveModule } from './modules/certificatoprove/certificatoprove.module';
 import { CodaStampaContainerModule } from './modules/coda-stampa/CodaStampaModule';
+import { TestContainerModule } from './modules/test-container/TestContainerModule';
 
 @NgModule({
   declarations: [ ],
   imports: [
-    CommonModule, Parent1Module, Parent2Module, ImportaRiassegnazioniModule, 
+    CommonModule, Parent1Module, Parent2Module, ImportaRiassegnazioniModule, TestContainerModule,
     RicercaContainerModule, CertificatoProveModule, CodaStampaContainerModule
   ],
   exports: [ ]
