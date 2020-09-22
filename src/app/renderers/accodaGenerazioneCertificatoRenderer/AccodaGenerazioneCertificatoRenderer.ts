@@ -9,7 +9,7 @@ import { GenerazioneCertificatoCliente } from '../../model/enums/GenerazioneCert
   '<i class="fa fa-plus fa-2x" aria-hidden="true" title="Accoda a certificato esistente" (click)="accodaCertificato()"></i>&nbsp;' +
   '<i class="fa fa-print fa-2x" aria-hidden="true" title="Accoda" (click)="accodaGenerazioneStandard()"></i>&nbsp;' +
   // tslint:disable-next-line:max-line-length
-  '<a href="http://certificati.eural.com/{{myParams.data.lotto}}.pdf" target="_blank"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" title="Visualizza certificato"></i></a>'
+  '<a href="http://archiviocertificati.eural.com/{{myParams.data.pathCertificatoCommessa}}" target="_blank"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" title="Visualizza certificato"></i></a>'
   // '<img border="0" (click)="accodaGenerazioneStandard()" title="Standard" width="32" height="32" src="/assets/images/accoda.gif"/>'
   // tslint:disable-next-line:max-line-length
   // '<img border="0" (click)="accodaCertificato()" title="Accoda a certificato esistente" width="32" height="32" src="/assets/images/accoda.gif"/>'

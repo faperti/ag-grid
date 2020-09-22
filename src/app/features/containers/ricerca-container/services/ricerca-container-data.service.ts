@@ -4,7 +4,7 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { AccodaGenerazioneModel } from 'src/app/renderers/model/accoda-generazione-model';
 import { GenerateCertsResult } from 'src/app/model/GenerateCertsResult';
 import { SearchCriteria } from 'src/app/model/searchCriteria';
-import { CommonService } from 'src/app/shared/services/common.service'
+import { CommonService } from 'src/app/shared/services/common.service';
 import { StampeResultModel } from 'src/app/renderers/model/StampeResultModel';
 import { Observable } from 'rxjs';
 
@@ -154,7 +154,7 @@ GetTipoData(): string[] {
                    };
 
       console.log(body);
-      this.http.post<GenerateCertsResult>(this.baseUrlString + '/api/Stampe', updatesToSend, {headers} )
+      this.http.post<GenerateCertsResult>(this.cs.baseUrl + '/Stampe', updatesToSend, {headers} )
         .subscribe(res => {
           alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
         });
@@ -162,22 +162,18 @@ GetTipoData(): string[] {
 
 
     // tslint:disable-next-line:no-any
-    accodaCertificati(value: AccodaGenerazioneModel[]): Observable<StampeResultModel> {
+    accodaCertificati(value: AccodaGenerazioneModel[]): any {
 
       console.log('ricerca container data service accodaCertificati : ' + value);
+      console.log('baseURL : ' + this.cs.baseUrl);
 
       const headers = new HttpHeaders().set('Content-type', 'application/json');
       const body = {
                           body: value
                    };
 
-      return this.http.post<StampeResultModel>('http://localhost:4518/api/Stampe', value, {headers} );
-        // .subscribe(res => {
-        //   alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
-        // });
+      return this.http.post<StampeResultModel>(this.cs.baseUrl + '/Stampe', value, {headers} );
 
     }
-
-
-
   }
+  

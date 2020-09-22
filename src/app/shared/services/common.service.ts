@@ -25,11 +25,11 @@ function toInteger(value: any): number {
 @Injectable()
 export class CommonService {
 
-// baseUrl = 'http://certificatiwebapi.eural.com/api';
-// baseUrlToken = 'http://certificatiwebapi.eural.com/token';
+baseUrl = 'http://certificatiwebapi.eural.com/api';
+baseUrlToken = 'http://certificatiwebapi.eural.com/token';
 
-baseUrl = 'http://localhost:4518/api';
-baseUrlToken = 'http://localhost:4518/token';
+// baseUrl = 'http://localhost:4518/api';
+// baseUrlToken = 'http://localhost:4518/token';
 overlayLoadingTemplate = '<span class="ag-overlay-loading-center" style="font-size: 18px">Ricerca in corso. Attendere...</span>';
 
 // tslint:disable-next-line:max-line-length

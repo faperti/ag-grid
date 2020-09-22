@@ -33,6 +33,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { ModalReadOnlyComponent } from './shared/components/modal-read-only/modal-read-only.component';
 import { SharedModule } from './shared/shared.module';
+import { TestContainerDataService } from './features/containers/test-container/services/test-container-data.service';
 
 @NgModule({
     imports: [
@@ -63,6 +64,6 @@ import { SharedModule } from './shared/shared.module';
      HeaderGridComponent,
       ],
   bootstrap: [AppComponent],
-  providers: [AuthDataService, DataService, CommonService]
+  providers: [AuthDataService, DataService, CommonService, TestContainerDataService]
 })
 export class AppModule {}

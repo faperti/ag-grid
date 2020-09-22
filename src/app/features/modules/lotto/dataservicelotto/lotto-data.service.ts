@@ -31,9 +31,6 @@ export class LottoDataService {
       const urlString = this.baseUrlString + '/Lotto?lotto=' + lotto;
 
       return this.http.get(urlString);
-      // .subscribe(data => {
-      //   console.log(data);
-      //   this.cLotto = data as Lotto;
   }
 
   // tslint:disable-next-line:no-any
@@ -109,7 +106,7 @@ export class LottoDataService {
 
       console.log(body);
 
-      this.http.post<GenerateCertsResult>('http://localhost:4518/api/Stampe', updatesToSend, {headers} )
+      this.http.post<GenerateCertsResult>(this.cs.baseUrl + '/Stampe', updatesToSend, {headers} )
         .subscribe(res => {
           alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
         });

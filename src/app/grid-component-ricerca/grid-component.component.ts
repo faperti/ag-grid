@@ -92,18 +92,6 @@ export class GridComponentComponent implements OnInit, OnChanges {
           cellRenderer: this.certificatoRenderer.bind(this),
           cellStyle: { 'text-align': 'center' }
         },
-        // {
-        //   headerName: 'Certificato', field: 'lotto',
-        //   cellRendererFramework: RouterLinkRendererComponent,
-        //   cellRendererParams: {
-        //     inRouterLink: '/qualita/parent1'
-        //   },
-        //   // cellRenderer: this.certificatoRenderer,
-        //   // // valueGetter: this.certificatoGetter,
-        //   // // valueFormatter: this.certificatoFormatter,
-        //   // // field: 'certificato',
-        //   width: 100
-        // },
         {
           headerName: 'Codice',
           field: 'codice',
@@ -184,8 +172,15 @@ export class GridComponentComponent implements OnInit, OnChanges {
     }
 
     certificatoRenderer(params) {
-      // tslint:disable-next-line:max-line-length
-      const cert = '<a target="_blank" href="' + 'http://archiviocertificati.eural.com/' + this.makePathLotto(params) + '"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>';
+
+      let cert = 'AAAAAA';
+
+      if ( params.data.certificato ) {
+        // tslint:disable-next-line:max-line-length
+        cert = '<a target="_blank" href="' + 'http://archiviocertificati.eural.com/' + this.makePathLotto(params) + '"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>';
+      } else {
+        cert = '';
+      }
 
       return cert;
     }

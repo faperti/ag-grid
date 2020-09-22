@@ -60,12 +60,6 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
       };
 
       this.columnDefs = [
-        // {
-        //   headerName: 'Selezione',
-        //   width: 100,
-        //   headerCheckboxSelection: true,
-        //   checkboxSelection: true
-        // },
         {
           headerName: 'Conferma',
           field: 'commessa',
@@ -185,15 +179,11 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
     }
 
     certificatoFormatter(params) {
-      // return '(' + params.Certificato + ') - ' + params.imgCertificato;
-      // console.log('PAR ' + params.certificato);
       return '(' + params.value + ') - ';
     }
 
     certificatoGetter(params) {
       return '(' + params.data.certificato + ') - ' + params.data.imgCertificato;
-      // console.log('PAR ' + params.certificato);
-      // return '(' + params.certificato + ') - ';
     }
 
     // tslint:disable-next-line:no-any
