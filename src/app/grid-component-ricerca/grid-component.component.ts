@@ -232,13 +232,6 @@ export class GridComponentComponent implements OnInit, OnChanges {
 
       this.gridApi.hideOverlay();
 
-      // this.http
-      //   .get('http://localhost:4518/api/Elementi?settore=2&tipo=5'
-      //     // 'https://raw.githubusercontent.com/ag-grid/ag-grid/master/packages/ag-grid-docs/src/olympicWinnersSmall.json'
-      //   )
-      //   .subscribe(data => {
-      //     this.rowData = data;
-      //   });
     }
 
     onPageSizeChanged() {

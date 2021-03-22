@@ -32,9 +32,11 @@ export class AuthenticationService {
 
   getMenu(token): Observable<NavbarModel> {
 
+    // const bodyValues = { username: userNameParameter, password: passwordParameter };
+
     // tslint:disable-next-line:object-literal-key-quotes
     const headersAPI = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', Authorization: 'Bearer "' + token + '"'});
-    return this.http.post<NavbarModel>(this.GetMenuAPI, null, { headers : { 'Content-Type': 'application/json',
+    return this.http.post<NavbarModel>(this.GetMenuAPI, null , { headers : { 'Content-Type': 'application/json',
     Authorization: 'Bearer ' + token } } );
 
   }

@@ -260,17 +260,6 @@ export class GridNuoveAssegnazioniComponent implements OnInit, OnChanges {
 
       this.importVariazioni.emit(this.variazioniToGenerate);
 
-
-      // this.http.post<string[]>('http://localhost:4518/api/RiAssegnazioniSMEA', this.variazioniToGenerate, {headers} )
-      // .subscribe(res => {
-      //   this.variazioniResults = res;
-      //   if ( this.variazioniResults.length > 0 ) {
-      //     this.variazioniReady = true;
-      //   } else {
-      //     this.variazioniReady = false;
-      //   }
-      //   alert(this.variazioniResults);
-      // });
     }
 
     showVariazioniValues() {

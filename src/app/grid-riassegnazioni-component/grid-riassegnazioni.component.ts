@@ -185,25 +185,6 @@ export class GridRiassegnazioniComponent implements OnInit, OnChanges {
     updateGrid() {
       this.rowData = this.gridData;
 
-            // alert('UPDATE GRID riassegnazioni component');
-            // // tslint:disable-next-line:max-line-length
-            // this.urlString = 'http://localhost:4518/api/RiAssegnazioniSMEA?';
-            // this.urlString = this.urlString + 'data_da=' + this.inpCriteria.DataStart;
-            // this.urlString = this.urlString + '&data_a=' + this.inpCriteria.DataEnd;
-            // this.urlString = this.urlString + '&commessa=' + this.inpCriteria.Commessa;
-            // this.urlString = this.urlString + '&elaborato=' + this.inpCriteria.Elaborato;
-
-            // alert(this.urlString);
-
-            // this.http
-            //     .get(this.urlString)
-            //     .subscribe(data => {
-            //       this.rowDataLoaded = data;
-            //       if ( this.rowDataLoaded.length > 0 ) {
-            //           this.rowData = this.rowDataLoaded;
-            //           console.log(this.rowData);
-            //         }
-            //     });
     }
 
 

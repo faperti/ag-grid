@@ -24,13 +24,6 @@ export class NavbarComponent implements OnInit {
   constructor(public DS: DataService,
               public AS: AuthenticationService,
               private router: Router) {
-    // this.DS.Menu.subscribe(
-    //   (value) =>  {
-    //     // this.Menu = this.DS.VociMenu;
-    //     // console.log('NAVBAR MENU : ' + this.Menu);
-    //     console.log('NAVBAR TOKEN : ' + this.DS.getAccessToken() );
-    //   }
-    // );
   }
 
   ngOnInit() {

@@ -176,4 +176,3 @@ GetTipoData(): string[] {
 
     }
   }
-  

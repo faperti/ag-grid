@@ -285,22 +285,6 @@ export class LottoclientiComponent extends BaseLottoView implements OnInit, OnCh
       alert('methodFromParent ' + coda.Lotto + ' ' + coda.Commessa + ' ' + coda.TipoAccodamento);
       this.ds.accodaCertificato(coda);
 
-    //   this.elementiCoda = [ coda ];
-
-    //   const headers = new HttpHeaders().set('Content-type', 'application/json');
-
-    //   this.http.post<string[]>('http://localhost:4518/api/Stampe', this.elementiCoda, {headers} )
-    //   .subscribe(res => {
-    //     alert(res);
-    //     console.log(res);
-    //     if ( this.variazioniResults.length > 0 ) {
-    //       this.variazioniReady = true;
-    //     } else {
-    //       this.variazioniReady = false;
-    //     }
-    //     alert(this.variazioniResults);
-    //     alert('Richieste inviate ' + res.richiesteInviate + ' OK : ' + res.richiesteOK + ' KO : ' + res.richiesteKO);
-    //  });
     }
   }
 
