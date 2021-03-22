@@ -9,7 +9,6 @@ import { AccodaGenerazioneProvaModel } from 'src/app/renderers/model/accoda-gene
 import { HeaderGridComponent } from 'src/app/features/modules/lotto/header-grid-component/header-grid-component.component';
 import { AccodaGenerazioneModel } from '../renderers/model/accoda-generazione-model';
 
-
 @Component({
   selector: 'app-grid-certificato-provecomponent',
   templateUrl: './grid-component-certificato-prove.component.html',
