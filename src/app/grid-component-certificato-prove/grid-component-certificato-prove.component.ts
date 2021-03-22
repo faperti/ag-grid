@@ -26,6 +26,7 @@ export class GridCertificatoProveComponent implements OnInit, OnChanges {
   private normativaSelezionata: string;
   private currentPrescritta: string;
   private Prescritte: string[];
+  // tslint:disable-next-line:no-any
   columnDefs: any[];
   defaultColDef;
   rowData: any[];
@@ -256,7 +257,7 @@ initializeColumnsDefs() {
     public invokeParentMethod() {
 
       this.acm = new AccodaGenerazioneModel();
-      this.acm.Lotto = '1234567890'
+      this.acm.Lotto = '1234567890';
       this.acm.Commessa = '1122334455';
 
       // il tipo di accodamento indica l'eventuale operazione che deve essere compiuta dal generatore dei certificati
