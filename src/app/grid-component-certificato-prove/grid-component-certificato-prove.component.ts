@@ -29,16 +29,20 @@ export class GridCertificatoProveComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-any
   columnDefs: any[];
   defaultColDef;
+  // tslint:disable-next-line:no-any
   rowData: any[];
+  // tslint:disable-next-line:no-any
   private rowDataLoaded: any;
   private message = '';
   private urlString = '';
   private lottiToGenerate: string[];
   private prove: string[];
   private proveSelezionate: string[];
+  // tslint:disable-next-line:no-any
   frameworkComponents: any;
   context;
   private acm: AccodaGenerazioneModel;
+  // tslint:disable-next-line:no-any
   elaboratoFormatter: any;
   private overlayLoadingTemplate: string;
   private overlayNoRowsTemplate: string;
